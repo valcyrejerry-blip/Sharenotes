@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover">
+  <title>Don Bosco College (Autonomous) Maram · Study Resources</title>
+  <link rel="icon" type="image/png" href="assets/images/dbcm-logo.png?v=3">
+  <meta name="description" content="Access comprehensive study materials, notes, question banks, and past papers for Don Bosco College (Autonomous) Maram across 16 academic departments.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- jsPDF for Dynamic Verified Document PDF Generation -->
+  <script src="assets/js/jspdf.umd.min.js"></script>
+
+  <!-- DBCM Academic AI Tutor Client Module -->
+  <script src="assets/js/dbcm-ai.js"></script>
+
+  <!-- Secure teacher and administrator sessions -->
+  <script src="assets/js/api.js?v=2.13"></script>
+
+  <!-- Teacher Login & Session Module -->
+  <script src="assets/js/local-data.js"></script>
+  <script src="assets/js/teachers-data.js"></script>
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=2.6">
+
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white relative">
+
+  <!-- Professional Ambient Mesh & Grid Background -->
+  <div class="bg-grid-pattern"></div>
+  <div class="ambient-orb ambient-orb-1"></div>
+  <div class="ambient-orb ambient-orb-2"></div>
+  <div class="ambient-orb ambient-orb-3"></div>
+  <div class="hero-glow"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4 relative">
+      
+      <!-- Brand Logo & DBCM Journal Container (Optimized for Mobile) -->
+      <div class="flex items-center gap-1.5 sm:gap-3.5 min-w-0">
+        <!-- Don Bosco College Brand Logo & Official Link -->
+        <a href="https://dbcmaram.ac.in/" target="_blank" rel="noopener noreferrer" 
+          title="Don Bosco College Maram Official Website (https://dbcmaram.ac.in/)"
+          class="flex items-center gap-1.5 sm:gap-3 shrink-0 group min-w-0">
+          <div class="w-9 h-9 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 group-hover:ring-2 group-hover:ring-indigo-400/50 transition-all shrink-0">
+            <img src="assets/images/dbcm-logo.png?v=3" alt="Don Bosco College Autonomous Maram Logo" class="w-full h-full object-contain" />
+          </div>
+          <div class="flex flex-col text-left min-w-0">
+            <span class="text-[11px] sm:text-base md:text-lg font-black tracking-tight text-white group-hover:text-blue-300 transition-colors leading-tight truncate">
+              Don Bosco College
+            </span>
+            <span class="text-[8.5px] sm:text-xs font-semibold text-blue-300/90 tracking-normal leading-tight truncate">
+              (Autonomous) Maram
+            </span>
+          </div>
+        </a>
+
+        <!-- In between college name and DBCM journal: | -->
+        <span class="text-gray-400 dark:text-gray-500 font-light text-[11px] sm:text-sm select-none shrink-0 px-0.5">|</span>
+
+        <!-- DBCM Journal Official Link with Logo on Right -->
+        <a href="http://dbcmaram.com/" target="_blank" rel="noopener noreferrer"
+          title="DBCM Journal (http://dbcmaram.com/)"
+          class="text-[11px] sm:text-sm font-bold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1 sm:gap-2 shrink-0 group py-1 px-1 sm:px-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">
+          <span class="text-black dark:text-white font-bold dbcm-journal-text whitespace-nowrap"><span class="hidden min-[380px]:inline">DBCM </span>Journal</span>
+          <div class="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-white p-0.5 flex items-center justify-center shadow-xs border border-gray-200 dark:border-white/10 group-hover:scale-105 transition-transform shrink-0">
+            <img src="assets/images/maram-journal-logo.png" alt="MARAM Journal Logo" class="w-full h-full object-contain" />
+          </div>
+        </a>
+      </div>
+
+      <!-- Right Navigation Actions: Desktop View (Home + Admin + Bookmarks + Theme) -->
+      <div class="hidden sm:flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+
+        <!-- Contribution Button -->
+        <button onclick="openHomeContributionModal()" 
+          class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[38px] sm:min-h-[40px] group"
+          title="Contribute Study Notes or Question Papers (PDF)">
+          <i data-lucide="upload-cloud" class="w-4 h-4 text-gray-300 group-hover:text-white transition-colors"></i>
+          <span>Contribute</span>
+        </button>
+
+        <!-- Home Button -->
+        <a href="index.html" 
+          onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+          class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[38px] sm:min-h-[40px]"
+          title="Home">
+          <i data-lucide="home" class="w-4 h-4 text-blue-400"></i>
+          <span class="hidden sm:inline">Home</span>
+        </a>
+
+        <!-- Bookmarks Button -->
+        <button onclick="openBookmarksDrawer()" 
+          class="p-2 sm:px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-amber-400 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[38px] sm:min-h-[40px]"
+          title="Saved Bookmarks">
+          <i data-lucide="bookmark" class="w-4 h-4"></i>
+          <span class="hidden md:inline">Saved</span>
+        </button>
+
+        <!-- Teacher Login / Dashboard (Admin sign-in is available as a tab on the login page) -->
+        <a href="pages/login.html?role=teacher" id="admin-btn" 
+          class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/30 text-indigo-300 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold shadow-sm min-h-[38px] sm:min-h-[40px]"
+          title="Teacher Login; choose Admin on the login page for administrator access">
+          <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-400"></i>
+          <span id="admin-btn-label">Teacher</span>
+        </a>
+      </div>
+
+      <!-- Mobile Right Navigation: 3-Line Hamburger Dropdown Trigger -->
+      <div class="sm:hidden flex items-center gap-1.5 shrink-0 ml-auto">
+        <button id="mobile-menu-toggle-btn" 
+          onclick="toggleMobileMenu(event)" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation menu"
+          class="p-2 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 text-gray-200 hover:text-white transition-all flex items-center justify-center min-h-[38px] min-w-[38px] cursor-pointer"
+          title="Menu">
+          <i data-lucide="menu" id="mobile-menu-icon" class="w-5 h-5 text-gray-200 pointer-events-none"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu (Home, Contribute, Admin, Saved Bookmarks) -->
+      <div id="mobile-dropdown-menu" 
+        onclick="event.stopPropagation()"
+        class="hidden sm:hidden absolute top-[calc(100%+8px)] right-3 w-64 rounded-2xl p-2 z-50 flex-col gap-1.5 transition-all shadow-2xl border border-white/15 bg-[#12131e]/98 backdrop-blur-2xl">
+        
+        <!-- Home Link -->
+        <a href="index.html" onclick="closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' });" 
+          class="mobile-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all">
+          <div class="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center shrink-0 border border-blue-500/30">
+            <i data-lucide="home" class="w-4 h-4 text-blue-400"></i>
+          </div>
+          <span class="text-white font-bold">Home</span>
+        </a>
+
+        <!-- Contribute Link in Mobile Menu -->
+        <button onclick="closeMobileMenu(); openHomeContributionModal();" 
+          class="mobile-nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all text-left cursor-pointer">
+          <div class="w-7 h-7 rounded-lg bg-indigo-600/20 text-indigo-300 flex items-center justify-center shrink-0 border border-indigo-500/30">
+            <i data-lucide="upload-cloud" class="w-4 h-4 text-indigo-400"></i>
+          </div>
+          <span class="text-white font-bold">Contribute Material</span>
+        </button>
+
+        <!-- Teacher Login; the login page also contains the Admin sign-in tab -->
+        <a href="pages/login.html?role=teacher" id="mobile-admin-login-link" onclick="closeMobileMenu()" 
+          class="mobile-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all">
+          <div class="w-7 h-7 rounded-lg bg-emerald-600/20 text-emerald-300 flex items-center justify-center shrink-0 border border-emerald-500/30">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <span id="mobile-admin-login-label" class="text-white font-bold">Teacher</span>
+        </a>
+
+        <!-- Save / Bookmarks Drawer Trigger -->
+        <button onclick="closeMobileMenu(); openBookmarksDrawer();" 
+          class="mobile-nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all text-left cursor-pointer">
+          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
+            <i data-lucide="bookmark" class="w-4 h-4 text-amber-400"></i>
+          </div>
+          <span class="text-white font-bold">Saved Materials</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-8 sm:pt-10 pb-6 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto z-10">
+    <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-tight">
+      <span class="block">DBCM Study Materials</span>
+      <span class="block text-blue-400 hero-single-line mt-1 sm:mt-2">
+        Find what you need for your next class.
+      </span>
+    </h1>
+
+    <!-- Main Search Input in Hero -->
+    <div id="search-bar-wrapper" class="mt-8 sm:mt-14 md:mt-20 max-w-2xl mx-auto relative group z-30">
+
+      <div class="relative flex items-center transition-all duration-300 group-hover:-translate-y-0.5 group-focus-within:-translate-y-0.5 z-20">
+        <i data-lucide="search" class="w-4 sm:w-5 h-4 sm:h-5 text-gray-400 group-hover:text-gray-200 group-focus-within:text-white absolute left-3 sm:left-4 pointer-events-none transition-all duration-300 group-hover:scale-110"></i>
+        
+        <input type="text" id="main-search-input" 
+          placeholder="Search subjects, codes, topics..."
+          autocomplete="off"
+          class="w-full bg-white/5 hover:bg-white/[0.08] focus:bg-white/[0.09] border border-white/15 hover:border-white/30 focus:border-white/40 rounded-2xl pl-9 sm:pl-12 pr-14 sm:pr-24 py-2.5 sm:py-3.5 text-[11px] sm:text-base md:text-sm text-white placeholder-gray-500 placeholder:text-[11px] sm:placeholder:text-base md:placeholder:text-sm focus:outline-none backdrop-blur-md transition-all duration-300 shadow-lg shadow-black/25 group-hover:shadow-2xl group-hover:shadow-black/40 group-focus-within:shadow-2xl group-focus-within:shadow-black/40"
+        />
+
+        <!-- Clear 'X' Cross Button -->
+        <button id="search-clear-btn" type="button" onclick="clearMainSearch()" 
+          title="Clear search (Esc)"
+          class="hidden absolute right-[50px] sm:right-[72px] p-1 sm:p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer">
+          <i data-lucide="x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+        </button>
+
+        <button id="hero-search-btn" onclick="triggerSearch()" 
+          class="absolute right-1.5 sm:right-2 px-2.5 sm:px-3.5 py-0.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-indigo-600 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/40 active:scale-95 text-white text-[10px] sm:text-xs font-bold shadow-sm transition-all duration-200 cursor-pointer flex items-center justify-center min-h-[24px] sm:min-h-[32px] leading-none">
+          <span>Search</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Stats Bar -->
+    <div id="hero-stats-bar" class="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <!-- Populated via JS -->
+    </div>
+  </section>
+
+  <!-- Filter & Browse Section -->
+  <main id="subjects-section" class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 sm:py-8 w-full z-10">
+    
+    <section id="program-picker-section" class="mb-8 pt-1">
+      <h2 class="mb-2 text-2xl sm:text-3xl font-black tracking-tight text-gray-900 dark:text-white">Choose your program</h2>
+      <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">Select undergraduate or postgraduate study materials.</p>
+      <div class="grid grid-cols-2 gap-3 sm:gap-4">
+        <button type="button" onclick="selectProgramLevel('UG')" class="group flex min-h-28 flex-col items-start justify-between rounded-xl border border-blue-200 bg-white p-3.5 text-left shadow-md transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg dark:border-white/10 dark:bg-white/5 sm:min-h-32 sm:rounded-2xl sm:p-5">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300 sm:h-10 sm:w-10"><i data-lucide="graduation-cap" class="h-5 w-5"></i></span>
+          <span class="mt-2 block">
+            <span class="block text-xl font-extrabold text-gray-900 group-hover:text-blue-700 dark:text-white dark:group-hover:text-blue-300 sm:text-2xl">UG</span>
+            <span class="mt-0.5 block text-xs text-gray-500 dark:text-gray-400 sm:text-sm"><span id="ug-subject-count">0</span> departments</span>
+          </span>
+        </button>
+        <button type="button" onclick="selectProgramLevel('PG')" class="group flex min-h-28 flex-col items-start justify-between rounded-xl border border-purple-200 bg-white p-3.5 text-left shadow-md transition hover:-translate-y-1 hover:border-purple-400 hover:shadow-lg dark:border-white/10 dark:bg-white/5 sm:min-h-32 sm:rounded-2xl sm:p-5">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-100 text-purple-700 dark:bg-purple-500/15 dark:text-purple-300 sm:h-10 sm:w-10"><i data-lucide="award" class="h-5 w-5"></i></span>
+          <span class="mt-2 block">
+            <span class="block text-xl font-extrabold text-gray-900 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-300 sm:text-2xl">PG</span>
+            <span class="mt-0.5 block text-xs text-gray-500 dark:text-gray-400 sm:text-sm"><span id="pg-subject-count">0</span> departments</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section id="program-browser-section" class="hidden">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Selected program</p>
+          <h2 id="selected-program-title" class="mt-1 text-2xl font-black text-gray-900 dark:text-white">UG</h2>
+        </div>
+        <button type="button" onclick="clearProgramSelection()" class="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 transition hover:border-blue-300 hover:text-blue-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300">Change program</button>
+      </div>
+      <div class="mb-7 border-b border-gray-200 pb-5 dark:border-white/10">
+        <h3 class="mb-3 text-sm font-bold uppercase tracking-wider text-gray-500">Common papers</h3>
+        <div id="paper-category-tabs" class="flex flex-wrap gap-2" role="tablist" aria-label="Common paper categories"></div>
+      </div>
+
+    <!-- STEP 1: Department Filter (16 Departments in Exactly Two Lines, Alphabetical by Code) -->
+    <div id="choose-department-section" class="space-y-4 mb-8 transition-all duration-300">
+      <div id="department-picker-heading" class="hidden flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            Choose department
+          </h2>
+        </div>
+      </div>
+
+
+      <!-- 16 Departments in Responsive Grid: 2 cols on mobile, 4 cols on tablet, 8 cols on desktop -->
+      <div id="department-chips-container" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-2.5 md:gap-3">
+        <!-- Populated via JS: 16 Departments -->
+      </div>
+
+    </div>
+
+    <!-- Dedicated Program Level (UG / PG) Selection for English, History, Political Science & Sociology (Buttons like Major/Minor) -->
+    <div id="program-level-section" class="mb-4 sm:mb-6 p-1.5 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/10 transition-all duration-300 hidden shadow-xl animate-fade-in flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div id="program-quick-buttons" class="inline-flex p-1 sm:p-1.5 rounded-lg sm:rounded-2xl bg-black/10 dark:bg-black/30 border border-black/5 dark:border-white/10 gap-1.5 sm:gap-2 w-full sm:w-auto shadow-inner" role="group" aria-label="Program level selection">
+        
+        <button onclick="selectProgramLevel('UG')" id="quick-btn-ug"
+          class="group flex-1 sm:flex-initial justify-center px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[34px] sm:min-h-[42px]">
+          <i data-lucide="graduation-cap" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform"></i>
+          <span>Under Graduate (UG)</span>
+          <span id="ug-badge-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-indigo-500/10 dark:bg-white/10 text-indigo-600 dark:text-gray-300">B.A.</span>
+        </button>
+
+        <button onclick="selectProgramLevel('PG')" id="quick-btn-pg"
+          class="group flex-1 sm:flex-initial justify-center px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[34px] sm:min-h-[42px]">
+          <i data-lucide="award" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500 dark:text-purple-400 group-hover:scale-110 transition-transform"></i>
+          <span>Post Graduate (PG)</span>
+          <span id="pg-badge-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-purple-500/10 dark:bg-white/10 text-purple-600 dark:text-gray-300">M.A.</span>
+        </button>
+      </div>
+
+      <div class="px-2 py-1 text-xs text-gray-400 hidden sm:flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+        <span id="program-dept-label" class="font-semibold text-gray-700 dark:text-gray-300">Choose Degree Level</span>
+      </div>
+    </div>
+
+    <!-- PG Info Notice -->
+    <div id="pg-info-notice" class="mb-4 sm:mb-6 hidden animate-fade-in p-4 rounded-xl sm:rounded-2xl bg-purple-500/10 border border-purple-500/25 flex items-start gap-3">
+      <i data-lucide="info" class="w-5 h-5 text-purple-500 dark:text-purple-400 shrink-0 mt-0.5"></i>
+      <div class="text-xs text-purple-900 dark:text-purple-200 space-y-1">
+        <p class="font-bold text-gray-900 dark:text-white">Post Graduate (PG) Program Portal</p>
+        <p class="text-gray-600 dark:text-purple-300/90 leading-relaxed">
+          Post Graduate (PG - M.A.) curriculum and study materials for <span id="pg-dept-name" class="font-bold text-purple-600 dark:text-white">this department</span>. Please select <strong>Sem 1</strong> or <strong>Sem 2</strong> below.
+        </p>
+      </div>
+    </div>
+
+    <!-- STEP 2: Semester / Academic Year Selector (Bootstrap Nav-Pills Component) -->
+    <div id="semester-selector-section" class="mb-6 p-4 sm:p-5 rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/10 flex flex-col md:flex-row md:items-center gap-3.5 sm:gap-5 overflow-x-auto hidden shadow-xl scrollbar-none touch-scroll-x animate-fade-in">
+      <div class="shrink-0 flex items-center gap-2">
+        <span id="semester-section-badge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 dark:text-blue-400 border border-blue-500/25 shadow-xs">
+          <i id="semester-section-icon" data-lucide="calendar" class="w-4 h-4 text-blue-500 dark:text-blue-400"></i>
+          <span id="semester-section-label">Semester</span>
+        </span>
+      </div>
+      <div id="semester-pills-container" class="flex items-center gap-2 sm:gap-2.5 flex-wrap w-full" role="tablist" aria-label="Semester or Year selection">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+
+    <!-- STEP 3: Major & Minor Track Selector -->
+    <div id="track-dropdown-section" class="mb-4 sm:mb-6 p-1.5 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/10 transition-all duration-300 hidden shadow-xl animate-fade-in flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <!-- Major, Minor, Skill & Generic Button Group -->
+      <div id="track-buttons-wrapper" class="relative inline-flex items-center p-1 sm:p-1.5 rounded-lg sm:rounded-2xl bg-transparent border border-black/10 dark:border-white/10 gap-1 w-full sm:w-auto min-w-0">
+        <div id="track-quick-buttons" class="inline-flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth flex-1 min-w-0" role="group" aria-label="Degree track selection">
+          <button onclick="selectTrack('major')" id="quick-btn-major"
+            class="group flex-1 sm:flex-initial justify-center px-2 sm:px-4 py-2 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1 sm:gap-2 whitespace-nowrap shrink-0 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[38px] sm:min-h-[42px]">
+            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform"></i>
+            <span id="major-track-label">Core Paper</span>
+            <span id="major-count-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-indigo-500/10 dark:bg-white/10 text-indigo-600 dark:text-gray-300">0</span>
+          </button>
+          
+          <button onclick="selectTrack('minor')" id="quick-btn-minor"
+            class="group flex-1 sm:flex-initial justify-center px-2 sm:px-4 py-2 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1 sm:gap-2 whitespace-nowrap shrink-0 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[38px] sm:min-h-[42px]">
+            <i data-lucide="book-marked" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-500 dark:text-cyan-400 group-hover:scale-110 transition-transform"></i>
+            <span id="minor-track-label">Minor Electives</span>
+            <span id="minor-count-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-cyan-500/10 dark:bg-white/10 text-cyan-600 dark:text-gray-300">0</span>
+          </button>
+
+          <!-- MDC Button (Multidisciplinary Course) -->
+          <button onclick="selectTrack('mdc')" id="quick-btn-mdc" class="hidden"
+            class="group flex-1 sm:flex-initial justify-center px-2 sm:px-4 py-2 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1 sm:gap-2 whitespace-nowrap shrink-0 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[38px] sm:min-h-[42px]">
+            <i data-lucide="compass" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500 dark:text-purple-400 group-hover:scale-110 transition-transform"></i>
+            <span id="mdc-track-label">MDC</span>
+            <span id="mdc-count-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-purple-500/10 dark:bg-white/10 text-purple-600 dark:text-gray-300">0</span>
+          </button>
+
+          <button onclick="selectTrack('skill')" id="quick-btn-skill"
+            class="group flex-1 sm:flex-initial justify-center px-2 sm:px-4 py-2 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1 sm:gap-2 whitespace-nowrap shrink-0 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[38px] sm:min-h-[42px]">
+            <i data-lucide="wrench" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform"></i>
+            <span id="skill-track-label">Skill Paper</span>
+            <span id="skill-count-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-amber-500/10 dark:bg-white/10 text-amber-600 dark:text-gray-300">0</span>
+          </button>
+
+          <button onclick="selectTrack('generic')" id="quick-btn-generic" class="hidden"
+            class="group flex-1 sm:flex-initial justify-center px-2 sm:px-4 py-2 sm:py-2.5 rounded-md sm:rounded-xl border text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1 sm:gap-2 whitespace-nowrap shrink-0 border-transparent bg-transparent text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10 active:scale-95 min-h-[38px] sm:min-h-[42px]">
+            <i data-lucide="layers" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 dark:text-emerald-400 group-hover:scale-110 transition-transform"></i>
+            <span id="generic-track-label">Generic</span>
+            <span id="generic-count-chip" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold bg-emerald-500/10 dark:bg-white/10 text-emerald-600 dark:text-gray-300">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Minor Department Dropdown Menu (Visible only when Minor track is selected) -->
+      <div id="minor-dept-dropdown-wrapper" class="hidden flex items-center gap-2 sm:gap-3 bg-cyan-500/10 dark:bg-cyan-950/30 border border-cyan-500/30 px-3 py-2 rounded-xl text-xs w-full md:w-auto shadow-xs">
+        <label for="minor-dept-select" class="font-bold text-cyan-900 dark:text-cyan-300 whitespace-nowrap flex items-center gap-1.5 shrink-0">
+          <i data-lucide="book-marked" class="w-4 h-4 text-cyan-600 dark:text-cyan-400"></i>
+          <span>Minor Dept:</span>
+        </label>
+        <div class="relative flex-1 min-w-0">
+          <select id="minor-dept-select" onchange="handleMinorDeptChange(this.value)" class="w-full bg-white dark:bg-[#121217] border border-cyan-500/40 rounded-lg pl-2.5 pr-8 py-1.5 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xs cursor-pointer truncate appearance-none" title="Choose Minor Department"></select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-cyan-600 dark:text-cyan-400"><i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></div>
+        </div>
+      </div>
+
+      <!-- MDC Department Dropdown Menu (Visible only when MDC track is selected) -->
+      <div id="mdc-dept-dropdown-wrapper" class="hidden flex items-center gap-2 sm:gap-3 bg-purple-500/10 dark:bg-purple-950/30 border border-purple-500/30 dark:border-purple-500/30 px-3 py-2 rounded-xl text-xs w-full md:w-auto shadow-xs">
+        <label for="mdc-dept-select" class="font-bold text-purple-900 dark:text-purple-300 whitespace-nowrap flex items-center gap-1.5 shrink-0">
+          <i data-lucide="compass" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+          <span>MDC Dept:</span>
+        </label>
+        <div class="relative flex-1 min-w-0">
+          <select id="mdc-dept-select" onchange="handleMdcDeptChange(this.value)"
+            class="w-full bg-white dark:bg-[#121217] border border-purple-500/40 rounded-lg pl-2.5 pr-8 py-1.5 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-2xs cursor-pointer truncate appearance-none"
+            title="Choose MDC Department">
+            <!-- Populated dynamically via JS -->
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-purple-600 dark:text-purple-400">
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filter Summary Breadcrumb (Hidden until Track selected) -->
+    <div id="filter-summary-bar" class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs hidden animate-fade-in">
+      <div class="flex items-center gap-2 text-gray-400 flex-wrap">
+        <span>Showing:</span>
+        <span id="active-dept-summary" class="font-bold text-white px-2 py-0.5 rounded bg-white/10 truncate max-w-[220px] sm:max-w-none">-</span>
+        <span>•</span>
+        <span id="active-sem-summary" class="font-bold text-blue-400 px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20">-</span>
+        <span>•</span>
+        <span id="active-track-summary" class="font-bold text-indigo-400 px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">-</span>
+      </div>
+      <span id="subjects-count-badge" class="font-mono text-indigo-400 font-semibold bg-indigo-500/10 px-2.5 py-1 rounded-full border border-indigo-500/20 self-start sm:self-auto">
+        0 Subjects Available
+      </span>
+    </div>
+
+    <!-- Subjects Grid (Compact Responsive Grid) -->
+    <div id="subjects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+      <!-- Populated dynamically via JS -->
+    </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       MINIMAL FOOTER SECTION (The Open Notes Minimal Style)
+       ======================================================== -->
+  <footer id="about-section" class="border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0c0d12] transition-colors pt-12 pb-14 z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-start">
+        
+        <!-- Left: Brand Logo & Copyright -->
+        <div class="space-y-4">
+          <a href="https://dbcmaram.ac.in/" target="_blank" rel="noopener noreferrer" 
+            title="Don Bosco College Maram Official Website (https://dbcmaram.ac.in/)"
+            class="inline-block group">
+            <div class="w-12 h-12 rounded-xl bg-white border border-gray-200 dark:border-zinc-800 p-1 flex items-center justify-center shadow-sm group-hover:opacity-90 transition-opacity">
+              <img src="assets/images/dbcm-logo.png?v=3" alt="Don Bosco College Maram Logo" class="w-full h-full object-contain" />
+            </div>
+          </a>
+          <div class="space-y-1 text-xs">
+            <p class="font-semibold text-gray-800 dark:text-zinc-200">Research &amp; Publications / IQAC</p>
+            <p class="text-gray-600 dark:text-zinc-400">&copy; 2026 Don Bosco College</p>
+            <div class="pt-2">
+              <a href="pages/about-developers.html" class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors group/pby">
+                <span>Powered by</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3 text-gray-400 group-hover/pby:text-black dark:group-hover/pby:text-white transition-colors"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 1: Contact Us -->
+        <div class="space-y-3.5">
+          <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Contact Us</h4>
+          <ul class="space-y-3 text-xs text-gray-600 dark:text-zinc-400">
+            <li class="flex items-start gap-3 leading-relaxed">
+              <span class="w-8 h-8 rounded-full bg-white dark:bg-white/10 shadow-[0_2px_10px_rgba(0,0,0,0.08)] dark:shadow-none border border-gray-100 dark:border-white/10 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 mt-0.5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+              </span>
+              <span class="pt-1">Don Bosco College, Maram Bazar P.O, Senapati District, Manipur - 795015</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white dark:bg-white/10 shadow-[0_2px_10px_rgba(0,0,0,0.08)] dark:shadow-none border border-gray-100 dark:border-white/10 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400">
+                <i data-lucide="phone" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+              </span>
+              <div class="flex items-center flex-wrap gap-x-1">
+                <a href="tel:9436031127" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">9436031127</a>,
+                <a href="tel:9436031125" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">9436031125</a>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white dark:bg-white/10 shadow-[0_2px_10px_rgba(0,0,0,0.08)] dark:shadow-none border border-gray-100 dark:border-white/10 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400">
+                <i data-lucide="mail" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+              </span>
+              <div class="flex items-center flex-wrap gap-x-1">
+                <a href="mailto:dbcmaram@gmail.com" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">dbcmaram@gmail.com</a>,
+                <a href="mailto:principal@dbcmaram.ac.in" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">principal@dbcmaram.ac.in</a>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white dark:bg-white/10 shadow-[0_2px_10px_rgba(0,0,0,0.08)] dark:shadow-none border border-gray-100 dark:border-white/10 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400">
+                <i data-lucide="globe" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+              </span>
+              <a href="https://dbcmaram.ac.in/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all">https://dbcmaram.ac.in/</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Study Materials -->
+        <div class="space-y-3">
+          <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Study Materials</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-gray-600 dark:text-zinc-400">
+            <li>
+              <a href="#subjects-section" onclick="selectTrack('major')" class="hover:text-black dark:hover:text-white transition-colors">Major Courses</a>
+            </li>
+            <li>
+              <a href="#subjects-section" onclick="selectTrack('minor')" class="hover:text-black dark:hover:text-white transition-colors">Minor Electives</a>
+            </li>
+            <li>
+              <a href="#" onclick="openSearchModal(); return false;" class="hover:text-black dark:hover:text-white transition-colors">Question Banks (IMPs)</a>
+            </li>
+            <li>
+              <a href="#" onclick="openSearchModal(); return false;" class="hover:text-black dark:hover:text-white transition-colors">Previous Year Question</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Content -->
+        <div class="space-y-3">
+          <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Content</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-gray-600 dark:text-zinc-400">
+            <li>
+              <a href="#subjects-section" class="hover:text-black dark:hover:text-white transition-colors">Study Guides</a>
+            </li>
+            <li>
+              <a href="#" onclick="openBookmarksDrawer(); return false;" class="hover:text-black dark:hover:text-white transition-colors">Saved Materials</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="mt-10 pt-6 border-t border-gray-200 dark:border-white/10 flex items-center justify-end">
+        <p class="text-xs text-gray-500 dark:text-zinc-400 font-medium">
+          &copy;DBCM Study Materials Portal
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       MODALS
+       ======================================================== -->
+
+  <!-- Document Reader Modal (Full Page Edge-to-Edge Embedded PDF viewer) -->
+  <div id="document-reader-modal" class="fixed inset-0 z-50 w-full h-full bg-[#0a0a0f] flex flex-col hidden animate-fade-in overflow-hidden">
+    <!-- Reader Header Toolbar -->
+    <header class="h-14 sm:h-16 px-3.5 sm:px-6 border-b border-gray-200 dark:border-white/10 bg-white dark:bg-[#0c0d14] backdrop-blur-xl flex items-center justify-between gap-3 shrink-0 z-20 shadow-xs">
+      <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <button onclick="closeReaderModal()" 
+          class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-white/10 dark:hover:bg-white/20 text-gray-800 dark:text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shrink-0 shadow-2xs group"
+          title="Back (Esc)">
+          <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform"></i>
+          <span class="hidden sm:inline">Back</span>
+        </button>
+        <div class="h-5 w-px bg-gray-300 dark:bg-white/15 shrink-0 hidden sm:block"></div>
+        <div class="w-8 h-8 rounded-lg bg-red-600/15 text-red-500 flex items-center justify-center shrink-0">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+        </div>
+        <div class="min-w-0">
+          <h3 id="reader-modal-title" class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate max-w-[180px] sm:max-w-md md:max-w-xl">
+            Document Reader
+          </h3>
+          <p id="reader-modal-subtitle" class="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-mono truncate">
+            Don Bosco College (Autonomous) Maram · Official PDF
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <!-- AI Tutor Assistant Toggle Button -->
+        <button id="reader-ai-toggle-btn" onclick="toggleReaderAiDrawer()" 
+          class="ai-pill-btn px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5 cursor-pointer min-h-[34px]"
+          title="Ask DBCM AI Tutor about this PDF (Summaries, Q&A, Exam Prep)">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-white stroke-[2.2]"></i>
+          <span>AI Tutor</span>
+        </button>
+
+        <button onclick="closeReaderModal()" 
+          class="p-1.5 sm:p-2 rounded-xl bg-gray-100 hover:bg-red-50 hover:text-red-600 dark:bg-white/10 dark:hover:bg-red-500/20 text-gray-500 dark:text-gray-400 dark:hover:text-red-400 cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center active:scale-95 transition-all"
+          title="Close (Esc)">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Full-Page PDF Viewer Frame Container (Split-View capable) -->
+    <div id="reader-modal-body" class="flex-1 w-full bg-slate-800 dark:bg-[#07070a] relative overflow-hidden flex flex-col md:flex-row min-h-0">
+      <div id="reader-loading-spinner" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/90 dark:bg-[#0a0a0f]/90 backdrop-blur-md z-20">
+        <div class="w-10 h-10 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-xs font-semibold text-gray-700 dark:text-gray-300">Rendering Verified DBCM PDF Document...</p>
+      </div>
+
+      <!-- Left / Main Area: PDF Document View -->
+      <div class="flex-1 h-full relative overflow-hidden flex flex-col">
+        <iframe id="reader-iframe" class="w-full h-full border-0 flex-1 z-10" title="PDF Document Viewer"></iframe>
+
+        <!-- Floating Ask DBCM AI Tutor Button inside PDF Reader View -->
+        <div id="reader-floating-ai-btn" class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-25 select-none">
+          <button onclick="toggleReaderAiDrawer()" 
+            class="ai-pill-btn group flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 cursor-pointer"
+            title="Ask DBCM AI Tutor about this PDF (Summaries, Q&A, Exam Prep)">
+            <i data-lucide="sparkles" class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white stroke-[2.2]"></i>
+            <span class="whitespace-nowrap font-medium text-[13px] sm:text-sm text-white tracking-wide">Ask <span class="hidden min-[400px]:inline">DBCM </span>AI</span>
+          </button>
+        </div>
+
+        <!-- Mobile Right-Edge Floating AI Chat Toggle Pill (fallback) -->
+        <button id="reader-mobile-ai-pill-btn" onclick="toggleReaderAiDrawer()" type="button"
+          class="hidden fixed md:hidden right-0 top-1/2 -translate-y-1/2 z-25 px-1.5 py-3 rounded-l-full bg-gradient-to-b from-[#9d9af2] to-[#6c6ae9] text-white font-bold shadow-lg shadow-[#6c6ae9]/40 flex flex-col items-center gap-1.5 cursor-pointer border-t border-b border-l border-white/20 active:scale-95 transition-all"
+          title="Toggle DBCM AI Study Assistant">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-white"></i>
+          <span class="text-[9px] font-black tracking-widest uppercase [writing-mode:vertical-rl] rotate-180">AI</span>
+        </button>
+      </div>
+
+      <!-- Backdrop overlay: Tapping or clicking outside the chat page automatically hides it -->
+      <div id="reader-ai-backdrop" onclick="toggleReaderAiDrawer(false)"
+        class="hidden absolute inset-0 bg-black/40 backdrop-blur-[1px] md:hidden z-30 transition-opacity duration-300 cursor-pointer"
+        title="Tap outside to close chat"></div>
+
+      <!-- Right Area: DBCM AI Document Tutor Drawer (Split-Screen & Mobile Right Drawer) -->
+      <aside id="reader-ai-drawer" class="w-full md:w-[420px] lg:w-[460px] h-full bg-white dark:bg-[#0d0e17] border-l border-gray-200 dark:border-white/10 flex flex-col z-35 transition-all duration-300 hidden shadow-2xl shrink-0 overflow-hidden">
+        <!-- Drawer Header -->
+        <div class="px-3 py-1.5 sm:py-2 border-b border-gray-200 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between gap-2 shrink-0">
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-tr from-violet-600 to-indigo-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0 leading-tight">
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white flex items-center gap-1.5 truncate leading-none">
+                <span class="truncate">DBCM AI Tutor</span>
+                <span class="text-[8.5px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">Ready</span>
+              </h4>
+              <p id="reader-ai-doc-name" class="text-[10px] text-gray-500 dark:text-gray-400 truncate font-mono mt-0.5 leading-none">
+                Context: Active PDF Document
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <!-- Single Size Toggle Button (One button at a time: Expand / Minimize) -->
+            <button id="reader-ai-size-toggle-btn" onclick="toggleReaderAiSize()" type="button"
+              class="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+              title="Expand Chat (Wide)">
+              <svg id="reader-ai-size-icon-expand" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707"/>
+              </svg>
+              <svg id="reader-ai-size-icon-contract" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-arrows-angle-contract hidden" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707"/>
+              </svg>
+            </button>
+
+            <button onclick="clearReaderAiChat()" class="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" title="Clear Chat History">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="toggleReaderAiDrawer(false)" class="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" title="Close AI Assistant">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages Scroll Area -->
+        <div id="reader-ai-messages" class="flex-1 min-h-0 p-3.5 overflow-y-auto space-y-3.5 text-xs text-gray-800 dark:text-gray-200 custom-scrollbar">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Quick Action Recommended Questions (Above Text Bar) -->
+        <div id="reader-ai-quick-prompts" class="px-3 pt-2 pb-1 border-t border-gray-100 dark:border-white/5 bg-gray-50/40 dark:bg-black/20 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+          <button onclick="sendQuickPrompt('Summarize this PDF document with key takeaways and syllabus breakdown')" class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-[11px] font-semibold whitespace-nowrap flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="file-text" class="w-3 h-3 text-indigo-500"></i> Summarize PDF
+          </button>
+          <button onclick="sendQuickPrompt('Give me 5 high-yield exam practice questions with model answers from this document')" class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-[11px] font-semibold whitespace-nowrap flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="help-circle" class="w-3 h-3 text-emerald-500"></i> 5 Exam Questions
+          </button>
+          <button onclick="sendQuickPrompt('What are the most important formulas, definitions, and key concepts in this material?')" class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-[11px] font-semibold whitespace-nowrap flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="zap" class="w-3 h-3 text-amber-500"></i> Key Concepts
+          </button>
+        </div>
+
+        <!-- Input Form -->
+        <div class="p-3 border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0c0d14] shrink-0">
+          <form id="reader-ai-form" onsubmit="handleReaderAiSubmit(event)" class="flex items-end gap-2">
+            <div class="flex-1 relative">
+              <textarea id="reader-ai-input" rows="1" placeholder="Ask anything about this document or subject..." 
+                class="w-full px-3 py-2 text-xs rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-hidden focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none max-h-24 leading-normal transition-all"
+                onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); document.getElementById('reader-ai-form').requestSubmit(); }"></textarea>
+            </div>
+            <button type="submit" id="reader-ai-send-btn" 
+              class="w-8 h-8 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white flex items-center justify-center shrink-0 transition-all cursor-pointer shadow-sm shadow-indigo-600/30">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            </button>
+          </form>
+          <div class="mt-1.5 flex items-center justify-between text-[10px] text-gray-400 px-1">
+            <span>Press <kbd class="px-1 py-0.5 bg-gray-100 dark:bg-white/10 rounded-sm font-mono text-[9px]">Enter</kbd> to send</span>
+            <span id="reader-ai-engine-badge" class="text-indigo-600 dark:text-indigo-400 font-medium">DBCM AI Engine Active</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Bookmarks Drawer -->
+  <div id="bookmarks-drawer" class="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-sm hidden animate-fade-in">
+    <div class="w-full sm:max-w-md bg-[#12121a] border-l border-white/10 h-full p-4 sm:p-6 flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <div class="flex items-center gap-2">
+          <i data-lucide="bookmark" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
+          <h3 class="text-base sm:text-lg font-bold text-white">Saved Materials</h3>
+        </div>
+        <button onclick="closeBookmarksDrawer()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center active:scale-95">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="bookmarks-list-container" class="mt-4 flex-1 overflow-y-auto space-y-3 touch-scroll-y">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal (Ctrl+K) -->
+  <div id="search-modal" class="fixed inset-0 z-50 flex items-start justify-center pt-4 sm:pt-16 md:pt-20 p-2.5 sm:p-4 bg-black/75 backdrop-blur-md hidden animate-fade-in">
+    <div class="glass-panel w-full max-w-2xl rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+      <div class="p-3.5 sm:p-4 border-b border-white/10 flex items-center gap-2.5 sm:gap-3 group focus-within:border-indigo-500/50 transition-colors">
+        <i data-lucide="search" class="w-4 sm:w-5 h-4 sm:h-5 text-gray-400 group-hover:text-indigo-400 group-focus-within:text-indigo-400 transition-colors shrink-0"></i>
+        <input type="text" id="modal-search-input" 
+          placeholder="Search subjects, units, notes, question banks..."
+          class="flex-1 bg-transparent text-xs sm:text-base text-white placeholder-gray-500 placeholder:text-xs sm:placeholder:text-base focus:outline-none"
+        />
+        <button onclick="closeSearchModal()" class="text-xs px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-gray-400 hover:text-white cursor-pointer transition-colors min-h-[34px] active:scale-95">
+          ESC
+        </button>
+      </div>
+      <div id="modal-search-results" class="p-3 sm:p-4 max-h-[70vh] sm:max-h-[60vh] overflow-y-auto touch-scroll-y">
+        <p class="text-sm text-gray-500 py-6 text-center">Type to search subjects, notes, or question banks...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Home Student Resource Contribution Modal -->
+  <div id="home-contribution-modal" onclick="if(event.target===this) closeHomeContributionModal()" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm hidden animate-fade-in select-none">
+    <div class="w-full max-w-2xl rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col bg-white text-slate-800">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between gap-3 shrink-0 bg-slate-50">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 truncate">
+              <span class="truncate">Student Academic Contribution</span>
+              <span class="text-[9px] px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-bold font-mono shrink-0">DBCM</span>
+            </h3>
+            <p class="text-[11px] sm:text-xs text-slate-500 truncate">Contribute notes or past exam papers for any course</p>
+          </div>
+        </div>
+        <button onclick="closeHomeContributionModal()" class="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer shrink-0" title="Close (Esc)">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div id="home-contrib-body" class="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs select-text">
+        <!-- Notice badge -->
+        <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-center gap-2 text-[11px]">
+          <i data-lucide="info" class="w-4 h-4 shrink-0 text-amber-600"></i>
+          <span><strong>File types:</strong> PDF, DOCX, and PowerPoint (.ppt, .pptx) · Maximum file size <strong>20 MB per file</strong>. This frontend-only version saves submissions on this device; it does not send them to the admin yet.</span>
+        </div>
+
+        <div id="home-contrib-form" class="space-y-3.5">
+
+          <!-- 1. Enter Your Name & 2. Enter Roll No -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="home-contrib-author" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                1. Enter Your Name <span class="text-rose-500">*</span>
+              </label>
+              <input type="text" id="home-contrib-author" placeholder="e.g. John Bosco"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+            </div>
+
+            <div>
+              <label for="home-contrib-roll" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                2. Enter Roll No <span class="text-rose-500">*</span>
+              </label>
+              <input type="text" id="home-contrib-roll" placeholder="e.g. 23BCA102"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none font-mono shadow-xs">
+            </div>
+          </div>
+
+          <!-- 3. Selecting Department & 4. Programs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="home-contrib-dept" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                3. Selecting Department <span class="text-rose-500">*</span>
+              </label>
+              <select id="home-contrib-dept" onchange="handleHomeContribDeptChange(this.value)"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                <option value="">Select Department...</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="home-contrib-level" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                4. Programs <span class="text-rose-500">*</span>
+              </label>
+              <select id="home-contrib-level" onchange="handleHomeContribProgramChange(this.value)"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                <option value="UG" selected>Undergraduate (UG)</option>
+                <option value="PG">Postgraduate (PG)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 5. Semester & 6. Major / Minor / Skill / Generic -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="home-contrib-semester" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                5. Semester <span class="text-rose-500">*</span>
+              </label>
+              <select id="home-contrib-semester" onchange="filterQuickSubjects()"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                <option value="1" selected>Semester 1 (Sem I)</option>
+                <option value="2">Semester 2 (Sem II)</option>
+                <option value="3">Semester 3 (Sem III)</option>
+                <option value="4">Semester 4 (Sem IV)</option>
+                <option value="5">Semester 5 (Sem V)</option>
+                <option value="6">Semester 6 (Sem VI)</option>
+                <option value="7">Semester 7 (Sem VII)</option>
+                <option value="8">Semester 8 (Sem VIII)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="home-contrib-track" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                6. Major / Minor / MDC / Skill / Generic <span class="text-rose-500">*</span>
+              </label>
+              <select id="home-contrib-track" onchange="filterQuickSubjects()"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                <option value="major" selected>Major Course</option>
+                <option value="minor">Minor Course</option>
+                <option value="mdc">Multidisciplinary Course (MDC)</option>
+                <option value="skill">Skill Paper (SEC)</option>
+                <option value="generic">Generic Selection (GE)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="home-contrib-subject-quick" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+              Choose an existing subject (optional)
+            </label>
+            <select id="home-contrib-subject-quick" onchange="handleQuickSubjectSelect(this.value)"
+              class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+              <option value="">Select a department and program first...</option>
+            </select>
+            <p class="mt-1 text-[10px] text-slate-500">Choosing a subject fills in its name and code. You can still type a subject that is not listed below.</p>
+          </div>
+
+          <!-- 7. Enter Subject Name & 8. Enter Subject Code -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="home-contrib-subject-name" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                7. Enter Subject Name <span class="text-rose-500">*</span>
+              </label>
+              <input type="text" id="home-contrib-subject-name" placeholder="e.g. Financial Accounting - I"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+            </div>
+
+            <div>
+              <label for="home-contrib-subject-code" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                8. Enter Subject Code <span class="text-rose-500">*</span>
+              </label>
+              <input type="text" id="home-contrib-subject-code" placeholder="e.g. BCOM101"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none uppercase font-mono shadow-xs">
+            </div>
+          </div>
+
+          <!-- Contribution Category (3 Options: 1. Study Notes, 2. Question Paper, 3. Reference Video Link) -->
+          <div>
+            <label class="block font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+              Contribution Category <span class="text-rose-500">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              
+              <!-- 1. Study Notes -->
+              <label class="cursor-pointer">
+                <input type="radio" name="home-contrib-type" value="note" checked onchange="toggleHomeContribFields('note')" class="peer sr-only">
+                <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/80 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/70 peer-checked:text-indigo-950 text-slate-700 flex items-center gap-2.5 transition-all shadow-xs">
+                  <div class="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="font-bold text-xs truncate">1. Study Notes</div>
+                    <div class="text-[10px] text-slate-500 truncate">Lecture units (PDF)</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- 2. Question Paper -->
+              <label class="cursor-pointer">
+                <input type="radio" name="home-contrib-type" value="pyq" onchange="toggleHomeContribFields('pyq')" class="peer sr-only">
+                <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/80 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/70 peer-checked:text-indigo-950 text-slate-700 flex items-center gap-2.5 transition-all shadow-xs">
+                  <div class="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="archive" class="w-4 h-4"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="font-bold text-xs truncate">2. Question Paper</div>
+                    <div class="text-[10px] text-slate-500 truncate">End-Sem PYQs (PDF)</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- 3. Reference Video Link -->
+              <label class="cursor-pointer">
+                <input type="radio" name="home-contrib-type" value="video" onchange="toggleHomeContribFields('video')" class="peer sr-only">
+                <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/80 peer-checked:border-amber-600 peer-checked:bg-amber-50/80 peer-checked:text-amber-950 text-slate-700 flex items-center gap-2.5 transition-all shadow-xs">
+                  <div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="font-bold text-xs truncate">3. Reference Video Link</div>
+                    <div class="text-[10px] text-slate-500 truncate">YouTube / Online Link</div>
+                  </div>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Document / Video Title -->
+          <div>
+            <label for="home-contrib-title" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+              <span id="home-contrib-title-label">Document Title / Topic</span> <span class="text-rose-500">*</span>
+            </label>
+            <input type="text" id="home-contrib-title" placeholder="e.g. Unit 3 Trees & Graphs Detailed Notes"
+              class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+          </div>
+
+          <!-- 3. Reference Video Link Specific Inputs (hidden by default) -->
+          <div id="home-contrib-video-fields" class="hidden grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="home-contrib-video-url" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Reference Video URL (YouTube) <span class="text-rose-500">*</span>
+              </label>
+              <input type="url" id="home-contrib-video-url" placeholder="https://www.youtube.com/watch?v=..."
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:outline-none font-mono shadow-xs">
+            </div>
+            <div>
+              <label for="home-contrib-channel" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+                Channel / Instructor Name <span class="text-slate-500 text-[10px] font-normal">(Optional)</span>
+              </label>
+              <input type="text" id="home-contrib-channel" placeholder="e.g. Gate Smashers / Faculty Name"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs focus:border-indigo-600 focus:outline-none shadow-xs">
+            </div>
+          </div>
+
+          <!-- PYQ specific inputs (hidden by default) -->
+          <div id="home-contrib-pyq-fields" class="hidden grid-cols-2 gap-3">
+            <div>
+              <label for="home-contrib-year" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">Exam Year</label>
+              <input type="text" id="home-contrib-year" value="2024" placeholder="e.g. 2024"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:outline-none shadow-xs">
+            </div>
+            <div>
+              <label for="home-contrib-session" class="block font-bold uppercase tracking-wider text-slate-700 mb-1">Exam Session</label>
+              <input type="text" id="home-contrib-session" value="Regular End-Semester Exam" placeholder="e.g. Regular Exam"
+                class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs focus:border-indigo-600 focus:outline-none shadow-xs">
+            </div>
+          </div>
+
+          <!-- PDF Upload Box (wrapped in container so it can be hidden for Video links) -->
+          <div id="home-contrib-pdf-wrapper">
+            <label class="block font-bold uppercase tracking-wider text-slate-700 mb-1">
+              Upload Document <span class="text-rose-500">*</span>
+            </label>
+            <div id="home-contrib-dropzone" onclick="document.getElementById('home-contrib-file-input').click()"
+              class="border-2 border-dashed border-slate-300 hover:border-indigo-500 bg-slate-50 hover:bg-indigo-50/40 rounded-2xl p-5 text-center cursor-pointer transition-all">
+              <input type="file" id="home-contrib-file-input" accept=".pdf,.docx,.ppt,.pptx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation" class="hidden" onchange="handleHomeContribFileSelect(event)">
+              <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-200/60 flex items-center justify-center mx-auto mb-2">
+                <i data-lucide="file-up" class="w-5 h-5"></i>
+              </div>
+              <p class="text-xs font-bold text-slate-800">Click or Drag & Drop a file here</p>
+              <p class="text-[10px] text-slate-500 mt-0.5"><span class="text-indigo-600 font-bold">PDF, DOCX, PPT, PPTX</span> · Max <span class="text-indigo-600 font-bold">20 MB per file</span></p>
+            </div>
+
+            <!-- Selected File Pill -->
+            <div id="home-contrib-file-pill" class="hidden mt-2.5 p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <i data-lucide="file-check-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <div class="min-w-0">
+                  <p id="home-contrib-file-name" class="text-xs font-bold text-emerald-950 truncate"></p>
+                  <p id="home-contrib-file-size" class="text-[10px] text-emerald-700 font-mono"></p>
+                </div>
+              </div>
+              <button type="button" onclick="clearHomeContribFile()" class="p-1 rounded-lg text-emerald-600 hover:text-emerald-950 hover:bg-emerald-100 cursor-pointer" title="Remove">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Error message -->
+          <div id="home-contrib-error" class="hidden mt-2.5 p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 shrink-0"></i>
+            <span id="home-contrib-error-msg"></span>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2 flex items-center justify-end gap-2">
+            <button type="button" onclick="closeHomeContributionModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs cursor-pointer transition-colors">
+              Cancel
+            </button>
+            <button type="button" id="home-contrib-submit-btn" onclick="submitHomeContribution()"
+              class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs flex items-center gap-2 shadow-md shadow-indigo-500/20 transition-all cursor-pointer">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              <span>Submit Contribution</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Back to Top Button on Right Side -->
+  <button id="back-to-top-btn" onclick="scrollToTop()"
+    type="button"
+    aria-label="Back to top"
+    title="Back to top"
+    class="fixed bottom-5 right-4 sm:bottom-7 sm:right-7 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white shadow-xl shadow-indigo-600/40 border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 opacity-0 pointer-events-none translate-y-4 group">
+    <i data-lucide="arrow-up" class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:-translate-y-0.5"></i>
+  </button>
+
+  <!-- Browser application -->
+  <script src="assets/js/local-data.js"></script>
+  <script src="assets/js/app.js?v=2.14"></script>
+</body>
+</html>
+
+
+

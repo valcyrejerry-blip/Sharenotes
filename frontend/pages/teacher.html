@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <base href="../">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover" />
+  <title>Faculty Portal &amp; Teacher Dashboard · Don Bosco College (Autonomous) Maram</title>
+  <link rel="icon" type="image/png" href="assets/images/dbcm-logo.png?v=3">
+  <meta name="description" content="Official Faculty Management &amp; Upload Portal for 80-100 Teachers of Don Bosco College (Autonomous) Maram across 16 Academic Departments." />
+
+  <!-- Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- DBCM Data and Local Storage Helpers -->
+  <script src="assets/js/local-data.js"></script>
+  <script src="assets/js/teachers-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/docx-reader.js?v=1"></script>
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=2.6">
+
+  <style>
+    /* Custom scrollbars - Light Theme */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
+
+    .glow-emerald {
+      box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-gray-900 font-sans antialiased selection:bg-emerald-500 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
+
+  <!-- Professional Ambient Mesh & Grid Background (Light Mode) -->
+  <div class="bg-grid-pattern"></div>
+  <div class="ambient-orb ambient-orb-1" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);"></div>
+  <div class="ambient-orb ambient-orb-2" style="background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);"></div>
+  <div class="hero-glow"></div>
+
+  <!-- Top Sticky Navigation Bar (Light Theme) -->
+  <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/85 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+      
+      <!-- College Brand Identity -->
+      <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <a href="index.html" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white p-1 flex items-center justify-center shadow-md shadow-emerald-500/10 border border-gray-200 group-hover:scale-105 transition-all">
+            <img src="assets/images/dbcm-logo.png?v=3" alt="Don Bosco College Logo" class="w-full h-full object-contain" />
+          </div>
+          <div class="flex flex-col text-left">
+            <span class="text-xs sm:text-base font-black tracking-tight text-gray-900 group-hover:text-emerald-700 transition-colors leading-tight">
+              Don Bosco College
+            </span>
+            <span class="text-[9px] sm:text-xs font-semibold text-emerald-700 tracking-normal leading-tight">
+              Faculty Portal · Autonomous
+            </span>
+          </div>
+        </a>
+
+        <span class="text-gray-300 font-light select-none px-1">|</span>
+
+        <!-- Portal Badge -->
+        <div class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+          <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span>80-100 College Faculty Hub</span>
+        </div>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Return to Student View -->
+        <a href="index.html" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 hover:text-blue-600 transition-all text-xs font-semibold flex items-center gap-1.5 min-h-[38px] shadow-xs" title="Return to DBCM Notes Portal">
+          <i data-lucide="external-link" class="w-4 h-4 text-blue-600"></i>
+          <span class="hidden md:inline">Student View</span>
+        </a>
+
+        <!-- Admin Console Link -->
+        <a href="pages/admin.html" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 hover:text-indigo-900 transition-all text-xs font-semibold flex items-center gap-1.5 min-h-[38px] shadow-xs" title="Admin Management Console">
+          <i data-lucide="shield-check" class="w-4 h-4 text-indigo-600"></i>
+          <span class="hidden md:inline">Admin</span>
+        </a>
+
+        <!-- Current User Profile / Switch Trigger -->
+        <div id="header-user-badge" class="hidden flex items-center gap-2">
+          <button onclick="switchTeacherModal()" class="px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 transition-all text-xs font-semibold flex items-center gap-2 min-h-[38px] cursor-pointer shadow-xs" title="Switch or Logout Teacher Profile">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="header-teacher-name" class="max-w-[130px] sm:max-w-[180px] truncate font-bold">Prof. Teacher</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-emerald-700 opacity-70"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================================
+       SCREEN A: TEACHER LOGIN / ACCESS PORTAL (When Not Logged In)
+       ============================================================== -->
+  <section id="teacher-login-screen" class="hidden flex-1 max-w-5xl mx-auto px-4 py-8 sm:py-12 w-full z-10 flex flex-col justify-center">
+    
+    <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold tracking-wide uppercase mb-3">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+        <span>Faculty &amp; Department Teachers Portal</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight leading-tight">
+        Teacher Dashboard Login
+      </h1>
+      <p class="text-sm sm:text-base text-gray-600 mt-2">
+        Select your profile from the 80–100 teachers across all 16 academic departments of Don Bosco College (Autonomous) Maram to upload lecture notes, official syllabi, and question papers.
+      </p>
+
+      <!-- Quick Demo Access Pills -->
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs">
+        <span class="text-gray-500 font-medium">Quick Sign In as:</span>
+        <button onclick="quickLoginTeacher('tch-bca-001')" class="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 transition-all font-semibold cursor-pointer">
+          Mr. John Britto (BCA HOD)
+        </button>
+        <button onclick="quickLoginTeacher('tch-bca-003')" class="px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 transition-all font-semibold cursor-pointer">
+          Mr. Manuel Bhelwa (BCA)
+        </button>
+        <button onclick="quickLoginTeacher('tch-bsw-001')" class="px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 transition-all font-semibold cursor-pointer">
+          Fr. Dr. Jose Thomas (BSW)
+        </button>
+        <button onclick="quickLoginTeacher('tch-bio-001')" class="px-2.5 py-1 rounded-lg bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 transition-all font-semibold cursor-pointer">
+          Dr. Rosemary Soreng (Biotech)
+        </button>
+        <button onclick="quickLoginTeacher('tch-com-001')" class="px-2.5 py-1 rounded-lg bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-700 transition-all font-semibold cursor-pointer">
+          Dr. K.V. Thomas (Commerce)
+        </button>
+      </div>
+    </div>
+
+    <!-- Login Container with Tabs (1. Faculty Roster Selector, 2. Email & PIN, 3. Register New Faculty) -->
+    <div class="bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-8 shadow-xl shadow-slate-200/70 backdrop-blur-xl max-w-3xl mx-auto w-full">
+      
+      <!-- Login Mode Tabs -->
+      <div class="flex border-b border-gray-200 mb-6 gap-2 sm:gap-4 text-xs sm:text-sm font-bold">
+        <button id="login-tab-roster" onclick="switchLoginTab('roster')" class="pb-3 border-b-2 border-emerald-600 text-emerald-700 flex items-center gap-2 cursor-pointer transition-colors">
+          <i data-lucide="users" class="w-4 h-4"></i>
+          <span>Select from 80-100 Faculty Roster</span>
+        </button>
+        <button id="login-tab-email" onclick="switchLoginTab('email')" class="pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 cursor-pointer transition-colors">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>Email &amp; PIN</span>
+        </button>
+        <button id="login-tab-register" onclick="switchLoginTab('register')" class="pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 cursor-pointer transition-colors">
+          <i data-lucide="user-plus" class="w-4 h-4"></i>
+          <span>New Faculty Join</span>
+        </button>
+      </div>
+
+      <!-- VIEW 1: SELECT FROM 80-100 TEACHERS ROSTER -->
+      <div id="login-view-roster" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Department Filter -->
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1.5">1. Filter by Department</label>
+            <select id="login-dept-select" onchange="filterLoginRoster()" class="w-full rounded-xl bg-white border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600 transition-colors">
+              <option value="all">All 16 Academic Departments</option>
+              <option value="bca">Computer Science (BCA)</option>
+              <option value="commerce">Commerce (B.Com)</option>
+              <option value="biotech">Biotechnology (BBT)</option>
+              <option value="botany">Botany</option>
+              <option value="bsw">Social Work (BSW)</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="economics">Economics</option>
+              <option value="education">Education</option>
+              <option value="english">English</option>
+              <option value="history">History</option>
+              <option value="physics">Physics</option>
+              <option value="polsci">Political Science</option>
+              <option value="sociology">Sociology</option>
+              <option value="zoology">Zoology</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="psychology">Psychology</option>
+            </select>
+          </div>
+
+          <!-- Name / Keyword Search -->
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1.5">2. Search Teacher Name or Subject</label>
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3.5 top-3 pointer-events-none"></i>
+              <input id="login-search-input" type="text" oninput="filterLoginRoster()" placeholder="Type teacher name, Dr., Sir, or topic..." class="w-full rounded-xl bg-white border border-slate-300 pl-10 pr-4 py-2.5 text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-600 transition-colors" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Matching Faculty List -->
+        <div>
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-2 font-medium">
+            <span>Available Faculty Profiles:</span>
+            <span id="roster-count-badge" class="font-mono text-emerald-700 font-bold">86 Teachers Found</span>
+          </div>
+          <div id="login-roster-list" class="max-h-64 sm:max-h-72 overflow-y-auto space-y-2 pr-1 rounded-2xl p-1 bg-slate-50 border border-slate-200">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Selected Teacher Card & One-Click Access -->
+        <div id="roster-selected-box" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-in shadow-xs">
+          <div class="flex items-center gap-3 min-w-0">
+            <div id="roster-sel-avatar" class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center font-bold text-base shrink-0 overflow-hidden shadow-xs">
+              DB
+            </div>
+            <div class="min-w-0">
+              <h4 id="roster-sel-name" class="text-sm sm:text-base font-bold text-gray-900 truncate">Mr. John Britto</h4>
+              <p id="roster-sel-dept" class="text-xs text-emerald-800 font-medium truncate">Computer Science (BCA) · Associate Professor</p>
+              <p id="roster-sel-email" class="text-[11px] text-gray-500 font-mono truncate">john.britto@dbcmaram.ac.in</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="handleEditUpload('${item.uploadId}')" class="p-2 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 transition-all" title="Edit title"><i data-lucide="pencil" class="w-4 h-4"></i></button>
+            <button onclick="confirmRosterLogin()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="log-in" class="w-4 h-4"></i>
+              <span>Access Teacher Dashboard</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: EMAIL & PIN LOGIN -->
+      <form id="login-view-email" onsubmit="handleEmailLogin(event)" class="hidden space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1.5">Institutional Email Address</label>
+          <div class="relative">
+            <i data-lucide="mail" class="w-4 h-4 text-gray-400 absolute left-3.5 top-3 pointer-events-none"></i>
+            <input id="login-email-input" type="email" required placeholder="e.g. john.britto@dbcmaram.ac.in" class="w-full rounded-xl bg-white border border-slate-300 pl-10 pr-4 py-2.5 text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-600" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1.5">Faculty password</label>
+          <div class="relative">
+            <i data-lucide="lock" class="w-4 h-4 text-gray-400 absolute left-3.5 top-3 pointer-events-none"></i>
+            <input id="login-pin-input" type="password" required placeholder="Enter password" class="w-full rounded-xl bg-white border border-slate-300 pl-10 pr-4 py-2.5 text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-600" />
+          </div>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-sm shadow-md shadow-emerald-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="log-in" class="w-4 h-4"></i>
+          <span>Authenticate &amp; Open Dashboard</span>
+        </button>
+      </form>
+
+      <!-- VIEW 3: REGISTER NEW FACULTY -->
+      <form id="login-view-register" onsubmit="handleRegisterFaculty(event)" class="hidden space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name with Prefix</label>
+            <input id="reg-name" type="text" required placeholder="e.g. Dr. Rosemary Soreng" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Department</label>
+            <select id="reg-dept" required class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600">
+              <option value="bca">Computer Science (BCA)</option>
+              <option value="commerce">Commerce (B.Com)</option>
+              <option value="biotech">Biotechnology (BBT)</option>
+              <option value="botany">Botany</option>
+              <option value="bsw">Social Work (BSW)</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="economics">Economics</option>
+              <option value="education">Education</option>
+              <option value="english">English</option>
+              <option value="history">History</option>
+              <option value="physics">Physics</option>
+              <option value="polsci">Political Science</option>
+              <option value="sociology">Sociology</option>
+              <option value="zoology">Zoology</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="psychology">Psychology</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Designation</label>
+            <input id="reg-designation" type="text" required placeholder="e.g. Assistant Professor" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Institutional Email</label>
+            <input id="reg-email" type="email" required placeholder="e.g. yourname@dbcmaram.ac.in" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Qualifications</label>
+            <input id="reg-qual" type="text" placeholder="e.g. M.Sc., Ph.D." class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Specialization / Subject Area</label>
+            <input id="reg-spec" type="text" placeholder="e.g. Database Systems &amp; Cloud" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+          </div>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-sm shadow-md shadow-emerald-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="user-plus" class="w-4 h-4"></i>
+          <span>Register Faculty Profile &amp; Login</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==============================================================
+       SCREEN B: MAIN TEACHER DASHBOARD (When Logged In)
+       ============================================================== -->
+  <main id="teacher-dashboard-screen" class="hidden flex-1 max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-6 w-full z-10 space-y-6">
+    
+    <!-- Top Faculty Profile Hero Banner (Light Theme) -->
+    <section class="rounded-3xl bg-gradient-to-r from-emerald-50 via-teal-50/70 to-sky-50 border border-emerald-200 p-5 sm:p-7 shadow-lg shadow-emerald-950/5 relative overflow-hidden">
+      <div class="absolute -right-12 -top-12 w-64 h-64 bg-emerald-300/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+        <!-- Faculty Avatar & Details -->
+        <div class="flex items-center gap-4 sm:gap-5 min-w-0">
+          <div id="dash-avatar-container" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden ring-4 ring-emerald-500/20 bg-white p-1 flex items-center justify-center shrink-0 shadow-md">
+            <!-- Image or Initials Avatar -->
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span id="dash-dept-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300">
+                Computer Science (BCA)
+              </span>
+              <span class="text-xs text-gray-500 font-medium">· Don Bosco College (Autonomous) Maram</span>
+            </div>
+            <h1 id="dash-teacher-name" class="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 tracking-tight truncate">
+              Mr. John Britto
+            </h1>
+            <p id="dash-designation" class="text-xs sm:text-sm text-gray-600 font-medium truncate mt-0.5">
+              Associate Professor &amp; IQAC Coordinator
+            </p>
+            <p id="dash-specialization" class="text-xs text-emerald-700 font-semibold font-mono mt-1 truncate">
+              Database Management Systems, Systems Analysis &amp; Software Architecture
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Header Action Buttons -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0 flex-wrap">
+          <button onclick="switchTab('upload')" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold shadow-md shadow-emerald-600/25 transition-all flex items-center gap-2 cursor-pointer">
+            <i data-lucide="upload" class="w-4 h-4"></i>
+            <span>Upload New Material</span>
+          </button>
+          <button onclick="switchTeacherModal()" class="px-3 py-2.5 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 hover:text-emerald-700 transition-all text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs">
+            <i data-lucide="users" class="w-4 h-4 text-emerald-600"></i>
+            <span>Switch Account</span>
+          </button>
+          <button onclick="logoutCurrentTeacher()" class="p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 hover:text-rose-800 transition-all cursor-pointer shadow-xs" title="Sign Out">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 pt-6 border-t border-emerald-200/60">
+        <div class="p-3.5 rounded-2xl bg-white/90 border border-emerald-100 shadow-xs">
+          <span class="text-xs text-gray-500 font-medium block">Department Uploads</span>
+          <span id="kpi-my-uploads" class="text-xl sm:text-2xl font-black text-emerald-700 font-mono mt-0.5 block">0</span>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white/90 border border-emerald-100 shadow-xs">
+          <span class="text-xs text-gray-500 font-medium block">Department Subjects</span>
+          <span id="kpi-dept-subjects" class="text-xl sm:text-2xl font-black text-blue-700 font-mono mt-0.5 block">20</span>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white/90 border border-emerald-100 shadow-xs">
+          <span class="text-xs text-gray-500 font-medium block">Study Notes Published</span>
+          <span id="kpi-notes-count" class="text-xl sm:text-2xl font-black text-purple-700 font-mono mt-0.5 block">0</span>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white/90 border border-emerald-100 shadow-xs">
+          <span class="text-xs text-gray-500 font-medium block">PYQs &amp; Syllabi Added</span>
+          <span id="kpi-pyq-count" class="text-xl sm:text-2xl font-black text-amber-700 font-mono mt-0.5 block">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Navigation Tabs in Dashboard -->
+    <div class="flex items-center gap-2 border-b border-gray-200 overflow-x-auto pb-1 text-xs sm:text-sm font-bold">
+      <button onclick="switchTab('upload')" id="tab-btn-upload" class="tab-btn px-4 py-3 border-b-2 border-emerald-600 text-emerald-700 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all">
+        <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+        <span>Upload Resources</span>
+      </button>
+      <button onclick="switchTab('my-uploads')" id="tab-btn-my-uploads" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all">
+        <i data-lucide="folder-check" class="w-4 h-4"></i>
+        <span>Department Materials</span>
+        <span id="badge-uploads-count" class="px-2 py-0.5 rounded-full bg-slate-100 text-[10px] text-gray-700 font-mono font-bold">0</span>
+      </button>
+      <button onclick="switchTab('dept-subjects')" id="tab-btn-dept-subjects" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all">
+        <i data-lucide="book-open" class="w-4 h-4"></i>
+        <span>Department Subjects</span>
+      </button>
+      <button onclick="switchTab('contributions')" id="tab-btn-contributions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all">
+        <i data-lucide="inbox" class="w-4 h-4"></i>
+        <span>Department Contributions</span>
+      </button>
+      <button onclick="switchTab('settings')" id="tab-btn-settings" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span>Settings</span>
+      </button>
+    </div>
+
+    <!-- ==============================================================
+         TAB 1: UPLOAD STUDY MATERIALS FORM (Core Functionality)
+         ============================================================== -->
+    <section id="panel-upload" class="space-y-6">
+      <div class="bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-8 shadow-xl shadow-slate-200/60 backdrop-blur-xl">
+        
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm font-bold border border-emerald-200">
+              <i data-lucide="upload" class="w-4 h-4"></i>
+            </span>
+            <span>Upload Teaching Materials to DBCM Study Portal</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-500 mt-1 font-medium">
+            Files uploaded here are published directly with your verified faculty credential and made available for students on the live curriculum site.
+          </p>
+        </div>
+
+        <!-- 1. Resource Type Selection Chips -->
+        <div class="mb-6">
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2.5">
+            Step 1: Choose Material Category
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="tablist">
+            <button type="button" onclick="setUploadCategory('notes')" id="cat-btn-notes" class="cat-picker-btn p-3 rounded-2xl border text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all cursor-pointer bg-emerald-50 border-emerald-500 text-emerald-800 shadow-xs">
+              <i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i>
+              <span>Study Notes (Unit-wise)</span>
+            </button>
+            <button type="button" onclick="setUploadCategory('syllabus')" id="cat-btn-syllabus" class="cat-picker-btn p-3 rounded-2xl border text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all cursor-pointer bg-slate-50 border-slate-200 text-gray-600 hover:text-gray-900 hover:border-slate-300">
+              <i data-lucide="file-check-2" class="w-4 h-4 text-blue-600"></i>
+              <span>Official Syllabus</span>
+            </button>
+            <button type="button" onclick="setUploadCategory('pyqs')" id="cat-btn-pyqs" class="cat-picker-btn p-3 rounded-2xl border text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all cursor-pointer bg-slate-50 border-slate-200 text-gray-600 hover:text-gray-900 hover:border-slate-300">
+              <i data-lucide="archive" class="w-4 h-4 text-amber-600"></i>
+              <span>Question Paper (PYQ)</span>
+            </button>
+            <button type="button" onclick="setUploadCategory('videos')" id="cat-btn-videos" class="cat-picker-btn p-3 rounded-2xl border text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all cursor-pointer bg-slate-50 border-slate-200 text-gray-600 hover:text-gray-900 hover:border-slate-300">
+              <i data-lucide="video" class="w-4 h-4 text-purple-600"></i>
+              <span>Video Lecture Link</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Upload Form -->
+        <form id="teacher-upload-form" onsubmit="submitTeacherUpload(event)" class="space-y-4">
+          
+          <!-- Step 2: Subject Selector -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Academic Department</label>
+              <select id="upload-dept-select" onchange="handleUploadDeptChange()" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600">
+                <!-- Departments populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label for="upload-subject-search" class="block text-xs font-semibold text-gray-700 mb-1.5">Search Subject / Paper Code</label>
+              <div class="relative">
+                <input id="upload-subject-search" type="search" autocomplete="off" required disabled
+                  oninput="handleUploadSubjectSearch(this.value)" onfocus="showUploadSubjectOptions()" onkeydown="handleUploadSubjectKeydown(event)"
+                  placeholder="Type a paper code or subject name"
+                  class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2.5 pr-10 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600 disabled:bg-slate-100 disabled:text-slate-400">
+                <i data-lucide="search" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"></i>
+                <input id="upload-subject-select" type="hidden" value="">
+                <div id="upload-subject-results" role="listbox" class="hidden absolute left-0 right-0 top-full z-40 mt-1 max-h-64 overflow-y-auto rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl"></div>
+              </div>
+              <p id="upload-subject-help" class="mt-1 text-[11px] text-slate-500">Choose a department, then search by paper code or name.</p>
+            </div>
+          </div>
+
+          <!-- Dynamic fields depending on category -->
+
+          <!-- For Study Notes: Unit & Unit Title -->
+          <div id="fields-wrap-notes" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Unit Number</label>
+              <select id="upload-note-unit" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600">
+                <option value="1">Unit 1</option>
+                <option value="2">Unit 2</option>
+                <option value="3">Unit 3</option>
+                <option value="4">Unit 4</option>
+                <option value="5">Unit 5</option>
+                <option value="6">Complete All Units</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Unit Title / Module Name</label>
+              <input id="upload-note-unit-title" type="text" placeholder="e.g. Relational Database Design &amp; Normalization" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+            </div>
+          </div>
+
+          <!-- For PYQs: Exam Year & Total Marks -->
+          <div id="fields-wrap-pyqs" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Exam Session &amp; Year</label>
+              <input id="upload-pyq-session" type="text" placeholder="e.g. Summer 2024 / End-Sem Regular" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Maximum Marks</label>
+              <input id="upload-pyq-marks" type="number" value="80" placeholder="80" class="w-full rounded-xl bg-white border border-slate-300 px-3 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+            </div>
+          </div>
+
+          <!-- For Videos: YouTube URL -->
+          <div id="fields-wrap-videos" class="hidden space-y-2">
+            <label class="block text-xs font-semibold text-gray-700">YouTube Video or Recorded Lecture Link</label>
+            <div class="relative">
+              <i data-lucide="youtube" class="w-4 h-4 text-rose-500 absolute left-3.5 top-3 pointer-events-none"></i>
+              <input id="upload-video-url" type="url" placeholder="https://www.youtube.com/watch?v=..." class="w-full rounded-xl bg-white border border-slate-300 pl-10 pr-4 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+            </div>
+          </div>
+
+          <!-- Common: Title / Topic -->
+          <div>
+            <label id="upload-title-label" class="block text-xs font-semibold text-gray-700 mb-1">Material Title / Topic Name</label>
+            <input id="upload-title-input" type="text" required placeholder="e.g. Relational Calculus &amp; SQL Comprehensive Lecture Notes" class="w-full rounded-xl bg-white border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-gray-900 focus:outline-none focus:border-emerald-600" />
+          </div>
+
+          <!-- File Upload Zone (PDF Document) -->
+          <div id="upload-file-container">
+            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Attach PDF Document (Notes / Syllabus / PYQ)</label>
+            <div id="file-dropzone" class="border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-2xl p-6 text-center transition-all bg-slate-50/70 hover:bg-emerald-50/50 cursor-pointer">
+              <input id="upload-pdf-file" type="file" accept="application/pdf,.pdf" class="hidden" onchange="handleFileSelected(this.files)" />
+              <div onclick="document.getElementById('upload-pdf-file').click()" class="space-y-2">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center border border-emerald-200 shadow-xs">
+                  <i data-lucide="file-up" class="w-6 h-6"></i>
+                </div>
+                <div id="file-info-text">
+                  <p class="text-sm font-semibold text-gray-800">Click or drag &amp; drop PDF document here</p>
+                  <p class="text-xs text-gray-500 mt-0.5 font-medium">Supports PDF up to 25MB · Stored safely in college repository</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Teacher Verification Footer Tag -->
+          <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-check" class="w-4 h-4 text-emerald-600"></i>
+              <span class="text-gray-700 font-medium">
+                Publishing author: <strong id="upload-author-tag" class="text-gray-900 font-bold">Mr. John Britto</strong> (Verified Faculty)
+              </span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">NEP 2020 Compliant</span>
+          </div>
+
+          <!-- Submit Button -->
+          <button id="upload-submit-btn" type="submit" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-extrabold text-sm shadow-md shadow-emerald-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <i data-lucide="cloud-upload" class="w-5 h-5"></i>
+            <span>Publish Resource to DBCM Portal</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 2: MY UPLOADED MATERIALS LIST
+         ============================================================== -->
+    <section id="panel-my-uploads" class="hidden space-y-4">
+      <div class="bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-7 shadow-xl shadow-slate-200/60 backdrop-blur-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">My Uploaded Resources</h2>
+            <p class="text-xs text-gray-500 mt-0.5 font-medium">All materials uploaded by you and published into DBCM curriculum.</p>
+          </div>
+          <button onclick="switchTab('upload')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-1.5 self-start cursor-pointer shadow-xs">
+            <i data-lucide="plus" class="w-4 h-4"></i> Upload More
+          </button>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <button onclick="filterMyUploads('all')" data-cat="all" class="my-up-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white">All</button>
+          <button onclick="filterMyUploads('notes')" data-cat="notes" class="my-up-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-gray-600 hover:text-gray-900">Notes</button>
+          <button onclick="filterMyUploads('syllabus')" data-cat="syllabus" class="my-up-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-gray-600 hover:text-gray-900">Syllabus</button>
+          <button onclick="filterMyUploads('pyqs')" data-cat="pyqs" class="my-up-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-gray-600 hover:text-gray-900">PYQs</button>
+          <button onclick="filterMyUploads('videos')" data-cat="videos" class="my-up-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-gray-600 hover:text-gray-900">Videos</button>
+        </div>
+
+        <!-- Uploads Cards List -->
+        <div id="my-uploads-list" class="space-y-3">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 3: DEPARTMENT SUBJECTS DIRECTORY
+         ============================================================== -->
+    <section id="panel-dept-subjects" class="hidden space-y-4">
+      <div class="bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-7 shadow-xl shadow-slate-200/60 backdrop-blur-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <h2 id="dept-subjects-title" class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Department Curriculum</h2>
+            <p id="dept-subjects-sub" class="text-xs text-gray-500 mt-0.5 font-medium">Explore subjects and add verified lecture notes directly.</p>
+          </div>
+          <div class="relative w-full sm:w-64">
+            <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5 pointer-events-none"></i>
+            <input type="text" id="dept-subject-search" oninput="renderDeptSubjects(this.value)" placeholder="Search code or subject..." class="w-full rounded-xl bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-600" />
+          </div>
+        </div>
+
+        <div id="dept-subjects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         TAB 4: COLLEGE FACULTY ROSTER (80-100 TEACHERS)
+         ============================================================== -->
+    <section id="panel-contributions" class="hidden space-y-4"><div class="rounded-2xl border border-slate-200 bg-white p-5"><h2 class="text-lg font-bold">Student Contributions · Your Department</h2><p class="mb-4 text-xs text-gray-500">Review and publish contributions from your own department, including PG papers.</p><div id="teacher-contributions-list" class="space-y-3">Loading…</div></div></section>
+    <section id="panel-settings" class="hidden space-y-4">
+      <div class="max-w-2xl rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 class="text-lg font-bold text-slate-900">Account Settings</h2>
+        <p class="mt-1 text-sm text-slate-500">Change your teacher account password. Your new password is stored securely as a bcrypt hash.</p>
+        <form class="mt-5 space-y-4" onsubmit="changeTeacherPassword(event)">
+          <div><label for="teacher-current-password" class="mb-1 block text-sm font-semibold text-slate-700">Current password</label><input id="teacher-current-password" type="password" autocomplete="current-password" required class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" /></div>
+          <div><label for="teacher-new-password" class="mb-1 block text-sm font-semibold text-slate-700">New password</label><input id="teacher-new-password" type="password" autocomplete="new-password" minlength="12" required placeholder="At least 12 characters" class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" /></div>
+          <div><label for="teacher-confirm-password" class="mb-1 block text-sm font-semibold text-slate-700">Confirm new password</label><input id="teacher-confirm-password" type="password" autocomplete="new-password" minlength="12" required class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" /></div>
+          <button class="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-700">Update password</button>
+        </form>
+      </div>
+    </section>
+    <section id="panel-faculty-roster" class="hidden space-y-4">
+      <div class="bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-7 shadow-xl shadow-slate-200/60 backdrop-blur-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">DBCM College Faculty Directory</h2>
+            <p class="text-xs text-gray-500 mt-0.5 font-medium">Directory of ~86 teachers across all 16 academic departments.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <select id="roster-dept-filter" onchange="renderFullFacultyRoster()" class="rounded-xl bg-white border border-slate-300 px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-emerald-600">
+              <option value="all">All Departments</option>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+
+        <div id="full-faculty-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==============================================================
+       MODAL: SWITCH TEACHER / ACCOUNT PICKER (Light Theme)
+       ============================================================== -->
+  <div id="switch-teacher-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 animate-fade-in" onclick="if(event.target===this) closeSwitchModal()">
+    <div class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 max-w-xl w-full shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold border border-emerald-200">
+            <i data-lucide="users" class="w-4 h-4"></i>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-gray-900">Switch Faculty Account</h3>
+        </div>
+        <button onclick="closeSwitchModal()" class="p-1 rounded-lg text-gray-400 hover:text-gray-700 cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-3 pointer-events-none"></i>
+          <input id="modal-teacher-search" type="text" oninput="filterModalTeachers(this.value)" placeholder="Search any teacher from 80-100 faculty..." class="w-full rounded-xl bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-600" />
+        </div>
+        <div id="modal-teachers-list" class="max-h-72 overflow-y-auto space-y-2 pr-1">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-200 flex justify-between items-center text-xs">
+        <button onclick="logoutCurrentTeacher(); closeSwitchModal();" class="text-rose-600 hover:text-rose-700 font-bold flex items-center gap-1.5 cursor-pointer">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Log Out Completely
+        </button>
+        <button onclick="closeSwitchModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-gray-700 cursor-pointer font-semibold">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="contribution-reader-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-slate-950/80 p-2 sm:p-5" role="dialog" aria-modal="true" aria-labelledby="contribution-reader-title" onclick="if(event.target===this) closeContributionReader()">
+    <div class="flex h-[94vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-2xl">
+      <div class="flex items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 py-3">
+        <div class="min-w-0"><h2 id="contribution-reader-title" class="truncate text-sm font-bold text-slate-900">Contribution file</h2><p id="contribution-reader-subtitle" class="truncate text-xs text-slate-500"></p></div>
+        <button type="button" onclick="closeContributionReader()" aria-label="Close reader" class="rounded-lg border border-slate-200 bg-white p-2 text-slate-600 hover:bg-slate-100"><i data-lucide="x" class="h-4 w-4"></i></button>
+      </div>
+      <div id="contribution-reader-content" class="min-h-0 flex-1 overflow-auto bg-slate-200"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container (Light Theme) -->
+  <div id="dash-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="px-4 py-3 rounded-2xl border border-emerald-300 bg-white/95 text-gray-900 shadow-xl shadow-slate-900/10 flex items-center gap-3 text-xs font-semibold backdrop-blur-md">
+      <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>
+      <span id="dash-toast-msg">Operation completed successfully</span>
+    </div>
+  </div>
+
+  <!-- Footer (Light Theme) -->
+  <footer class="border-t border-slate-200 bg-white/80 py-6 px-4 text-center text-xs text-gray-500 z-10 backdrop-blur-xs">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>© 2026 Don Bosco College (Autonomous) Maram · Faculty Management Portal</p>
+      <div class="flex items-center gap-4 text-gray-500 font-medium">
+        <a href="index.html" class="hover:text-emerald-700">DBCM Study Notes</a>
+        <span>·</span>
+        <a href="pages/admin.html" class="hover:text-emerald-700">Admin Console</a>
+        <span>·</span>
+        <a href="pages/about-developers.html" class="hover:text-emerald-700">Developers &amp; IQAC</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Teacher Dashboard Logic -->
+  <script>
+    // State
+    const teacherState = {
+      curriculum: null,
+      subjects: [],
+      departments: [],
+      currentTeacher: null,
+      selectedRosterTeacher: null,
+      activeTab: 'upload',
+      uploadCategory: 'notes',
+      selectedFile: null,
+      myUploadsFilter: 'all'
+    };
+
+    // Initialize Page
+    async function initTeacherPortal() {
+      // Force light theme
+      document.documentElement.setAttribute('data-theme', 'light');
+
+      // 1. Load curriculum data
+      try {
+        const data = await window.dbcmLocalData.load();
+        teacherState.curriculum = data;
+        teacherState.subjects = data.subjects || [];
+        teacherState.departments = data.departments || [];
+      } catch (err) {
+        console.error('Failed to load curriculum:', err);
+      }
+
+      // 3. Check for logged in teacher
+      try {
+        const { user } = await window.dbcmApi.me();
+        if (user.role !== 'teacher') throw new Error('Teacher account required.');
+        window.dbcmTeachers.setCurrentTeacher(user);
+        teacherState.currentTeacher = user;
+        teacherState.subjects = teacherState.subjects.filter(s => s.departmentId === user.departmentId || (Array.isArray(s.branches) && s.branches.includes(user.departmentId)));
+        populateDepartmentDropdowns(user.departmentId);
+        document.getElementById('teacher-login-screen').classList.add('hidden');
+        showDashboardScreen();
+      } catch {
+        window.location.replace('pages/login.html?role=teacher');
+        return;
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Populate department select inputs
+    function populateDepartmentDropdowns(allowedDepartmentId = '') {
+      const depts = allowedDepartmentId ? teacherState.departments.filter(d => d.id === allowedDepartmentId) : teacherState.departments;
+      const uploadDeptSel = document.getElementById('upload-dept-select');
+      const rosterDeptFilter = document.getElementById('roster-dept-filter');
+
+      if (uploadDeptSel) {
+        uploadDeptSel.innerHTML = depts.map(d => `<option value="${d.id}">${d.name} (${d.code})</option>`).join('');
+      }
+
+      if (rosterDeptFilter) {
+        rosterDeptFilter.innerHTML = '<option value="all">All Departments</option>' +
+          depts.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+      }
+    }
+
+    // Show Login Screen
+    function showLoginScreen() {
+      document.getElementById('teacher-login-screen').classList.remove('hidden');
+      document.getElementById('teacher-dashboard-screen').classList.add('hidden');
+      document.getElementById('header-user-badge').classList.add('hidden');
+      filterLoginRoster();
+    }
+
+    // Show Dashboard Screen
+    function showDashboardScreen() {
+      const t = teacherState.currentTeacher;
+      if (!t) return showLoginScreen();
+
+      document.getElementById('teacher-login-screen').classList.add('hidden');
+      document.getElementById('teacher-dashboard-screen').classList.remove('hidden');
+      document.getElementById('header-user-badge').classList.remove('hidden');
+
+      // Update Header & Banner
+      document.getElementById('header-teacher-name').textContent = t.name;
+      document.getElementById('dash-teacher-name').textContent = t.name;
+      document.getElementById('dash-designation').textContent = `${t.designation || 'Faculty'} · ${t.qualification || ''}`;
+      document.getElementById('dash-dept-badge').textContent = t.departmentName || t.departmentId;
+      document.getElementById('dash-specialization').textContent = t.specialization || 'Curriculum & Resources';
+      document.getElementById('upload-author-tag').textContent = t.name;
+
+      // Avatar
+      const avatarContainer = document.getElementById('dash-avatar-container');
+      if (t.avatar) {
+        avatarContainer.innerHTML = `<img src="${t.avatar}" alt="${t.name}" class="w-full h-full object-cover rounded-xl" />`;
+      } else {
+        const colors = window.dbcmTeachers.getAvatarColors(t.name);
+        const initials = window.dbcmTeachers.getInitials(t.name);
+        avatarContainer.innerHTML = `<div class="w-full h-full rounded-xl flex items-center justify-center font-black text-lg" style="background:${colors.bg}; color:${colors.text};">${initials}</div>`;
+      }
+
+      // Pre-select teacher's department in upload form
+      const uploadDeptSel = document.getElementById('upload-dept-select');
+      if (uploadDeptSel && t.departmentId) {
+        uploadDeptSel.value = t.departmentId;
+      }
+      handleUploadDeptChange();
+
+      // Update KPIs & Lists
+      updateDashboardKPIs();
+      renderMyUploads();
+      renderDeptSubjects();
+      renderFullFacultyRoster();
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Quick Login by teacher ID
+    function quickLoginTeacher(teacherId) {
+      const teacher = window.dbcmTeachers.getTeacherById(teacherId);
+      if (!teacher || !teacherState.currentTeacher || teacher.id !== teacherState.currentTeacher.id) return showToast('Sign in with your own account to access the teacher dashboard.');
+      if (teacher) {
+        window.dbcmTeachers.setCurrentTeacher(teacher);
+        teacherState.currentTeacher = teacher;
+        showDashboardScreen();
+        showToast(`Welcome, ${teacher.name}! Logged into ${teacher.departmentName}`);
+      }
+    }
+
+    // Switch Login Tabs (roster, email, register)
+    function switchLoginTab(tab) {
+      const tabs = ['roster', 'email', 'register'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`login-tab-${t}`);
+        const view = document.getElementById(`login-view-${t}`);
+        if (t === tab) {
+          btn.className = 'pb-3 border-b-2 border-emerald-600 text-emerald-700 flex items-center gap-2 cursor-pointer transition-colors';
+          view.classList.remove('hidden');
+        } else {
+          btn.className = 'pb-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 cursor-pointer transition-colors';
+          view.classList.add('hidden');
+        }
+      });
+      if (tab === 'roster') filterLoginRoster();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Filter Login Roster
+    function filterLoginRoster() {
+      const deptId = document.getElementById('login-dept-select')?.value || 'all';
+      const search = document.getElementById('login-search-input')?.value || '';
+      const list = window.dbcmTeachers.searchTeachers(search, deptId);
+
+      const countBadge = document.getElementById('roster-count-badge');
+      if (countBadge) countBadge.textContent = `${list.length} Teachers Found`;
+
+      const container = document.getElementById('login-roster-list');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = '<div class="p-6 text-center text-xs text-gray-500">No faculty members found matching your search.</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(t => {
+        const colors = window.dbcmTeachers.getAvatarColors(t.name);
+        const initials = window.dbcmTeachers.getInitials(t.name);
+        const isSel = teacherState.selectedRosterTeacher?.id === t.id;
+
+        return `
+          <div onclick="selectRosterTeacher('${t.id}')" class="p-3 rounded-xl border ${isSel ? 'bg-emerald-50 border-emerald-500 text-gray-900 shadow-xs' : 'bg-white border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/30 text-gray-700'} flex items-center justify-between gap-3 cursor-pointer transition-all">
+            <div class="flex items-center gap-3 min-w-0">
+              ${t.avatar ? `
+                <img src="${t.avatar}" alt="${t.name}" class="w-10 h-10 rounded-xl object-cover shrink-0 border border-slate-200 shadow-xs" />
+              ` : `
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 shadow-xs" style="background:${colors.bg}; color:${colors.text};">
+                  ${initials}
+                </div>
+              `}
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h5 class="text-xs sm:text-sm font-bold text-gray-900 truncate">${t.name}</h5>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${t.role === 'HOD' || t.role === 'Principal' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'}">${t.role}</span>
+                </div>
+                <p class="text-[11px] text-gray-500 truncate">${t.designation} · ${t.departmentName}</p>
+                <p class="text-[10px] text-emerald-700 font-mono font-medium truncate">${t.specialization || ''}</p>
+              </div>
+            </div>
+            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-bold ${isSel ? 'bg-emerald-600 text-white' : 'bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-700 border border-slate-200'} transition-all shrink-0">
+              Select
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Select a teacher from roster
+    function selectRosterTeacher(id) {
+      const teacher = window.dbcmTeachers.getTeacherById(id);
+      if (!teacher) return;
+      teacherState.selectedRosterTeacher = teacher;
+
+      // Update selected box
+      const box = document.getElementById('roster-selected-box');
+      box.classList.remove('hidden');
+      document.getElementById('roster-sel-name').textContent = teacher.name;
+      document.getElementById('roster-sel-dept').textContent = `${teacher.departmentName} · ${teacher.designation}`;
+      document.getElementById('roster-sel-email').textContent = teacher.email;
+
+      const avatarEl = document.getElementById('roster-sel-avatar');
+      if (teacher.avatar) {
+        avatarEl.innerHTML = `<img src="${teacher.avatar}" alt="${teacher.name}" class="w-full h-full object-cover" />`;
+      } else {
+        const colors = window.dbcmTeachers.getAvatarColors(teacher.name);
+        avatarEl.style.background = colors.bg;
+        avatarEl.style.color = colors.text;
+        avatarEl.textContent = window.dbcmTeachers.getInitials(teacher.name);
+      }
+
+      filterLoginRoster();
+    }
+
+    // Confirm roster login
+    function confirmRosterLogin() {
+      const teacher = teacherState.selectedRosterTeacher;
+      if (!teacher) return showToast('Please select a teacher profile first.');
+      if (!teacherState.currentTeacher || teacher.id !== teacherState.currentTeacher.id) return showToast('Sign in with your own account to access the teacher dashboard.');
+      window.dbcmTeachers.setCurrentTeacher(teacher);
+      teacherState.currentTeacher = teacher;
+      showDashboardScreen();
+      showToast(`Logged in as ${teacher.name} (${teacher.departmentName})`);
+    }
+
+    // Handle email login
+    function handleEmailLogin(event) {
+      event.preventDefault();
+      window.location.replace('pages/login.html?role=teacher');
+    }
+
+    // Handle register new faculty
+    function handleRegisterFaculty(event) {
+      event.preventDefault();
+      window.location.replace('pages/login.html?role=teacher');
+    }
+
+    // Switch Dashboard Sub-Tabs
+    function switchTab(tabId) {
+      teacherState.activeTab = tabId;
+      const tabs = ['upload', 'my-uploads', 'dept-subjects', 'contributions', 'settings'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        const panel = document.getElementById(`panel-${t}`);
+        if (t === tabId) {
+          btn.className = 'tab-btn px-4 py-3 border-b-2 border-emerald-600 text-emerald-700 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all';
+          panel.classList.remove('hidden');
+        } else {
+          btn.className = 'tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-900 flex items-center gap-2 whitespace-nowrap cursor-pointer transition-all';
+          panel.classList.add('hidden');
+        }
+      });
+      if (tabId === 'my-uploads') renderMyUploads();
+      if (tabId === 'dept-subjects') renderDeptSubjects();
+      if (tabId === 'contributions') loadTeacherContributions();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    async function changeTeacherPassword(event) {
+      event.preventDefault();
+      const currentPassword = document.getElementById('teacher-current-password').value;
+      const newPassword = document.getElementById('teacher-new-password').value;
+      const confirmPassword = document.getElementById('teacher-confirm-password').value;
+      if (newPassword.length < 12) return showToast('New password must have at least 12 characters.');
+      if (newPassword !== confirmPassword) return showToast('The new passwords do not match.');
+      try {
+        await window.dbcmApi.changeTeacherPassword({ currentPassword, newPassword });
+        event.target.reset();
+        showToast('Password updated securely.');
+      } catch (error) { showToast(error.message); }
+    }
+
+    let contributionReaderObjectUrl = '';
+    async function openContributionReader(item) {
+      const modal = document.getElementById('contribution-reader-modal');
+      const content = document.getElementById('contribution-reader-content');
+      const title = document.getElementById('contribution-reader-title');
+      const subtitle = document.getElementById('contribution-reader-subtitle');
+      if (!modal || !content) return;
+      closeContributionReader();
+      title.textContent = item.title || item.fileName || 'Contribution file';
+      subtitle.textContent = `${item.subjectCode || item.subjectName || 'Department'} · ${item.fileName || 'Shared link'}`;
+      modal.classList.remove('hidden'); modal.classList.add('flex');
+      content.innerHTML = '<div class="p-8 text-center text-sm text-slate-600">Opening contribution…</div>';
+      const base = window.DBCM_API_BASE || `${location.protocol}//${location.hostname}:3000/api`;
+      const url = item.stored_name || item.fileName
+        ? `${base}/contributions/${encodeURIComponent(item.id)}/file`
+        : (item.external_url || item.externalUrl || '');
+      if (!url) { content.textContent = 'This contribution has no attached file or link.'; return; }
+      if (!item.stored_name && !item.fileName) {
+        content.replaceChildren();
+        const sharedLink = document.createElement('a'); sharedLink.href = url; sharedLink.target = '_blank'; sharedLink.rel = 'noopener noreferrer';
+        sharedLink.textContent = 'Open shared contribution link'; sharedLink.className = 'm-6 inline-block rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white'; content.append(sharedLink);
+        return;
+      }
+      const filename = String(item.fileName || url).split(/[?#]/)[0];
+      const ext = (filename.match(/\.([a-z0-9]+)$/i) || [,''])[1].toLowerCase();
+      try {
+        if (ext === 'docx' && window.dbcmDocxReader) {
+          await window.dbcmDocxReader.render(url, content);
+          return;
+        }
+        if (ext === 'pptx' && window.dbcmDocxReader?.renderPowerPoint) {
+          await window.dbcmDocxReader.renderPowerPoint(url, content);
+          return;
+        }
+        const response = await fetch(url, { credentials: 'include' });
+        if (!response.ok) throw new Error(`Could not open this file (${response.status}).`);
+        const blob = await response.blob();
+        contributionReaderObjectUrl = URL.createObjectURL(blob);
+        content.replaceChildren();
+        if (blob.type === 'application/pdf' || ext === 'pdf') {
+          const frame = document.createElement('iframe');
+          frame.src = contributionReaderObjectUrl; frame.title = item.title || 'Contribution PDF';
+          frame.className = 'h-full min-h-[70vh] w-full border-0 bg-white';
+          content.append(frame);
+        } else if (blob.type.startsWith('image/') || ['png','jpg','jpeg'].includes(ext)) {
+          const image = document.createElement('img');
+          image.src = contributionReaderObjectUrl; image.alt = item.title || 'Contribution image';
+          image.className = 'mx-auto max-h-full max-w-full object-contain'; content.append(image);
+        } else {
+          URL.revokeObjectURL(contributionReaderObjectUrl); contributionReaderObjectUrl = '';
+          content.textContent = ext === 'ppt'
+            ? 'This older PowerPoint format cannot be previewed in the browser. Please ask the contributor for a PDF or PPTX copy.'
+            : 'This file type cannot be previewed in the browser. Please ask the contributor for a PDF copy.';
+        }
+      } catch (error) { content.textContent = error.message || 'Could not preview this contribution.'; }
+    }
+    function closeContributionReader() {
+      const modal = document.getElementById('contribution-reader-modal');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+      if (contributionReaderObjectUrl) URL.revokeObjectURL(contributionReaderObjectUrl);
+      contributionReaderObjectUrl = '';
+      document.getElementById('contribution-reader-content')?.replaceChildren();
+    }
+
+    // Set Upload Category (notes, syllabus, pyqs, videos)
+    function setUploadCategory(cat) {
+      teacherState.uploadCategory = cat;
+      const cats = ['notes', 'syllabus', 'pyqs', 'videos'];
+      cats.forEach(c => {
+        const btn = document.getElementById(`cat-btn-${c}`);
+        if (c === cat) {
+          btn.className = 'cat-picker-btn p-3 rounded-2xl border text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all cursor-pointer bg-emerald-50 border-emerald-500 text-emerald-800 shadow-xs';
+        } else {
+          btn.className = 'cat-picker-btn p-3 rounded-2xl border text-xs sm:text-sm font-bold flex items-center gap-2.5 transition-all cursor-pointer bg-slate-50 border-slate-200 text-gray-600 hover:text-gray-900 hover:border-slate-300';
+        }
+      });
+
+      // Show/hide category-specific inputs
+      document.getElementById('fields-wrap-notes').className = cat === 'notes' ? 'grid grid-cols-1 sm:grid-cols-3 gap-3' : 'hidden';
+      document.getElementById('fields-wrap-pyqs').className = cat === 'pyqs' ? 'grid grid-cols-1 sm:grid-cols-2 gap-3' : 'hidden';
+      document.getElementById('fields-wrap-videos').className = cat === 'videos' ? 'space-y-2' : 'hidden';
+      document.getElementById('upload-file-container').className = cat === 'videos' ? 'hidden' : 'block';
+
+      // Update placeholder / labels
+      const titleLabel = document.getElementById('upload-title-label');
+      const titleInput = document.getElementById('upload-title-input');
+      if (cat === 'notes') {
+        titleLabel.textContent = 'Topic Title / Lecture Name';
+        titleInput.placeholder = 'e.g. Relational Calculus & SQL Comprehensive Lecture Notes';
+      } else if (cat === 'syllabus') {
+        titleLabel.textContent = 'Curriculum Regulation / Document Title';
+        titleInput.placeholder = 'e.g. DBCM Autonomous Curriculum Syllabus (NEP 2020)';
+      } else if (cat === 'pyqs') {
+        titleLabel.textContent = 'Question Paper Name';
+        titleInput.placeholder = 'e.g. Database Management Systems End-Sem Question Paper';
+      } else if (cat === 'videos') {
+        titleLabel.textContent = 'Video Lecture Title';
+        titleInput.placeholder = 'e.g. Unit 3: Normalization 1NF to BCNF Video Lecture';
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Handle Upload Dept Change
+    function handleUploadDeptChange() {
+      const deptId = document.getElementById('upload-dept-select')?.value;
+      const subjectId = document.getElementById('upload-subject-select');
+      const search = document.getElementById('upload-subject-search');
+      const help = document.getElementById('upload-subject-help');
+      if (!subjectId || !search) return;
+      subjectId.value = '';
+      search.value = '';
+      search.disabled = true;
+      const subjects = deptId === teacherState.currentTeacher?.departmentId
+        ? teacherState.subjects.filter(s => s.departmentId === deptId || (Array.isArray(s.branches) && s.branches.includes(deptId)))
+        : [];
+      teacherState.uploadSubjects = subjects;
+      search.disabled = subjects.length === 0;
+      if (help) help.textContent = subjects.length ? `${subjects.length} subjects available. Search by paper code or subject name.` : 'No subjects found for this department.';
+      hideUploadSubjectOptions();
+    }
+
+    function hideUploadSubjectOptions() {
+      document.getElementById('upload-subject-results')?.classList.add('hidden');
+    }
+
+    function renderUploadSubjectOptions(query = '') {
+      const results = document.getElementById('upload-subject-results');
+      if (!results) return [];
+      const normalized = query.trim().toLowerCase();
+      const codeQuery = normalized.replace(/[^a-z0-9]/g, '');
+      const subjects = teacherState.uploadSubjects || [];
+      const matches = subjects.filter(subject => {
+        const code = String(subject.code || '').toLowerCase();
+        const name = String(subject.name || '').toLowerCase();
+        return !normalized || code.includes(normalized) || code.replace(/[^a-z0-9]/g, '').includes(codeQuery) || name.includes(normalized);
+      }).slice(0, 60);
+      results.replaceChildren();
+      if (!matches.length) {
+        const empty = document.createElement('p');
+        empty.className = 'px-3 py-2 text-xs text-slate-500';
+        empty.textContent = 'No matching paper codes or subjects.';
+        results.append(empty);
+      } else {
+        for (const subject of matches) {
+          const option = document.createElement('button');
+          option.type = 'button';
+          option.setAttribute('role', 'option');
+          option.dataset.subjectId = subject.id;
+          option.className = 'upload-subject-option flex w-full items-start justify-between gap-3 rounded-lg px-3 py-2.5 text-left hover:bg-emerald-50 focus:bg-emerald-50 focus:outline-none';
+          const title = document.createElement('span');
+          title.className = 'min-w-0 text-xs font-semibold text-slate-800';
+          title.textContent = `${subject.code} · ${subject.name}`;
+          const meta = document.createElement('span');
+          meta.className = 'shrink-0 text-[10px] text-slate-500';
+          meta.textContent = `Sem ${subject.semester || '—'}${subject.programLevel === 'PG' ? ' · PG' : ''}`;
+          option.append(title, meta);
+          option.addEventListener('mousedown', event => event.preventDefault());
+          option.addEventListener('click', () => selectUploadSubject(subject.id));
+          results.append(option);
+        }
+      }
+      results.classList.remove('hidden');
+      return matches;
+    }
+
+    function handleUploadSubjectSearch(query) {
+      const selected = document.getElementById('upload-subject-select');
+      if (selected) selected.value = '';
+      renderUploadSubjectOptions(query);
+    }
+
+    function showUploadSubjectOptions() {
+      const search = document.getElementById('upload-subject-search');
+      if (search && !search.disabled) renderUploadSubjectOptions(search.value);
+    }
+
+    function selectUploadSubject(subjectId) {
+      const subject = (teacherState.uploadSubjects || []).find(item => item.id === subjectId);
+      if (!subject) return;
+      const selected = document.getElementById('upload-subject-select');
+      const search = document.getElementById('upload-subject-search');
+      if (selected) selected.value = subject.id;
+      if (search) search.value = `${subject.code} · ${subject.name} (Semester ${subject.semester || '—'})`;
+      hideUploadSubjectOptions();
+    }
+
+    function handleUploadSubjectKeydown(event) {
+      if (event.key === 'Escape') {
+        hideUploadSubjectOptions();
+      } else if (event.key === 'Enter') {
+        const first = document.querySelector('#upload-subject-results [data-subject-id]');
+        if (first && !document.getElementById('upload-subject-results')?.classList.contains('hidden')) {
+          event.preventDefault();
+          selectUploadSubject(first.dataset.subjectId);
+        }
+      }
+    }
+
+    // Handle File Selection
+    function handleFileSelected(files) {
+      if (!files || files.length === 0) return;
+      const file = files[0];
+      teacherState.selectedFile = file;
+
+      const fileInfo = document.getElementById('file-info-text');
+      const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+      fileInfo.innerHTML = `
+        <p class="text-sm font-bold text-emerald-700 flex items-center justify-center gap-1.5">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> ${file.name}
+        </p>
+        <p class="text-xs text-gray-500 mt-0.5 font-medium">Size: ${sizeMB} MB · Ready to upload</p>
+      `;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Submit Teacher Upload
+    async function submitTeacherUpload(event) {
+      event.preventDefault();
+      const teacher = teacherState.currentTeacher;
+      if (!teacher) return showToast('You must be logged in as a teacher to upload.');
+
+      const subjectId = document.getElementById('upload-subject-select').value;
+      const subject = teacherState.subjects.find(s => s.id === subjectId);
+      if (!subject) return showToast('Please select a valid subject.');
+
+      const category = teacherState.uploadCategory;
+      const title = document.getElementById('upload-title-input').value.trim();
+      const file = teacherState.selectedFile;
+
+      if (category !== 'videos' && !file) {
+        return showToast('Please select a PDF document to upload.');
+      }
+
+      const submitBtn = document.getElementById('upload-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="flex items-center gap-2"><svg class="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> Uploading & Saving to DBCM Study Portal...</span>';
+
+      try {
+        const meta = {
+          teacher,
+          subjectId: subject.id,
+          subjectCode: subject.code,
+          category,
+          title,
+          unit: document.getElementById('upload-note-unit')?.value,
+          unitTitle: document.getElementById('upload-note-unit-title')?.value.trim(),
+          year: document.getElementById('upload-pyq-session')?.value.trim(),
+          marks: document.getElementById('upload-pyq-marks')?.value,
+          videoUrl: document.getElementById('upload-video-url')?.value.trim(),
+          fileName: file?.name,
+          fileSize: file ? `${(file.size / (1024 * 1024)).toFixed(2)} MB` : null
+        };
+
+        await window.dbcmApi.uploadMaterial(subject.id, {
+          category, title, externalUrl: category === 'videos' ? meta.videoUrl : '',
+          metadata: JSON.stringify({ unit: meta.unit, unitTitle: meta.unitTitle, year: meta.year, marks: meta.marks })
+        }, file);
+
+        showToast(`Resource "${title}" published for ${subject.code}!`);
+        
+        // Reset form & file
+        document.getElementById('upload-title-input').value = '';
+        teacherState.selectedFile = null;
+        document.getElementById('upload-pdf-file').value = '';
+        document.getElementById('file-info-text').innerHTML = `
+          <p class="text-sm font-semibold text-gray-800">Click or drag &amp; drop PDF document here</p>
+          <p class="text-xs text-gray-500 mt-0.5 font-medium">Supports PDF up to 25MB · Stored safely in college repository</p>
+        `;
+
+        // Refresh stats & list
+        updateDashboardKPIs();
+        renderMyUploads();
+        switchTab('my-uploads');
+
+      } catch (err) {
+        console.error('Teacher upload error:', err);
+        showToast(`Upload failed: ${err.message || 'Storage error'}`);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i data-lucide="cloud-upload" class="w-5 h-5"></i><span>Publish Resource to DBCM Portal</span>';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    // Update KPIs
+    async function updateDashboardKPIs() {
+      const t = teacherState.currentTeacher;
+      if (!t) return;
+
+      let myUploads = window.dbcmTeachers.getTeacherUploads(t.id);
+      try { myUploads = (await window.dbcmApi.myMaterials()).materials || []; } catch {}
+      let deptSubjectsCount = teacherState.subjects.filter(s => s.departmentId === t.departmentId).length;
+      try { const { counts=[] } = await window.dbcmApi.counts(); deptSubjectsCount = counts.find(c => c.department_id === t.departmentId)?.subject_count ?? deptSubjectsCount; } catch {}
+
+      const notesCount = myUploads.filter(u => u.category === 'notes').length;
+      const pyqCount = myUploads.filter(u => u.category === 'pyqs' || u.category === 'syllabus').length;
+
+      document.getElementById('kpi-my-uploads').textContent = myUploads.length;
+      document.getElementById('kpi-dept-subjects').textContent = deptSubjectsCount;
+      document.getElementById('kpi-notes-count').textContent = notesCount;
+      document.getElementById('kpi-pyq-count').textContent = pyqCount;
+      document.getElementById('badge-uploads-count').textContent = myUploads.length;
+    }
+
+    // Render My Uploads Tab
+    async function renderMyUploads() {
+      const t = teacherState.currentTeacher;
+      if (!t) return;
+
+      let all = [];
+      try { all = (await window.dbcmApi.myMaterials()).materials || []; }
+      catch (error) { const host=document.getElementById('my-uploads-list'); if(host)host.textContent=error.message; return; }
+      const filter = teacherState.myUploadsFilter;
+      const list = filter === 'all' ? all : all.filter(u => u.category === filter);
+
+      const container = document.getElementById('my-uploads-list');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="p-12 text-center rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+            <i data-lucide="file-question" class="w-10 h-10 mx-auto text-gray-400 opacity-70"></i>
+            <h4 class="text-sm font-bold text-gray-800">No materials uploaded yet in this category</h4>
+            <p class="text-xs text-gray-500 max-w-sm mx-auto font-medium">Upload lecture notes, syllabi, or question papers from the Upload Resources tab to publish them for students.</p>
+            <button onclick="switchTab('upload')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all inline-flex items-center gap-1.5 cursor-pointer shadow-xs">
+              <i data-lucide="upload" class="w-4 h-4"></i> Upload Now
+            </button>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-400 shadow-xs transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div class="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center shrink-0 font-bold shadow-xs">
+              <i data-lucide="${item.category === 'notes' ? 'file-text' : item.category === 'syllabus' ? 'file-check-2' : item.category === 'videos' ? 'video' : 'archive'}" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-blue-50 text-blue-800 border border-blue-200">${item.subjectCode}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase ${item.category === 'notes' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-purple-50 text-purple-800 border border-purple-200'}">${item.category}</span>
+                <h5 class="text-sm sm:text-base font-bold text-gray-900 truncate">${item.title}</h5>
+              </div>
+              <p class="text-xs text-gray-500 mt-1 font-medium">
+                ${item.subjectName} · ${item.unitTitle || ''} · ${item.fileSize || 'PDF'} · Uploaded on ${item.uploadDate}
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 shrink-0">
+            <a href="pages/subject.html?id=${item.subjectId}" target="_blank" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-gray-700 hover:text-blue-700 border border-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors" title="View this Subject Page on Student Portal">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-blue-600"></i>
+              <span>Live Subject</span>
+            </a>
+            ${item.pdfUrl && item.pdfUrl !== '#' ? `
+              <a href="${item.pdfUrl}" target="_blank" download="${item.fileName || 'material.pdf'}" class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-600 border border-emerald-200 text-emerald-700 hover:text-white transition-all shadow-xs" title="Download Document">
+                <i data-lucide="download" class="w-4 h-4"></i>
+              </a>
+            ` : ''}
+            <button onclick="handleDeleteUpload('${item.uploadId}')" class="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 hover:text-rose-800 transition-all cursor-pointer shadow-xs" title="Remove Upload">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Filter My Uploads
+    function filterMyUploads(cat) {
+      teacherState.myUploadsFilter = cat;
+      document.querySelectorAll('.my-up-filter').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'my-up-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white';
+        } else {
+          btn.className = 'my-up-filter px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-gray-600 hover:text-gray-900';
+        }
+      });
+      renderMyUploads();
+    }
+
+    // Delete Upload
+    async function handleDeleteUpload(uploadId) {
+      if (!confirm('Are you sure you want to remove this uploaded resource from DBCM study portal?')) return;
+      try {
+        await window.dbcmApi.deleteMaterial(uploadId);
+        showToast('Resource removed successfully.');
+        updateDashboardKPIs();
+        renderMyUploads();
+      } catch (e) {
+        showToast('Error removing upload.');
+      }
+    }
+    async function handleEditUpload(uploadId) {
+      const title=prompt('Enter the updated resource title');if(!title)return;
+      try{await window.dbcmApi.editMaterial(uploadId,title);showToast('Material updated.');await renderMyUploads();}catch(e){showToast(e.message);}
+    }
+
+    // Render Department Subjects Grid
+    function renderDeptSubjects(filterQuery = '') {
+      const t = teacherState.currentTeacher;
+      if (!t) return;
+
+      document.getElementById('dept-subjects-title').textContent = `${t.departmentName} Curriculum`;
+      const subjects = teacherState.subjects.filter(s => s.departmentId === t.departmentId || (Array.isArray(s.branches) && s.branches.includes(t.departmentId)));
+
+      const q = filterQuery.trim().toLowerCase();
+      const filtered = q ? subjects.filter(s => s.code.toLowerCase().includes(q) || s.name.toLowerCase().includes(q)) : subjects;
+
+      const container = document.getElementById('dept-subjects-grid');
+      if (!container) return;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="col-span-full p-8 text-center text-xs text-gray-500">No subjects found matching your query.</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(s => {
+        const notesCount = (s.notes || []).length;
+        const pyqCount = (s.pyqs || []).length;
+        const hasSyllabus = Boolean(s.syllabusPdfUrl || (s.syllabusList && s.syllabusList.length > 0));
+
+        return `
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-400 shadow-xs transition-all flex flex-col justify-between gap-3">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2 py-0.5 rounded font-mono text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">${s.code}</span>
+                <span class="text-[11px] font-semibold text-gray-500">Sem ${s.semester} · ${s.credits || 4} Credits</span>
+              </div>
+              <h4 class="text-sm font-bold text-gray-900 leading-snug">${s.name}</h4>
+              <p class="text-xs text-gray-500 mt-1 capitalize">${s.track || 'Major'} Track</p>
+
+              <div class="flex items-center gap-3 text-xs text-gray-600 mt-3 pt-3 border-t border-slate-100 font-medium">
+                <span class="flex items-center gap-1 ${notesCount > 0 ? 'text-emerald-700 font-bold' : 'text-gray-400'}">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i> ${notesCount} Notes
+                </span>
+                <span class="flex items-center gap-1 ${pyqCount > 0 ? 'text-amber-700 font-bold' : 'text-gray-400'}">
+                  <i data-lucide="archive" class="w-3.5 h-3.5"></i> ${pyqCount} PYQs
+                </span>
+                <span class="flex items-center gap-1 ${hasSyllabus ? 'text-blue-700 font-bold' : 'text-gray-400'}">
+                  <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i> ${hasSyllabus ? 'Syllabus' : 'No Syl'}
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+              <button onclick="prefillUploadForSubject('${s.id}')" class="flex-1 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-300 text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i> Upload for Subject
+              </button>
+              <a href="pages/subject.html?id=${s.id}" target="_blank" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-gray-700 border border-slate-200 transition-colors" title="View Live Subject">
+                <i data-lucide="external-link" class="w-4 h-4 text-blue-600"></i>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Pre-fill upload form for a subject
+    function prefillUploadForSubject(subjectId) {
+      switchTab('upload');
+      const subject = teacherState.subjects.find(s => s.id === subjectId);
+      if (subject) {
+        document.getElementById('upload-dept-select').value = subject.departmentId;
+        handleUploadDeptChange();
+        selectUploadSubject(subject.id);
+        showToast(`Selected ${subject.code} for upload.`);
+      }
+    }
+
+    async function loadTeacherContributions() {
+      const host=document.getElementById('teacher-contributions-list'); if(!host)return;
+      try {
+        const {contributions=[]}=await window.dbcmApi.contributions();
+        host.replaceChildren();
+        if(!contributions.length){host.textContent='No contributions for this department yet.';return;}
+        for(const item of contributions){
+          const card=document.createElement('div');card.className='rounded-xl border border-slate-200 p-4 flex flex-wrap items-center justify-between gap-3';
+          const info=document.createElement('div');info.className='min-w-0';
+          const title=document.createElement('strong');title.textContent=item.title;info.append(title);
+          const detail=document.createElement('p');detail.className='text-xs text-slate-500';detail.textContent=`${item.subject_code||'Department'} · ${item.category} · ${item.status} · ${item.submitted_by_name||'Student'}`;info.append(detail);
+          if(item.description){const notes=document.createElement('p');notes.className='mt-2 whitespace-pre-wrap text-sm text-slate-700';notes.textContent=`Contributor notes: ${item.description}`;info.append(notes);}
+          card.append(info);
+          const actions=document.createElement('div');actions.className='flex gap-2';
+          const view=document.createElement('button');view.type='button';view.className='rounded-lg bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-700';view.textContent='View file';view.addEventListener('click',()=>openContributionReader(item));actions.append(view);
+          const edit=document.createElement('button');edit.className='rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700';edit.textContent='Edit title';edit.addEventListener('click',async()=>{const title=prompt('Edit contribution title',item.title);if(!title||title===item.title)return;try{await window.dbcmApi.editContribution(item.id,title);await loadTeacherContributions();}catch(e){showToast(e.message);}});actions.append(edit);
+          if(item.status==='pending') for(const [status,label] of [['approved','Approve'],['rejected','Reject']]){const button=document.createElement('button');button.className='rounded-lg px-3 py-1.5 text-xs font-bold '+(status==='approved'?'bg-emerald-600 text-white':'bg-rose-50 text-rose-700');button.textContent=label;button.addEventListener('click',()=>reviewTeacherContribution(item.id,status));actions.append(button);}
+          const del=document.createElement('button');del.className='rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700';del.textContent='Delete';del.addEventListener('click',()=>deleteTeacherContribution(item.id));actions.append(del);card.append(actions);host.append(card);
+        }
+      } catch(e){host.textContent=e.message;}
+    }
+    async function reviewTeacherContribution(id,status){try{await window.dbcmApi.reviewContribution(id,status);showToast(status==='approved'?'Contribution approved and published.':'Contribution rejected.');await loadTeacherContributions();}catch(e){showToast(e.message);}}
+    async function deleteTeacherContribution(id){if(!confirm('Delete this department contribution?'))return;try{await window.dbcmApi.deleteContribution(id);await loadTeacherContributions();}catch(e){showToast(e.message);}}
+
+    // Render Full Faculty Roster Tab
+    function renderFullFacultyRoster() {
+      const deptFilter = document.getElementById('roster-dept-filter')?.value || 'all';
+      const teachers = window.dbcmTeachers.getTeachersByDept(deptFilter);
+
+      const container = document.getElementById('full-faculty-grid');
+      if (!container) return;
+
+      container.innerHTML = teachers.map(t => {
+        const colors = window.dbcmTeachers.getAvatarColors(t.name);
+        const initials = window.dbcmTeachers.getInitials(t.name);
+        const isCurrent = teacherState.currentTeacher?.id === t.id;
+        const uploadCount = window.dbcmTeachers.getTeacherUploads(t.id).length;
+
+        return `
+          <div class="p-4 rounded-2xl border ${isCurrent ? 'bg-emerald-50 border-emerald-400 shadow-sm' : 'bg-white border-slate-200 hover:border-emerald-300 shadow-xs'} transition-all flex flex-col justify-between gap-3">
+            <div class="flex items-start gap-3">
+              ${t.avatar ? `
+                <img src="${t.avatar}" alt="${t.name}" class="w-12 h-12 rounded-2xl object-cover shrink-0 border border-slate-200 shadow-xs" />
+              ` : `
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-sm shrink-0 shadow-xs" style="background:${colors.bg}; color:${colors.text};">
+                  ${initials}
+                </div>
+              `}
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <h4 class="text-xs sm:text-sm font-bold text-gray-900 truncate">${t.name}</h4>
+                  ${isCurrent ? '<span class="px-1.5 py-0.2 rounded bg-emerald-600 text-white font-bold text-[9px]">Active You</span>' : ''}
+                </div>
+                <p class="text-[11px] text-gray-600 truncate">${t.designation}</p>
+                <p class="text-[10px] text-emerald-700 font-semibold truncate">${t.departmentName}</p>
+                <p class="text-[10px] text-gray-500 font-mono truncate mt-0.5">${t.email}</p>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-gray-500 font-medium">${uploadCount} uploaded materials</span>
+              ${!isCurrent ? `
+                <button onclick="quickLoginTeacher('${t.id}')" class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-gray-700 text-[11px] font-bold border border-slate-200 transition-all cursor-pointer">
+                  Switch to Profile
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Switch Teacher Modal
+    function switchTeacherModal() {
+      const modal = document.getElementById('switch-teacher-modal');
+      modal.classList.remove('hidden');
+      filterModalTeachers('');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeSwitchModal() {
+      document.getElementById('switch-teacher-modal').classList.add('hidden');
+    }
+
+    function filterModalTeachers(query) {
+      const list = window.dbcmTeachers.searchTeachers(query, 'all');
+      const container = document.getElementById('modal-teachers-list');
+      if (!container) return;
+
+      container.innerHTML = list.map(t => {
+        const colors = window.dbcmTeachers.getAvatarColors(t.name);
+        const initials = window.dbcmTeachers.getInitials(t.name);
+
+        return `
+          <div onclick="quickLoginTeacher('${t.id}'); closeSwitchModal();" class="p-2.5 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 flex items-center justify-between gap-3 cursor-pointer transition-all">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 shadow-xs" style="background:${colors.bg}; color:${colors.text};">
+                ${initials}
+              </div>
+              <div class="min-w-0">
+                <h5 class="text-xs font-bold text-gray-900 truncate">${t.name}</h5>
+                <p class="text-[10px] text-gray-500 truncate">${t.departmentName} · ${t.designation}</p>
+              </div>
+            </div>
+            <span class="text-xs text-emerald-700 font-bold shrink-0">Switch</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Logout Current Teacher
+    async function logoutCurrentTeacher() {
+      try { await window.dbcmApi.logout(); } catch {}
+      window.dbcmTeachers.logoutTeacher();
+      teacherState.currentTeacher = null;
+      window.location.replace('pages/login.html?role=teacher');
+    }
+
+    // Toast Helper
+    function showToast(msg) {
+      const toast = document.getElementById('dash-toast');
+      const text = document.getElementById('dash-toast-msg');
+      if (!toast || !text) return;
+      text.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+
+    // Init on DOM ready
+    document.addEventListener('DOMContentLoaded', initTeacherPortal);
+  </script>
+</body>
+</html>

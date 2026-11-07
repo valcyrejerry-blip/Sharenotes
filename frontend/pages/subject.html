@@ -1,0 +1,2878 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <base href="../">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover">
+  <title>Subject Details · Don Bosco College (Autonomous) Maram</title>
+  <link rel="icon" type="image/png" href="assets/images/dbcm-logo.png?v=3">
+  <meta name="description" content="Detailed curriculum, syllabus modules, high-yield IMP exam questions, faculty notes, and past year question papers for Don Bosco College Maram.">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- jsPDF for Dynamic Verified Document PDF Generation -->
+  <script src="assets/js/jspdf.umd.min.js"></script>
+  <script src="assets/js/docx-reader.js?v=1"></script>
+  <script src="assets/js/api.js?v=2.13"></script>
+
+  <!-- DBCM Academic AI Tutor Client Module -->
+  <script src="assets/js/dbcm-ai.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=2.6">
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white relative overflow-x-hidden max-w-full">
+
+  <!-- Ambient Mesh & Glow Background -->
+  <div class="bg-grid-pattern"></div>
+  <div class="ambient-orb ambient-orb-1"></div>
+  <div class="ambient-orb ambient-orb-2"></div>
+  <div class="ambient-orb ambient-orb-3"></div>
+  <div class="hero-glow"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4 relative">
+      
+      <!-- Brand Logo Container -->
+      <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <!-- Brand Logo & Official Link -->
+        <a href="index.html" 
+          title="DBCM Study Materials Home"
+          class="flex items-center gap-2 sm:gap-3 shrink-0 group min-w-0">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 group-hover:ring-2 group-hover:ring-indigo-400/50 transition-all shrink-0">
+            <img src="assets/images/dbcm-logo.png?v=3" alt="Don Bosco College Logo" class="w-full h-full object-contain" />
+          </div>
+          <div class="flex flex-col text-left min-w-0">
+            <span class="text-xs sm:text-base md:text-lg font-black tracking-tight text-white group-hover:text-blue-300 transition-colors leading-tight truncate">
+              Don Bosco College
+            </span>
+            <span class="text-[9px] sm:text-xs font-semibold text-blue-300/90 tracking-normal leading-tight truncate">
+              (Autonomous) Maram
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right Navigation Actions: Desktop View -->
+      <div class="hidden sm:flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <!-- Return to Home / Catalog -->
+        <a href="index.html" 
+          class="px-2.5 sm:px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[38px] sm:min-h-[40px]"
+          title="Back to All DBCM Subjects">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-blue-400"></i>
+          <span class="hidden sm:inline">All Subjects</span>
+        </a>
+
+        <!-- Bookmarks Drawer Button -->
+        <button onclick="openBookmarksDrawer()" 
+          class="p-2 sm:px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-amber-400 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[38px] sm:min-h-[40px]"
+          title="Saved Bookmarks">
+          <i data-lucide="bookmark" class="w-4 h-4"></i>
+          <span class="hidden md:inline">Saved</span>
+        </button>
+
+        <!-- Admin Console Link -->
+        <a href="pages/admin.html" 
+          class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/30 text-indigo-300 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[38px] sm:min-h-[40px]"
+          title="Admin Management Console">
+          <i data-lucide="shield-check" class="w-4 h-4 text-amber-400"></i>
+          <span class="hidden sm:inline">Admin</span>
+        </a>
+      </div>
+
+      <!-- Mobile Right Navigation: Back button + 3-Line Hamburger Dropdown Trigger -->
+      <div class="sm:hidden flex items-center gap-1.5 shrink-0">
+        <a href="index.html" 
+          class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center justify-center min-h-[38px] min-w-[38px]"
+          title="Back to All DBCM Subjects">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-blue-400"></i>
+        </a>
+        <button id="mobile-menu-toggle-btn" 
+          onclick="toggleMobileMenu(event)" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation menu"
+          class="p-2 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 text-gray-200 hover:text-white transition-all flex items-center justify-center min-h-[38px] min-w-[38px] cursor-pointer"
+          title="Menu">
+          <i data-lucide="menu" id="mobile-menu-icon" class="w-5 h-5 text-gray-200 pointer-events-none"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu (Contribute, Admin, Saved Bookmarks) -->
+      <div id="mobile-dropdown-menu" 
+        onclick="event.stopPropagation()"
+        class="hidden sm:hidden absolute top-[calc(100%+8px)] right-3 w-64 rounded-2xl p-2 z-50 flex-col gap-1.5 transition-all shadow-2xl border border-white/15 bg-[#12131e]/98 backdrop-blur-2xl">
+        
+        <!-- Contribute Tab Trigger in Mobile Menu -->
+        <button onclick="closeMobileMenu(); switchTab('contribution');" 
+          class="mobile-nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all text-left cursor-pointer">
+          <div class="w-7 h-7 rounded-lg bg-indigo-600/20 text-indigo-300 flex items-center justify-center shrink-0 border border-indigo-500/30">
+            <i data-lucide="upload-cloud" class="w-4 h-4 text-indigo-400"></i>
+          </div>
+          <span class="text-white font-bold">Contribute Material</span>
+        </button>
+
+        <!-- Admin Link -->
+        <a href="pages/admin.html" onclick="closeMobileMenu()" 
+          class="mobile-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all">
+          <div class="w-7 h-7 rounded-lg bg-indigo-600/20 text-indigo-300 flex items-center justify-center shrink-0 border border-indigo-500/30">
+            <i data-lucide="shield-check" class="w-4 h-4 text-amber-400"></i>
+          </div>
+          <span class="text-white font-bold">Admin</span>
+        </a>
+
+        <!-- Save / Bookmarks Drawer Trigger -->
+        <button onclick="closeMobileMenu(); openBookmarksDrawer();" 
+          class="mobile-nav-item w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-200 hover:text-white hover:bg-white/10 active:bg-white/15 transition-all text-left cursor-pointer">
+          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
+            <i data-lucide="bookmark" class="w-4 h-4 text-amber-400"></i>
+          </div>
+          <span class="text-white font-bold">Saved Materials</span>
+        </button>
+
+        <div class="mobile-nav-divider h-px bg-white/10 my-1"></div>
+
+        <!-- All Subjects Link in Dropdown -->
+        <a href="index.html" onclick="closeMobileMenu()" 
+          class="mobile-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+          <div class="w-7 h-7 rounded-lg bg-white/5 text-gray-300 flex items-center justify-center shrink-0 border border-white/10">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-blue-400"></i>
+          </div>
+          <span class="font-medium">All DBCM Subjects</span>
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-24 sm:py-8 flex-1 w-full space-y-6">
+
+    <!-- Loading Skeleton View -->
+    <div id="subject-loading-skeleton" class="space-y-6 animate-pulse">
+      <div class="h-6 w-48 bg-white/10 rounded-lg"></div>
+      <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4">
+        <div class="h-5 w-64 bg-white/10 rounded-md"></div>
+        <div class="h-10 w-3/4 bg-white/15 rounded-xl"></div>
+        <div class="h-6 w-1/2 bg-white/10 rounded-md"></div>
+      </div>
+      <div class="h-12 w-full bg-white/5 rounded-2xl"></div>
+      <div class="space-y-3">
+        <div class="h-28 bg-white/5 rounded-2xl"></div>
+        <div class="h-28 bg-white/5 rounded-2xl"></div>
+      </div>
+    </div>
+
+    <!-- Error / Not Found View -->
+    <div id="subject-not-found" class="hidden text-center py-20 glass-panel rounded-3xl border border-white/15 p-8 max-w-xl mx-auto space-y-5">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center">
+        <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+      </div>
+      <h2 class="text-2xl font-black text-white">Subject Not Found</h2>
+      <p class="text-sm text-gray-400">
+        We couldn't locate this subject code or syllabus. It may have been updated or moved.
+      </p>
+      <div class="pt-2 flex items-center justify-center gap-3">
+        <a href="index.html" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2 shadow-lg shadow-blue-500/25">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Browse DBCM Subjects
+        </a>
+      </div>
+    </div>
+
+    <!-- Subject Detail Main View (Loaded) -->
+    <div id="subject-content" class="hidden space-y-6 animate-fade-in">
+
+      <!-- Interactive Breadcrumb Navigation (Compact Single-Line on Mobile) -->
+      <nav id="subject-breadcrumbs" aria-label="Breadcrumb navigation" class="flex items-center gap-0.5 sm:gap-1.5 text-[10px] sm:text-xs py-0.5 sm:py-1 flex-nowrap relative z-30">
+        <!-- 1. Home Link -->
+        <a href="index.html" 
+          class="inline-flex items-center justify-center w-6 h-6 sm:w-auto sm:h-auto px-1 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-medium text-slate-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-white bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/15 border border-slate-200 dark:border-white/10 transition-all shrink-0 group shadow-xs"
+          title="Return to Catalog Home">
+          <i data-lucide="home" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-500 group-hover:scale-110 transition-transform"></i>
+          <span class="hidden sm:inline text-xs ml-1">Home</span>
+        </a>
+
+        <!-- Separator -->
+        <span class="text-[9px] sm:text-xs text-gray-400 dark:text-gray-600 font-light select-none shrink-0 px-0.5">/</span>
+
+        <!-- 2. Department Dropdown Switcher -->
+        <div class="relative inline-block text-left shrink-0">
+          <button id="crumb-dept-btn" type="button" onclick="toggleBreadcrumbDropdown('dept')"
+            class="inline-flex items-center gap-0.5 sm:gap-1.5 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-medium text-[10px] sm:text-xs text-slate-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-300 bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/15 border border-slate-200 dark:border-white/10 transition-all cursor-pointer shadow-xs group shrink-0"
+            title="Click to switch department">
+            <span id="crumb-department-code" class="sm:hidden font-mono font-bold">DEPT</span>
+            <span id="crumb-department" class="hidden sm:inline truncate sm:max-w-[150px] md:max-w-none">Department</span>
+            <i data-lucide="chevron-down" id="crumb-dept-chevron" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-gray-400 group-hover:text-indigo-500 transition-transform duration-200"></i>
+          </button>
+          
+          <!-- Department Menu -->
+          <div id="crumb-dept-menu" class="hidden absolute z-50 p-2.5 rounded-2xl bg-white dark:bg-[#121217] border border-gray-200 dark:border-white/10 shadow-2xl text-left">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-gray-100 dark:border-white/10 px-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Switch Department</span>
+              <a id="crumb-dept-catalog-link" href="index.html" class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-0.5">
+                <span>View in Catalog</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+            <div id="crumb-dept-list" class="max-h-60 overflow-y-auto space-y-1 pr-1">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Separator -->
+        <span class="text-[9px] sm:text-xs text-gray-400 dark:text-gray-600 font-light select-none shrink-0 px-0.5">/</span>
+
+        <!-- 3. Semester Dropdown Switcher -->
+        <div class="relative inline-block text-left shrink-0">
+          <button id="crumb-sem-btn" type="button" onclick="toggleBreadcrumbDropdown('sem')"
+            class="inline-flex items-center gap-0.5 sm:gap-1.5 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-medium text-[10px] sm:text-xs text-slate-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-300 bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/15 border border-slate-200 dark:border-white/10 transition-all cursor-pointer shadow-xs group shrink-0"
+            title="Click to switch semester">
+            <span id="crumb-semester">Sem 1</span>
+            <i data-lucide="chevron-down" id="crumb-sem-chevron" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-gray-400 group-hover:text-indigo-500 transition-transform duration-200"></i>
+          </button>
+          
+          <!-- Semester Menu -->
+          <div id="crumb-sem-menu" class="hidden absolute z-50 p-2.5 rounded-2xl bg-white dark:bg-[#121217] border border-gray-200 dark:border-white/10 shadow-2xl text-left">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-gray-100 dark:border-white/10 px-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Switch Semester</span>
+              <span id="crumb-sem-dept-code" class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">DEPT</span>
+            </div>
+            <div id="crumb-sem-list" class="max-h-60 overflow-y-auto space-y-1 pr-1">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Separator -->
+        <span class="text-[9px] sm:text-xs text-gray-400 dark:text-gray-600 font-light select-none shrink-0 px-0.5">/</span>
+
+        <!-- 3.5. Track Dropdown Switcher (Major, Minor, Skill Paper, Generic) -->
+        <div class="relative inline-block text-left shrink-0">
+          <button id="crumb-track-btn" type="button" onclick="toggleBreadcrumbDropdown('track')"
+            class="inline-flex items-center gap-0.5 sm:gap-1.5 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-medium text-[10px] sm:text-xs text-slate-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-300 bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/15 border border-slate-200 dark:border-white/10 transition-all cursor-pointer shadow-xs group shrink-0"
+            title="Click to switch degree track (Major, Minor, Skill Paper, Generic)">
+            <span id="crumb-track-label">Track</span>
+            <i data-lucide="chevron-down" id="crumb-track-chevron" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-gray-400 group-hover:text-indigo-500 transition-transform duration-200"></i>
+          </button>
+          
+          <!-- Track Menu -->
+          <div id="crumb-track-menu" class="hidden absolute z-50 p-2.5 rounded-2xl bg-white dark:bg-[#121217] border border-gray-200 dark:border-white/10 shadow-2xl text-left min-w-[210px]">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-gray-100 dark:border-white/10 px-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Degree Track</span>
+              <span id="crumb-track-sem-badge" class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Sem 1</span>
+            </div>
+            <div id="crumb-track-list" class="space-y-1">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Inter-Department Minor Subject Selector (NEP 2024 Electives Dropdown) - Placed Above Subject Details -->
+      <div id="minor-elective-banner" class="hidden p-3.5 sm:p-4 rounded-2xl bg-cyan-500/10 dark:bg-cyan-950/20 border border-cyan-500/30 dark:border-cyan-500/30 shadow-xs animate-fade-in">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                <i data-lucide="book-marked" class="w-3 h-3 text-cyan-600 dark:text-cyan-400"></i> NEP 2024 Minor Elective
+              </span>
+              <span id="minor-banner-sem-badge" class="text-xs font-bold text-gray-500 dark:text-gray-400">Sem 1</span>
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
+              <span>Choose Minor by Department</span>
+            </h3>
+            <p class="text-[11px] text-gray-600 dark:text-gray-400">
+              Select any department below to explore and switch to its official Minor elective for this semester:
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 w-full md:w-auto">
+            <div class="relative w-full md:w-80">
+              <select id="body-minor-dept-select" onchange="if(this.value) window.location.href='pages/subject.html?id='+encodeURIComponent(this.value)"
+                class="w-full bg-white dark:bg-[#121217] border border-cyan-500/40 rounded-xl pl-3 pr-8 py-2 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-2xs cursor-pointer truncate appearance-none"
+                title="Choose Minor Department">
+                <!-- Dynamically populated via JS -->
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-cyan-600 dark:text-cyan-400">
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Identity & Description Banner -->
+      <section class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/15 shadow-xl relative overflow-hidden">
+        
+        <!-- Track & Dept Badges Header -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <div id="subject-track-badge" class="flex items-center gap-2 flex-wrap">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Quick Action Buttons: Bookmark & Share -->
+          <div class="flex items-center gap-2">
+            <button id="subject-bookmark-btn" onclick="toggleCurrentSubjectBookmark()"
+              class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-amber-400 active:scale-95 transition-all text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+              title="Bookmark this subject">
+              <i data-lucide="bookmark" id="bookmark-icon" class="w-4 h-4"></i>
+              <span id="bookmark-btn-label">Save</span>
+            </button>
+
+            <button onclick="shareSubject()"
+              class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white active:scale-95 transition-all text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+              title="Share Subject Link">
+              <i data-lucide="share-2" class="w-4 h-4 text-blue-400"></i>
+              <span>Share</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Subject Name Heading -->
+        <h1 id="subject-title" class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight mb-4">
+          Subject Title
+        </h1>
+
+        <!-- Code, Semester, NEP Scheme & Meta Info -->
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs">
+          <span id="subject-code-pill" class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-gray-200 border border-slate-200 dark:border-white/15 font-mono font-black text-xs shadow-2xs">
+            CODE
+          </span>
+          <span id="subject-sem-pill" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-semibold">
+            Sem 1
+          </span>
+          <span id="subject-scheme-pill" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-semibold">
+            DBCM Autonomous NEP 2024
+          </span>
+        </div>
+
+        <!-- Course Description Paragraph -->
+        <p id="subject-description" class="hidden text-xs sm:text-sm text-gray-300 dark:text-gray-300 mt-4 leading-relaxed max-w-3xl border-t border-white/10 pt-3.5"></p>
+
+      </section>
+
+      <!-- Navigation Tabs Strip (Enclosed Box Container with Mobile Auto-Scroll) -->
+      <section id="subject-tabs-container" class="p-1.5 sm:p-2 rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/10 shadow-sm overflow-x-auto touch-scroll-x scrollbar-none scroll-smooth">
+        <div id="subject-tabs-bar" class="flex items-center gap-1.5 sm:gap-2 min-w-max">
+          <!-- Populated via JS -->
+        </div>
+        <p class="flex items-center justify-end gap-1 px-2 pb-1 text-[10px] text-gray-400 sm:hidden">Swipe to see more tabs <i data-lucide="arrow-right" class="h-3 w-3"></i></p>
+      </section>
+
+      <!-- Active Tab Content Container -->
+      <section id="subject-tab-body" class="space-y-6">
+        <!-- Populated via JS -->
+      </section>
+
+      <!-- Related Subjects in Same Department -->
+      <section class="pt-8 border-t border-white/10 space-y-4">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+          <div class="min-w-0 flex-1">
+            <h3 class="flex w-full min-w-0 items-start gap-2 text-base sm:text-lg font-bold leading-snug text-white">
+              <i data-lucide="layout-grid" class="mt-0.5 h-5 w-5 shrink-0 text-indigo-400"></i>
+              <span class="min-w-0 flex-1 break-words">Other Subjects in <span id="related-dept-name" class="text-indigo-300">Department</span></span>
+              <button id="related-subjects-toggle" type="button" onclick="toggleRelatedSubjects()"
+                aria-expanded="false" aria-controls="related-subjects-grid" aria-label="Show other subjects"
+                title="Show other subjects"
+                class="ml-auto -mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blue-400/30 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 transition-colors">
+                <i data-lucide="chevron-down" class="h-4 w-4 text-blue-400 transition-transform duration-200"></i>
+              </button>
+            </h3>
+            <p class="text-xs text-gray-400 mt-0.5">Explore curriculum & study material for this department's semester.</p>
+          </div>
+          <a href="index.html" class="self-start whitespace-nowrap text-xs font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors sm:shrink-0">
+            <span>All DBCM Catalog</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <div id="related-subjects-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Populated via JS -->
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Document Reader Modal (Full Page Edge-to-Edge Embedded PDF viewer) -->
+  <div id="document-reader-modal" class="fixed inset-0 z-50 w-full h-full bg-[#0a0a0f] flex flex-col hidden animate-fade-in overflow-hidden">
+    <!-- Reader Header Toolbar -->
+    <header class="h-14 sm:h-16 px-3.5 sm:px-6 border-b border-gray-200 dark:border-white/10 bg-white dark:bg-[#0c0d14] backdrop-blur-xl flex items-center justify-between gap-3 shrink-0 z-20 shadow-xs">
+      <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
+        <button onclick="closeReaderModal()" 
+          class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-white/10 dark:hover:bg-white/20 text-gray-800 dark:text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shrink-0 shadow-2xs group"
+          title="Back to Subject (Esc)">
+          <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform"></i>
+          <span class="hidden sm:inline">Back</span>
+        </button>
+        <div class="h-5 w-px bg-gray-300 dark:bg-white/15 shrink-0 hidden sm:block"></div>
+        <div class="w-8 h-8 rounded-lg bg-red-600/15 text-red-500 flex items-center justify-center shrink-0">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+        </div>
+        <div class="min-w-0">
+          <h3 id="reader-modal-title" class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate max-w-[180px] sm:max-w-md md:max-w-xl">
+            Document Reader
+          </h3>
+          <p id="reader-modal-subtitle" class="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-mono truncate">
+            Don Bosco College (Autonomous) Maram · Official PDF
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <!-- AI Tutor Assistant Toggle Button -->
+        <button id="reader-ai-toggle-btn" onclick="toggleReaderAiDrawer()" 
+          class="ai-pill-btn px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5 cursor-pointer min-h-[34px]"
+          title="Ask DBCM AI Tutor about this PDF (Summaries, Q&A, Exam Prep)">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-white stroke-[2.2]"></i>
+          <span>AI Tutor</span>
+        </button>
+
+        <button onclick="closeReaderModal()" 
+          class="p-1.5 sm:p-2 rounded-xl bg-gray-100 hover:bg-red-50 hover:text-red-600 dark:bg-white/10 dark:hover:bg-red-500/20 text-gray-500 dark:text-gray-400 dark:hover:text-red-400 cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center active:scale-95 transition-all"
+          title="Close (Esc)">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Full-Page PDF Viewer Frame Container (Split-View capable) -->
+    <div id="reader-modal-body" class="flex-1 w-full bg-slate-800 dark:bg-[#07070a] relative overflow-hidden flex flex-col md:flex-row min-h-0">
+      <div id="reader-loading-spinner" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/90 dark:bg-[#0a0a0f]/90 backdrop-blur-md z-20">
+        <div class="w-10 h-10 border-3 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-xs font-semibold text-gray-700 dark:text-gray-300">Rendering Verified DBCM PDF Document...</p>
+      </div>
+
+      <!-- Left / Main Area: PDF Document View -->
+      <div class="flex-1 h-full relative overflow-hidden flex flex-col">
+        <iframe id="reader-iframe" class="w-full h-full border-0 flex-1 z-10" title="Document Viewer"></iframe>
+        <div id="subject-docx-reader" class="hidden absolute inset-0 overflow-auto bg-white px-5 py-8 sm:px-12 sm:py-10 text-slate-900"></div>
+
+        <!-- Floating Ask DBCM AI Tutor Button inside PDF Reader View -->
+        <div id="reader-floating-ai-btn" class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-25 select-none">
+          <button onclick="toggleReaderAiDrawer()" 
+            class="ai-pill-btn group flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 cursor-pointer"
+            title="Ask DBCM AI Tutor about this PDF (Summaries, Q&A, Exam Prep)">
+            <i data-lucide="sparkles" class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white stroke-[2.2]"></i>
+            <span class="whitespace-nowrap font-medium text-[13px] sm:text-sm text-white tracking-wide">Ask <span class="hidden min-[400px]:inline">DBCM </span>AI</span>
+          </button>
+        </div>
+
+        <!-- Mobile Right-Edge Floating AI Chat Toggle Pill (fallback) -->
+        <button id="reader-mobile-ai-pill-btn" onclick="toggleReaderAiDrawer()" type="button"
+          class="hidden fixed md:hidden right-0 top-1/2 -translate-y-1/2 z-25 px-1.5 py-3 rounded-l-full bg-gradient-to-b from-[#9d9af2] to-[#6c6ae9] text-white font-bold shadow-lg shadow-[#6c6ae9]/40 flex flex-col items-center gap-1.5 cursor-pointer border-t border-b border-l border-white/20 active:scale-95 transition-all"
+          title="Toggle DBCM AI Study Assistant">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-white"></i>
+          <span class="text-[9px] font-black tracking-widest uppercase [writing-mode:vertical-rl] rotate-180">AI</span>
+        </button>
+      </div>
+
+      <!-- Backdrop overlay: Tapping or clicking outside the chat page automatically hides it -->
+      <div id="reader-ai-backdrop" onclick="toggleReaderAiDrawer(false)"
+        class="hidden absolute inset-0 bg-black/40 backdrop-blur-[1px] md:hidden z-30 transition-opacity duration-300 cursor-pointer"
+        title="Tap outside to close chat"></div>
+
+      <!-- Right Area: DBCM AI Document Tutor Drawer (Split-Screen & Mobile Right Drawer) -->
+      <aside id="reader-ai-drawer" class="w-full md:w-[420px] lg:w-[460px] h-full bg-white dark:bg-[#0d0e17] border-l border-gray-200 dark:border-white/10 flex flex-col z-35 transition-all duration-300 hidden shadow-2xl shrink-0 overflow-hidden">
+        <!-- Drawer Header -->
+        <div class="px-3 py-1.5 sm:py-2 border-b border-gray-200 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 flex items-center justify-between gap-2 shrink-0">
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-tr from-violet-600 to-indigo-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0 leading-tight">
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white flex items-center gap-1.5 truncate leading-none">
+                <span class="truncate">DBCM AI Tutor</span>
+                <span class="text-[8.5px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">Ready</span>
+              </h4>
+              <p id="reader-ai-doc-name" class="text-[10px] text-gray-500 dark:text-gray-400 truncate font-mono mt-0.5 leading-none">
+                Context: Active PDF Document
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <!-- Single Size Toggle Button (One button at a time: Expand / Minimize) -->
+            <button id="reader-ai-size-toggle-btn" onclick="toggleReaderAiSize()" type="button"
+              class="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+              title="Expand Chat (Wide)">
+              <svg id="reader-ai-size-icon-expand" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707"/>
+              </svg>
+              <svg id="reader-ai-size-icon-contract" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-arrows-angle-contract hidden" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707"/>
+              </svg>
+            </button>
+
+            <button onclick="clearReaderAiChat()" class="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" title="Clear Chat History">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="toggleReaderAiDrawer(false)" class="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" title="Close AI Assistant">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages Scroll Area -->
+        <div id="reader-ai-messages" class="flex-1 min-h-0 p-3.5 overflow-y-auto space-y-3.5 text-xs text-gray-800 dark:text-gray-200 custom-scrollbar">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Quick Action Recommended Questions (Above Text Bar) -->
+        <div id="reader-ai-quick-prompts" class="px-3 pt-2 pb-1 border-t border-gray-100 dark:border-white/5 bg-gray-50/40 dark:bg-black/20 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+          <button onclick="sendQuickPrompt('Summarize this PDF document with key takeaways and syllabus breakdown')" class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-[11px] font-semibold whitespace-nowrap flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="file-text" class="w-3 h-3 text-indigo-500"></i> Summarize PDF
+          </button>
+          <button onclick="sendQuickPrompt('Give me 5 high-yield exam practice questions with model answers from this document')" class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-[11px] font-semibold whitespace-nowrap flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="help-circle" class="w-3 h-3 text-emerald-500"></i> 5 Exam Questions
+          </button>
+          <button onclick="sendQuickPrompt('What are the most important formulas, definitions, and key concepts in this material?')" class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-[11px] font-semibold whitespace-nowrap flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="zap" class="w-3 h-3 text-amber-500"></i> Key Concepts
+          </button>
+        </div>
+
+        <!-- Input Form -->
+        <div class="p-3 border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0c0d14] shrink-0">
+          <form id="reader-ai-form" onsubmit="handleReaderAiSubmit(event)" class="flex items-end gap-2">
+            <div class="flex-1 relative">
+              <textarea id="reader-ai-input" rows="1" placeholder="Ask anything about this document or subject..." 
+                class="w-full px-3 py-2 text-xs rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-hidden focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none max-h-24 leading-normal transition-all"
+                onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); document.getElementById('reader-ai-form').requestSubmit(); }"></textarea>
+            </div>
+            <button type="submit" id="reader-ai-send-btn" 
+              class="w-8 h-8 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white flex items-center justify-center shrink-0 transition-all cursor-pointer shadow-sm shadow-indigo-600/30">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            </button>
+          </form>
+          <div class="mt-1.5 flex items-center justify-between text-[10px] text-gray-400 px-1">
+            <span>Press <kbd class="px-1 py-0.5 bg-gray-100 dark:bg-white/10 rounded-sm font-mono text-[9px]">Enter</kbd> to send</span>
+            <span id="reader-ai-engine-badge" class="text-indigo-600 dark:text-indigo-400 font-medium">DBCM AI Engine Active</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Bookmarks Drawer Modal -->
+  <div id="bookmarks-drawer" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm hidden animate-fade-in">
+    <div class="w-full max-w-md bg-[#0e0e14] border-l border-white/10 h-full flex flex-col p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i data-lucide="bookmark" class="w-4 h-4 text-amber-400"></i> Saved Subjects
+        </h3>
+        <button onclick="closeBookmarksDrawer()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="bookmarks-list-container" class="flex-1 overflow-y-auto py-4 space-y-3">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Floating Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="glass-panel px-4 py-3 rounded-2xl border border-white/15 shadow-2xl flex items-center gap-3 bg-[#111217]/95">
+      <i data-lucide="check-circle" id="toast-icon" class="w-5 h-5 text-emerald-400"></i>
+      <span id="toast-message" class="text-xs font-semibold text-white">Notification</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-white/10 bg-[#07070b]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+      <div class="flex items-center gap-2">
+        <img src="assets/images/dbcm-logo.png?v=3" alt="DBCM" class="w-6 h-6 object-contain" />
+        <span>Research &amp; Publications / IQAC · &copy; 2026 Don Bosco College</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="hover:text-white transition-colors">Subjects</a>
+        <a href="pages/admin.html" class="hover:text-white transition-colors">Admin Console</a>
+        <a href="pages/about-developers.html" class="hover:text-white transition-colors">Powered by</a>
+        <a href="https://dbcmaram.ac.in/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">College Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="assets/js/local-data.js"></script>
+  <script>
+    // State Store for Subject Page
+    const pageState = {
+      subject: null,
+      department: null,
+      departments: [],
+      deptSubjects: [],
+      relatedSubjects: [],
+      semesterMinors: [],
+      allSubjects: [],
+      activeTab: 'overview',
+      theme: 'light',
+      bookmarks: JSON.parse(localStorage.getItem('dbcm_bookmarks') || '[]')
+    };
+
+    // Initialize Theme (Permanent Light Theme)
+    function initTheme() {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('dbcm_theme', 'light');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleTheme() {
+      // Theme toggle removed; permanent dark theme
+    }
+
+    // Mobile 3-Line Dropdown Menu Handlers
+    function toggleMobileMenu(e) {
+      if (e) {
+        if (e.stopPropagation) e.stopPropagation();
+      }
+      const menu = document.getElementById('mobile-dropdown-menu');
+      const btn = document.getElementById('mobile-menu-toggle-btn');
+      const icon = document.getElementById('mobile-menu-icon');
+      if (!menu) return;
+
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (icon) {
+          icon.setAttribute('data-lucide', 'x');
+          if (window.lucide) lucide.createIcons();
+        }
+      } else {
+        closeMobileMenu();
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-dropdown-menu');
+      const btn = document.getElementById('mobile-menu-toggle-btn');
+      const icon = document.getElementById('mobile-menu-icon');
+      if (!menu) return;
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      if (icon) {
+        icon.setAttribute('data-lucide', 'menu');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    // Close mobile dropdown on outside click or Esc
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobile-dropdown-menu');
+      const btn = document.getElementById('mobile-menu-toggle-btn');
+      if (!menu || menu.classList.contains('hidden')) return;
+
+      if (menu.contains(e.target) || (btn && btn.contains(e.target))) return;
+      if (e.target.closest && (e.target.closest('#mobile-dropdown-menu') || e.target.closest('#mobile-menu-toggle-btn'))) return;
+      if (e.composedPath && e.composedPath().some(el => el === menu || el === btn)) return;
+
+      closeMobileMenu();
+    });
+
+    // Toast notification
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-message');
+      const icon = document.getElementById('toast-icon');
+      if (!toast || !text) return;
+
+      text.textContent = message;
+      if (isError) {
+        icon?.setAttribute('data-lucide', 'alert-circle');
+        icon?.classList.remove('text-emerald-400');
+        icon?.classList.add('text-rose-400');
+      } else {
+        icon?.setAttribute('data-lucide', 'check-circle');
+        icon?.classList.remove('text-rose-400');
+        icon?.classList.add('text-emerald-400');
+      }
+      if (window.lucide) lucide.createIcons();
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    // Share link
+    function shareSubject() {
+      const url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('Subject link copied to clipboard!');
+        }).catch(() => {
+          showToast('Failed to copy link', true);
+        });
+      } else {
+        showToast('Link: ' + url);
+      }
+    }
+
+    // Bookmarks Handling
+    function isCurrentSubjectBookmarked() {
+      if (!pageState.subject) return false;
+      return pageState.bookmarks.some(b => b.id === pageState.subject.id);
+    }
+
+    function updateBookmarkButtonUI() {
+      const btn = document.getElementById('subject-bookmark-btn');
+      const icon = document.getElementById('bookmark-icon');
+      const label = document.getElementById('bookmark-btn-label');
+      if (!btn || !icon || !label) return;
+
+      const bookmarked = isCurrentSubjectBookmarked();
+      if (bookmarked) {
+        btn.classList.add('bg-amber-500/20', 'border-amber-500/40', 'text-amber-300');
+        btn.classList.remove('text-gray-300');
+        label.textContent = 'Saved';
+      } else {
+        btn.classList.remove('bg-amber-500/20', 'border-amber-500/40', 'text-amber-300');
+        btn.classList.add('text-gray-300');
+        label.textContent = 'Save';
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleCurrentSubjectBookmark() {
+      const s = pageState.subject;
+      if (!s) return;
+
+      const exists = pageState.bookmarks.some(b => b.id === s.id);
+      if (exists) {
+        pageState.bookmarks = pageState.bookmarks.filter(b => b.id !== s.id);
+        showToast(`Removed "${s.name}" from saved bookmarks.`);
+      } else {
+        pageState.bookmarks.push({
+          id: s.id,
+          name: s.name,
+          code: s.code,
+          track: s.track,
+          semester: s.semester
+        });
+        showToast(`Saved "${s.name}" to your bookmarks!`);
+      }
+      localStorage.setItem('dbcm_bookmarks', JSON.stringify(pageState.bookmarks));
+      updateBookmarkButtonUI();
+    }
+
+    function openBookmarksDrawer() {
+      const drawer = document.getElementById('bookmarks-drawer');
+      const container = document.getElementById('bookmarks-list-container');
+      if (!drawer || !container) return;
+
+      if (pageState.bookmarks.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-gray-400">
+            <i data-lucide="bookmark" class="w-8 h-8 mx-auto mb-2 opacity-40"></i>
+            <p class="text-sm">No saved subjects yet.</p>
+            <p class="text-xs text-gray-500 mt-1">Click "Save" on this or other subjects to access them quickly.</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = pageState.bookmarks.map(b => `
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between hover:border-amber-400/30 transition-colors">
+            <a href="pages/subject.html?id=${encodeURIComponent(b.id)}" class="cursor-pointer flex-1 min-w-0 pr-2">
+              <div class="flex items-center gap-1.5 mb-1">
+                <span class="text-xs font-mono font-bold text-gray-200">${b.code}</span>
+                <span class="text-[9px] px-1.5 py-0.2 rounded font-bold uppercase bg-white/10 text-gray-300">${b.track === 'skill' ? 'Skill' : (b.track || 'major')}</span>
+                <span class="text-[10px] text-gray-400">Sem ${b.semester}</span>
+              </div>
+              <h4 class="text-sm font-semibold text-white truncate hover:text-blue-300 transition-colors">${b.name}</h4>
+            </a>
+            <button onclick="removeBookmarkFromDrawer('${b.id}')" class="p-1 text-gray-400 hover:text-red-400 transition-colors" title="Remove bookmark">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      if (window.lucide) lucide.createIcons();
+      drawer.classList.remove('hidden');
+    }
+
+    function closeBookmarksDrawer() {
+      const drawer = document.getElementById('bookmarks-drawer');
+      if (drawer) drawer.classList.add('hidden');
+    }
+
+    function removeBookmarkFromDrawer(id) {
+      pageState.bookmarks = pageState.bookmarks.filter(b => b.id !== id);
+      localStorage.setItem('dbcm_bookmarks', JSON.stringify(pageState.bookmarks));
+      updateBookmarkButtonUI();
+      openBookmarksDrawer();
+    }
+
+    // Document Reader Full-Page State
+    let currentPdfBlobUrl = null;
+
+    function printReaderPdf() {
+      const iframe = document.getElementById('reader-iframe');
+      if (iframe && iframe.contentWindow) {
+        try {
+          iframe.contentWindow.focus();
+          iframe.contentWindow.print();
+          return;
+        } catch (e) {}
+      }
+      if (currentPdfBlobUrl) {
+        const w = window.open(currentPdfBlobUrl);
+        if (w) w.print();
+      } else {
+        window.print();
+      }
+    }
+
+    // Dynamic Multi-Page Verified PDF Document Generator
+    function generateDBCMSubjectPdf(subject, docTitle, fileName) {
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF || !subject) return null;
+
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      let y = 18;
+
+      function checkPage(needHeight = 22) {
+        if (y + needHeight > 272) {
+          doc.addPage();
+          y = 20;
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(8);
+          doc.setTextColor(100, 116, 139);
+          doc.text(`${subject.name} (${subject.code}) · Verified DBCM Document`, 15, 12);
+          doc.setDrawColor(226, 232, 240);
+          doc.line(15, 14, 195, 14);
+        }
+      }
+
+      const isExam = (docTitle || '').toLowerCase().includes('exam') || (docTitle || '').toLowerCase().includes('pyq') || (docTitle || '').toLowerCase().includes('paper');
+      const deptName = pageState.department ? pageState.department.name : (subject.departmentId || 'Academic Department');
+
+      // Top Primary Decorative Bar
+      doc.setFillColor(30, 58, 138);
+      doc.rect(15, y, 180, 2.5, 'F');
+      y += 7;
+
+      // Header Branding
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.setTextColor(15, 23, 42);
+      doc.text('DON BOSCO COLLEGE (AUTONOMOUS) MARAM', 105, y, { align: 'center' });
+      y += 5;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(71, 85, 105);
+      doc.text(`Affiliated to Manipur University · NAAC Accredited 'A' Grade · Department of ${deptName}`, 105, y, { align: 'center' });
+      y += 7;
+
+      // Title Card Box
+      doc.setFillColor(248, 250, 252);
+      doc.setDrawColor(203, 213, 225);
+      doc.roundedRect(15, y, 180, isExam ? 28 : 26, 2.5, 2.5, 'FD');
+      
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(isExam ? 180 : 30, isExam ? 83 : 58, isExam ? 9 : 138);
+      const titleLines = doc.splitTextToSize(docTitle || subject.name, 172);
+      doc.text(titleLines, 19, y + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(71, 85, 105);
+      doc.text(`Course: ${subject.name} (${subject.code}) · Semester ${subject.semester}`, 19, y + 14);
+      doc.text(isExam 
+        ? `Autonomous Examination Paper · Maximum Marks: 80 · Duration: 3 Hours` 
+        : `Autonomous NEP Curriculum · Verified Faculty Lecture Notes & Academic Blueprint`, 19, y + 20);
+      if (isExam) {
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(8);
+        doc.setTextColor(100, 116, 139);
+        doc.text(`Instructions: Answer all questions as per section guidelines. Figures in brackets indicate full marks.`, 19, y + 25);
+        y += 34;
+      } else {
+        y += 32;
+      }
+
+      if (isExam) {
+        // Exam Paper Layout
+        checkPage(30);
+        doc.setFillColor(241, 245, 249);
+        doc.rect(15, y, 180, 7, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(30, 58, 138);
+        doc.text('PART A: CONCEPTUAL & OBJECTIVE QUESTIONS (10 x 2 = 20 MARKS)', 18, y + 5);
+        y += 11;
+
+        const partA = [
+          `Define the primary objective and architectural scope of ${subject.name}.`,
+          `State two key differences between core operational mechanisms covered in Unit 1.`,
+          `List standard protocols or principles governing this domain.`,
+          `Give the formal definition of key term examined in Module 2.`,
+          `Outline the computational or analytical complexity of fundamental procedures.`
+        ];
+        partA.forEach((q, idx) => {
+          checkPage(12);
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(8.5);
+          doc.setTextColor(15, 23, 42);
+          const qLines = doc.splitTextToSize(`Q${idx + 1}. ${q} [2 Marks]`, 172);
+          doc.text(qLines, 18, y);
+          y += (qLines.length * 4.5) + 3;
+        });
+
+        checkPage(30);
+        doc.setFillColor(241, 245, 249);
+        doc.rect(15, y, 180, 7, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(30, 58, 138);
+        doc.text('PART B: DESCRIPTIVE & ANALYTICAL QUESTIONS (4 x 5 = 20 MARKS)', 18, y + 5);
+        y += 11;
+
+        const partB = [
+          `Explain the structural framework of ${subject.name} with appropriate block diagrams or flow models.`,
+          `Elaborate the analytical methodology used in solving real-world domain scenarios.`,
+          `Critically examine the operational trade-offs discussed in Semester ${subject.semester} syllabus.`
+        ];
+        partB.forEach((q, idx) => {
+          checkPage(15);
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(8.5);
+          doc.setTextColor(15, 23, 42);
+          const qLines = doc.splitTextToSize(`Q${idx + 6}. ${q} [5 Marks]`, 172);
+          doc.text(qLines, 18, y);
+          y += (qLines.length * 4.5) + 3;
+        });
+
+        checkPage(35);
+        doc.setFillColor(254, 243, 199);
+        doc.rect(15, y, 180, 7, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(146, 64, 14);
+        doc.text('PART C: COMPREHENSIVE CASE STUDY & PROBLEM SOLVING (4 x 10 = 40 MARKS)', 18, y + 5);
+        y += 11;
+
+        const partC = (subject.impQuestions && subject.impQuestions.length > 0)
+          ? subject.impQuestions.map(q => q.q)
+          : [
+              `Design and thoroughly evaluate a comprehensive end-to-end implementation for ${subject.name}.`,
+              `Provide detailed mathematical or procedural proof for core theorems presented in the syllabus.`
+            ];
+        partC.forEach((q, idx) => {
+          checkPage(18);
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(8.5);
+          doc.setTextColor(15, 23, 42);
+          const qLines = doc.splitTextToSize(`Q${idx + 9}. ${q} [10 Marks]`, 172);
+          doc.text(qLines, 18, y);
+          y += (qLines.length * 4.5) + 4;
+        });
+
+      } else {
+        // Study Notes / Syllabus Document Layout
+        const unitMatch = (docTitle || '').match(/unit\s*(\d+)/i);
+        const targetUnitNum = unitMatch ? parseInt(unitMatch[1], 10) : null;
+        const targetModule = targetUnitNum && subject.modules ? subject.modules.find(m => m.num === targetUnitNum) : null;
+
+        if (targetModule) {
+          checkPage(24);
+          doc.setFillColor(241, 245, 249);
+          doc.rect(15, y, 180, 7, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9.5);
+          doc.setTextColor(30, 58, 138);
+          doc.text(`1. UNIT ${targetModule.num} OVERVIEW & LEARNING OBJECTIVES (${targetModule.weightage || '16 Marks'})`, 18, y + 5);
+          y += 11;
+
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(8.5);
+          doc.setTextColor(51, 65, 85);
+          const unitOverview = targetModule.summary || `Comprehensive theoretical principles, mathematical definitions, and practical methodologies for ${targetModule.title}.`;
+          const descLines = doc.splitTextToSize(unitOverview, 172);
+          doc.text(descLines, 18, y);
+          y += (descLines.length * 4.5) + 6;
+
+          checkPage(30);
+          doc.setFillColor(241, 245, 249);
+          doc.rect(15, y, 180, 7, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9.5);
+          doc.setTextColor(30, 58, 138);
+          doc.text(`2. CORE TOPICS & TECHNICAL FOUNDATIONS`, 18, y + 5);
+          y += 11;
+
+          const topics = [
+            `Standard Concepts & Nomenclature: Foundational definitions aligned with Don Bosco College Autonomous syllabus standards.`,
+            `Architectural Workflows & Frameworks: Key procedural sequences, structural block diagrams, and operational formulas.`,
+            `Critical Evaluations & Domain Applications: Applied problem-solving techniques and comparative analysis.`
+          ];
+          topics.forEach(t => {
+            checkPage(14);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.5);
+            doc.setTextColor(15, 23, 42);
+            const lines = doc.splitTextToSize(`• ${t}`, 172);
+            doc.text(lines, 18, y);
+            y += (lines.length * 4.5) + 3;
+          });
+
+          checkPage(30);
+          doc.setFillColor(254, 243, 199);
+          doc.rect(15, y, 180, 7, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9.5);
+          doc.setTextColor(146, 64, 14);
+          doc.text(`3. UNIT ${targetModule.num} HIGH-YIELD PRACTICE QUESTIONS`, 18, y + 5);
+          y += 11;
+
+          const unitQuestions = [
+            `Define the primary operational objective of ${targetModule.title}. [2 Marks]`,
+            `Explain the key principles, structural models, and methodologies of Unit ${targetModule.num} with a labeled diagram. [5 Marks]`,
+            `Provide a comprehensive analytical essay and case study evaluation on ${targetModule.title}. [10 Marks]`
+          ];
+          unitQuestions.forEach((uq, uIdx) => {
+            checkPage(14);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.5);
+            doc.setTextColor(15, 23, 42);
+            const qLines = doc.splitTextToSize(`Q${uIdx + 1}. ${uq}`, 172);
+            doc.text(qLines, 18, y);
+            y += (qLines.length * 4.5) + 3;
+          });
+        } else {
+          if (subject.description) {
+            checkPage(24);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(9.5);
+            doc.setTextColor(30, 58, 138);
+            doc.text('1. COURSE OVERVIEW & ACADEMIC SCOPE', 18, y);
+            y += 5;
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.5);
+            doc.setTextColor(51, 65, 85);
+            const descLines = doc.splitTextToSize(subject.description, 172);
+            doc.text(descLines, 18, y);
+            y += (descLines.length * 4.5) + 6;
+          }
+
+          // Module-by-module detailed breakdown
+          (subject.modules || []).forEach(m => {
+            checkPage(30);
+            doc.setFillColor(241, 245, 249);
+            doc.rect(15, y, 180, 7, 'F');
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(9.5);
+            doc.setTextColor(30, 58, 138);
+            doc.text(`MODULE ${m.num || ''}: ${m.title || 'Curriculum Unit'} (${m.weightage || '15 Marks'})`, 18, y + 5);
+            y += 10;
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.5);
+            doc.setTextColor(51, 65, 85);
+            const summaryLines = doc.splitTextToSize(m.summary || 'Detailed academic concepts, verified definitions, and faculty lecture notes.', 174);
+            doc.text(summaryLines, 18, y);
+            y += (summaryLines.length * 4.5) + 4;
+          });
+        }
+
+        // High-Yield Important Questions
+        if (subject.impQuestions && subject.impQuestions.length > 0) {
+          checkPage(35);
+          doc.setFillColor(254, 243, 199);
+          doc.rect(15, y, 180, 7, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9.5);
+          doc.setTextColor(146, 64, 14);
+          doc.text('EXAM PREPARATION: HIGH-YIELD QUESTIONS & MODEL ANSWERS', 18, y + 5);
+          y += 10;
+
+          subject.impQuestions.forEach((q, idx) => {
+            checkPage(24);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(8.5);
+            doc.setTextColor(15, 23, 42);
+            doc.text(`Q${idx + 1}. ${q.q} [${q.marks || 10} Marks · ${q.frequency || 'Important'}]`, 18, y);
+            y += 5;
+
+            if (q.answerHint) {
+              doc.setFont('helvetica', 'italic');
+              doc.setFontSize(8);
+              doc.setTextColor(100, 116, 139);
+              const hintLines = doc.splitTextToSize(`Model Answer Key: ${q.answerHint}`, 170);
+              doc.text(hintLines, 20, y);
+              y += (hintLines.length * 4) + 3;
+            }
+          });
+        }
+      }
+
+      // Pagination on all pages
+      const totalPages = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.5);
+        doc.setTextColor(148, 163, 184);
+        doc.text(`Don Bosco College (Autonomous) Maram · Page ${i} of ${totalPages}`, 105, 289, { align: 'center' });
+      }
+
+      return doc.output('blob');
+    }
+
+    // Full-Page Document Reader Modal
+    function openReaderModal(title, subjectName, pdfUrl = null, fileName = null, docType = null) {
+      const modal = document.getElementById('document-reader-modal');
+      const titleEl = document.getElementById('reader-modal-title');
+      const subtitleEl = document.getElementById('reader-modal-subtitle');
+      const spinner = document.getElementById('reader-loading-spinner');
+      const iframe = document.getElementById('reader-iframe');
+      const docxReader = document.getElementById('subject-docx-reader');
+      const downloadBtn = document.getElementById('reader-download-btn');
+
+      if (!modal || !iframe) return;
+
+      if (titleEl) titleEl.textContent = title;
+      if (subtitleEl) subtitleEl.textContent = `${subjectName} · Don Bosco College (Autonomous) Maram`;
+
+      if (spinner) spinner.classList.remove('hidden');
+
+      if (currentPdfBlobUrl) {
+        try { URL.revokeObjectURL(currentPdfBlobUrl); } catch (e) {}
+        currentPdfBlobUrl = null;
+      }
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      const applyPdfUrl = (url, safeName) => {
+        const resolvedName = safeName || fileName || title || 'document';
+        const isDocx = /\.docx$/i.test(resolvedName) || /\.docx(?:[?#]|$)/i.test(url);
+        iframe.classList.toggle('hidden', isDocx);
+        if (docxReader) docxReader.classList.toggle('hidden', !isDocx);
+        if (isDocx && window.dbcmDocxReader && docxReader) {
+          docxReader.innerHTML = '<div class="py-8 text-center text-sm text-slate-500">Opening document…</div>';
+          window.dbcmDocxReader.render(url, docxReader).then(() => {
+            if (spinner) spinner.classList.add('hidden');
+          }).catch(error => {
+            docxReader.textContent = `${error.message} Use Download to open the original file.`;
+            if (spinner) spinner.classList.add('hidden');
+          });
+        } else {
+          iframe.src = url + '#toolbar=1';
+        }
+        if (downloadBtn) {
+          downloadBtn.href = url;
+          downloadBtn.download = resolvedName.replace(/[^a-zA-Z0-9_.-]/g, '_');
+        }
+        setTimeout(() => {
+          if (spinner) spinner.classList.add('hidden');
+        }, 300);
+      };
+
+      if (pdfUrl && pdfUrl.trim() !== '' && pdfUrl !== '#' && !pdfUrl.startsWith('javascript')) {
+        applyPdfUrl(pdfUrl, fileName);
+      } else {
+        try {
+          const generatedBlob = generateDBCMSubjectPdf(pageState.subject, title, fileName);
+          if (generatedBlob) {
+            currentPdfBlobUrl = URL.createObjectURL(generatedBlob);
+            applyPdfUrl(currentPdfBlobUrl, fileName || title);
+          } else {
+            throw new Error('jsPDF failed');
+          }
+        } catch (err) {
+          console.error('PDF generation error:', err);
+          if (spinner) spinner.classList.add('hidden');
+        }
+      }
+
+      if (window.setReaderAiDocumentContext) {
+        const type = docType || (pageState.activeTab === 'pyqs' || /paper|pyq|exam\s*paper/i.test(title) ? 'question-paper' : (fileName ? 'document' : 'syllabus'));
+        window.setReaderAiDocumentContext(title, pageState.subject, type);
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeReaderModal() {
+      const modal = document.getElementById('document-reader-modal');
+      const iframe = document.getElementById('reader-iframe');
+      const docxReader = document.getElementById('subject-docx-reader');
+      if (modal) modal.classList.add('hidden');
+      if (iframe) iframe.src = 'about:blank';
+      if (iframe) iframe.classList.remove('hidden');
+      if (docxReader) { docxReader.classList.add('hidden'); docxReader.replaceChildren(); }
+      document.body.style.overflow = '';
+      if (window.toggleReaderAiDrawer) {
+        window.toggleReaderAiDrawer(false);
+      }
+      if (currentPdfBlobUrl) {
+        try { URL.revokeObjectURL(currentPdfBlobUrl); } catch (e) {}
+        currentPdfBlobUrl = null;
+      }
+    }
+
+    // Switch Tab
+    function switchTab(tabId) {
+      pageState.activeTab = tabId;
+      renderTabs();
+      renderTabContent();
+      // Update hash in browser without full reload
+      if (history.replaceState) {
+        history.replaceState(null, null, `#${tabId}`);
+      }
+
+      // Smoothly animate ONLY the tab box to the clicked box on mobile (never moves whole page)
+      scrollTabBoxToTab(tabId);
+    }
+
+    // Smoothly scroll ONLY the tab box container horizontally on mobile (never moves the window/page)
+    function scrollTabBoxToTab(tabId) {
+      if (window.innerWidth >= 640) return;
+      const container = document.getElementById('subject-tabs-container');
+      if (!container) return;
+
+      setTimeout(() => {
+        const activeBtn = container.querySelector(`button[data-tab-id="${tabId}"]`);
+        if (!activeBtn) return;
+
+        const containerRect = container.getBoundingClientRect();
+        const btnRect = activeBtn.getBoundingClientRect();
+
+        // Calculate offset relative to visible container viewport
+        const btnOffset = btnRect.left - containerRect.left;
+        const currentScroll = container.scrollLeft;
+        const targetScroll = currentScroll + btnOffset - (container.clientWidth / 2) + (activeBtn.offsetWidth / 2);
+
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const clampedScroll = Math.max(0, Math.min(maxScroll, targetScroll));
+
+        // Scroll ONLY the container horizontally with smooth animation
+        container.scrollTo({
+          left: clampedScroll,
+          behavior: 'smooth'
+        });
+      }, 50);
+    }
+
+    // Render Navigation Tabs
+    function renderTabs() {
+      const s = pageState.subject;
+      const bar = document.getElementById('subject-tabs-bar');
+      if (!s || !bar) return;
+
+      const syllabusCount = (s.syllabusPdfUrl ? 1 : 0) + (Array.isArray(s.syllabusList) ? s.syllabusList.filter(item => item && item.pdfUrl && item.pdfUrl !== s.syllabusPdfUrl).length : 0);
+
+      const tabs = [
+        { id: 'overview', label: 'Syllabus', count: syllabusCount, icon: 'file-text' },
+        { id: 'notes', label: 'Study- Materials', count: (s.notes || []).length, icon: 'file-text' },
+        { id: 'pyqs', label: 'Question Papers', count: (s.pyqs || []).length, icon: 'archive' },
+        { id: 'videos', label: 'Additional Lectures', count: (s.videos || []).length, icon: 'youtube' },
+        { id: 'contribution', label: 'Contribution', count: '+', icon: 'upload-cloud' }
+      ];
+
+      bar.innerHTML = tabs.map(t => {
+        const active = pageState.activeTab === t.id;
+        return `
+          <button onclick="switchTab('${t.id}')" data-tab-id="${t.id}"
+            class="py-1.5 sm:py-2.5 px-3 sm:px-5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer whitespace-nowrap min-h-[36px] sm:min-h-[42px] shrink-0
+            ${active 
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30' 
+              : 'text-gray-400 hover:text-white hover:bg-white/10'}">
+            <i data-lucide="${t.icon}" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 ${active ? 'text-white' : 'text-gray-400'}"></i>
+            <span>${t.label}</span>
+            <span class="px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-bold ${active ? 'bg-white/20 text-white' : 'bg-white/10 text-gray-400'}">${t.count}</span>
+          </button>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Render Tab Content
+    function renderTabContent() {
+      const s = pageState.subject;
+      const body = document.getElementById('subject-tab-body');
+      if (!s || !body) return;
+
+      if (pageState.activeTab === 'overview') {
+        const syllabusFiles = [];
+        if (s.syllabusPdfUrl) {
+          syllabusFiles.push({
+            title: `${s.name} Syllabus`,
+            pdfUrl: s.syllabusPdfUrl,
+            fileName: s.syllabusFileName || `${s.code}_Syllabus.pdf`,
+            fileSize: s.syllabusFileSize || 'PDF Document'
+          });
+        }
+        if (Array.isArray(s.syllabusList)) {
+          s.syllabusList.forEach(item => {
+            if (item && item.pdfUrl && item.pdfUrl !== s.syllabusPdfUrl) {
+              syllabusFiles.push(item);
+            }
+          });
+        }
+
+        body.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <p class="text-emerald-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="file-check-2" class="w-4 h-4"></i> Official DBCM course syllabus PDF documents.
+              </p>
+              <span class="font-mono">${syllabusFiles.length} ${syllabusFiles.length === 1 ? 'PDF' : 'PDFs'}</span>
+            </div>
+
+            ${syllabusFiles.length === 0 ? `
+              <div class="glass-panel py-12 rounded-2xl text-center text-sm text-gray-400 space-y-2">
+                <i data-lucide="file-text" class="w-8 h-8 mx-auto text-gray-500 opacity-60"></i>
+                <p class="text-sm font-medium text-gray-300">No syllabus PDF uploaded yet for ${s.name}.</p>
+                <p class="text-xs text-gray-500">Syllabus PDF documents can be uploaded from the Admin Console.</p>
+              </div>
+            ` : ''}
+
+            <div class="space-y-3">
+              ${syllabusFiles.map(doc => `
+                <div class="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-emerald-500/40 transition-all">
+                  <div class="flex items-center gap-3.5 min-w-0">
+                    <div class="w-11 h-11 rounded-2xl bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center shrink-0">
+                      <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <h5 class="text-sm sm:text-base font-bold text-white truncate">${doc.fileName || doc.title || `${s.code} Syllabus PDF`}</h5>
+                        <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px] font-bold">PDF</span>
+                      </div>
+                      <p class="text-xs text-gray-400 mt-1 truncate">${s.name} (${s.code}) · ${doc.fileSize || 'Official Curriculum'} · Verified DBCM Document</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0 flex-wrap sm:flex-nowrap">
+                    <button onclick="openReaderModal('${(doc.title || `${s.name} Syllabus`).replace(/'/g, "\\'")}', '${s.name.replace(/'/g, "\\'")}', '${doc.pdfUrl}', '${(doc.fileName || 'syllabus.pdf').replace(/'/g, "\\'")}')" 
+                      class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer min-h-[38px] shadow-md shadow-emerald-600/20">
+                      <i data-lucide="eye" class="w-4 h-4"></i> View PDF
+                    </button>
+                    <a href="${doc.pdfUrl}" download="${doc.fileName || 'syllabus.pdf'}"
+                      class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 min-h-[38px] min-w-[38px] flex items-center justify-center transition-colors"
+                      title="Download Syllabus PDF">
+                      <i data-lucide="download" class="w-4 h-4"></i>
+                    </a>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else if (pageState.activeTab === 'notes') {
+        let notes = s.notes || [];
+        const hasOnlyGenericNotes = notes.length === 0 || notes.every(n => n.title && (n.title.includes('Complete DBCM Department Notes') || n.title.includes('Unit Summaries & Quick Revision Guide')));
+        
+        if (hasOnlyGenericNotes && s.modules && s.modules.length > 0) {
+          const unitNotes = s.modules.map((m, idx) => {
+            const unitNum = m.num || (idx + 1);
+            return {
+              id: `n-${s.id}-unit-${unitNum}`,
+              module: unitNum,
+              title: `Unit ${unitNum}: ${m.title || `Module ${unitNum} Comprehensive Notes`}`,
+              author: "DBCM Academic Faculty",
+              pages: 18 + ((unitNum * 3) % 12),
+              reads: 2400 + (unitNum * 650)
+            };
+          });
+          const uploaded = notes.filter(n => n.contributionId || (n.pdfUrl && n.pdfUrl.startsWith('uploads/')));
+          notes = [...unitNotes, ...uploaded];
+        }
+
+        body.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <p class="text-blue-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="file-text" class="w-4 h-4"></i> Official DBCM Faculty and Topper-verified lecture notes (Unit-Wise).
+              </p>
+              <span class="font-mono">${notes.length} Unit Documents</span>
+            </div>
+
+            ${notes.length === 0 ? '<div class="glass-panel py-12 rounded-2xl text-center text-sm text-gray-400">No study materials uploaded yet.</div>' : ''}
+
+            <div class="space-y-3">
+              ${notes.map((n, idx) => `
+                <div class="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-500/40 transition-all">
+                  <div class="flex items-center gap-3.5 min-w-0">
+                    <div class="w-11 h-11 rounded-2xl bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center shrink-0">
+                      <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-2">
+                        ${n.module ? `<span class="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 font-mono text-[10px] font-bold shrink-0">Unit ${n.module}</span>` : ''}
+                        <h5 class="text-sm sm:text-base font-bold text-white truncate">${n.title}</h5>
+                        ${n.pdfUrl ? `<span class="px-1.5 py-0.5 rounded bg-red-500/20 text-red-300 font-mono text-[10px] font-bold shrink-0">${(n.fileType || 'pdf').toUpperCase()}</span>` : ''}
+                      </div>
+                      <p class="text-xs text-gray-400 mt-1">${n.author || 'DBCM Faculty'} · ${n.pages || '25+'} Pages · ${(n.reads || 1200).toLocaleString()} Views</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0">
+                    ${n.fileType === 'docx' ? `
+                    <button onclick="openReaderModal('${n.title.replace(/'/g, "\\'")}', '${s.name.replace(/'/g, "\\'")}', '${n.pdfUrl || ''}', '${(n.fileName || `Unit_${n.module || idx + 1}_Notes.docx`).replace(/'/g, "\\'")}', 'document')"
+                      class="px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer min-h-[38px]">
+                      <i data-lucide="eye" class="w-4 h-4"></i> Read Notes
+                    </button>` : n.fileType && n.fileType !== 'pdf' ? `
+                    <a href="${n.pdfUrl || '#'}" download="${n.fileName || 'study-note'}" class="px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-xs font-semibold flex items-center gap-1.5 transition-all min-h-[38px]">
+                      <i data-lucide="download" class="w-4 h-4"></i> Download File
+                    </a>` : `
+                    <button onclick="openReaderModal('${n.title.replace(/'/g, "\\'")}', '${s.name.replace(/'/g, "\\'")}', '${n.pdfUrl || ''}', '${(n.fileName || `Unit_${n.module || idx + 1}_Notes.pdf`).replace(/'/g, "\\'")}', 'document')" 
+                      class="px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer min-h-[38px]">
+                      <i data-lucide="eye" class="w-4 h-4"></i> Read Notes
+                    </button>`}
+                    ${n.pdfUrl ? `
+                      <a href="${n.pdfUrl}" download="${n.fileName || 'notes.pdf'}"
+                        class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 min-h-[38px] min-w-[38px] flex items-center justify-center transition-colors"
+                        title="Download PDF">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                      </a>
+                    ` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else if (pageState.activeTab === 'pyqs') {
+        const pyqs = s.pyqs || [];
+        body.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <p class="text-indigo-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="archive" class="w-4 h-4"></i> Verified DBCM End-Semester Exam Question Papers.
+              </p>
+              <span class="font-mono">${pyqs.length} Papers</span>
+            </div>
+
+            ${pyqs.length === 0 ? '<div class="glass-panel py-12 rounded-2xl text-center text-sm text-gray-400">No question papers uploaded yet.</div>' : ''}
+
+            <div class="space-y-3">
+              ${pyqs.map(p => `
+                <div class="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-indigo-500/40 transition-all">
+                  <div class="flex items-center gap-3.5 min-w-0">
+                    <div class="w-11 h-11 rounded-2xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center shrink-0">
+                      <i data-lucide="archive" class="w-5 h-5"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-2">
+                        <h5 class="text-sm sm:text-base font-bold text-white truncate">${p.year} Exam Paper</h5>
+                        ${p.pdfUrl ? '<span class="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono text-[10px] font-bold">PDF</span>' : ''}
+                      </div>
+                      <p class="text-xs text-gray-400 mt-1">${p.paperType || 'DBCM End-Sem Paper'} · ${p.totalMarks || 80} Marks · ${p.pages || 4} Pages</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="openReaderModal('${p.year} Exam Paper', '${s.name.replace(/'/g, "\\'")}', '${p.pdfUrl || ''}', '${(p.fileName || '').replace(/'/g, "\\'")}', 'question-paper')" 
+                      class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer min-h-[38px]">
+                      <i data-lucide="${p.pdfUrl ? 'file-text' : 'eye'}" class="w-4 h-4"></i> ${p.pdfUrl ? 'Read PDF Paper' : 'View Paper'}
+                    </button>
+                    ${p.pdfUrl ? `
+                      <a href="${p.pdfUrl}" download="${p.fileName || 'exam-paper.pdf'}"
+                        class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 min-h-[38px] min-w-[38px] flex items-center justify-center transition-colors"
+                        title="Download Paper">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                      </a>
+                    ` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else if (pageState.activeTab === 'videos') {
+        const videos = s.videos || [];
+        body.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <p class="text-red-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="youtube" class="w-4 h-4"></i> Curated video lecture series and playlists for ${s.name}.
+              </p>
+              <span class="font-mono">${videos.length} Playlists</span>
+            </div>
+
+            ${videos.length === 0 ? '<div class="glass-panel py-12 rounded-2xl text-center text-sm text-gray-400">No additional lectures uploaded yet.</div>' : ''}
+
+            <div class="space-y-3">
+              ${videos.map(v => `
+                <div class="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-red-500/40 transition-all">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-2xl bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center shrink-0">
+                      <i data-lucide="play" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <h5 class="text-sm sm:text-base font-bold text-white">${v.title}</h5>
+                      <p class="text-xs text-gray-400 mt-1">${v.channel} · ${v.count || 20}+ Video Lectures</p>
+                    </div>
+                  </div>
+                  <a href="${v.url}" target="_blank" rel="noopener noreferrer" 
+                    class="px-4 py-2 rounded-xl bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white border border-red-500/30 text-xs font-semibold flex items-center justify-center gap-2 transition-all shrink-0 min-h-[38px]">
+                    <i data-lucide="external-link" class="w-4 h-4"></i> Watch on YouTube
+                  </a>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else if (pageState.activeTab === 'contribution') {
+        renderContributionTab();
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Global variable to hold selected file for contribution
+    let selectedContribFile = null;
+
+    function renderContributionTab() {
+      const s = pageState.subject;
+      const body = document.getElementById('subject-tab-body');
+      if (!s || !body) return;
+
+      selectedContribFile = null;
+
+      body.innerHTML = `
+        <div class="max-w-3xl mx-auto space-y-6">
+          <!-- Contribution Header Banner -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-50/60 border border-indigo-200/70 shadow-xs">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 border border-indigo-200 flex items-center justify-center shrink-0">
+                <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2">
+                  <h4 class="text-base sm:text-lg font-bold text-slate-900">Student Academic Contribution</h4>
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-700 font-mono">DBCM Community</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                  Contribute notes, chapter summaries, or past question papers for <span class="font-bold text-slate-900">${s.name} (${s.code})</span>.
+                  Your submission will be reviewed and authorized by the DBCM Academic Admin before being added to the database.
+                </p>
+                <div class="mt-3 flex flex-wrap items-center gap-3 text-xs text-amber-900 bg-amber-50 border border-amber-200 px-3 py-2 rounded-xl">
+                  <span class="flex items-center gap-1 font-semibold"><i data-lucide="file-check" class="w-4 h-4 text-amber-600"></i> PDF format only (.pdf) — No other formats</span>
+                  <span class="text-amber-300 hidden sm:inline">•</span>
+                  <span class="flex items-center gap-1 font-semibold"><i data-lucide="hard-drive" class="w-4 h-4 text-amber-600"></i> Maximum size: 10 MB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contribution Form Container -->
+          <div id="contrib-form-wrapper" class="p-5 sm:p-7 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+            
+            <!-- 1. Enter Your Name & 2. Enter Roll No -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="contrib-author" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  1. Enter Your Name <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="contrib-author" placeholder="e.g. John Bosco" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-colors shadow-xs">
+              </div>
+
+              <div>
+                <label for="contrib-roll" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  2. Enter Roll No <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="contrib-roll" placeholder="e.g. 23BCA102" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-colors font-mono shadow-xs">
+              </div>
+            </div>
+
+            <!-- 3. Department & 4. Programs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="contrib-dept" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  3. Department <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="contrib-dept" value="${s.departmentId ? s.departmentId.toUpperCase() : 'General'}" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+              </div>
+
+              <div>
+                <label for="contrib-level" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  4. Programs <span class="text-rose-500">*</span>
+                </label>
+                <select id="contrib-level"
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                  <option value="UG" selected>Undergraduate (UG)</option>
+                  <option value="PG">Postgraduate (PG)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 5. Semester & 6. Major / Minor / Skill / Generic -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="contrib-semester" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  5. Semester <span class="text-rose-500">*</span>
+                </label>
+                <select id="contrib-semester"
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                  ${[1,2,3,4,5,6,7,8].map(sem => `<option value="${sem}" ${String(s.semester) === String(sem) ? 'selected' : ''}>Semester ${sem}</option>`).join('')}
+                </select>
+              </div>
+
+              <div>
+                <label for="contrib-track" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  6. Major / Minor / MDC / Skill / Generic <span class="text-rose-500">*</span>
+                </label>
+                <select id="contrib-track"
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none cursor-pointer shadow-xs">
+                  <option value="major" ${(!s.track || s.track === 'major') ? 'selected' : ''}>Major Course</option>
+                  <option value="minor" ${(s.track === 'minor') ? 'selected' : ''}>Minor Course</option>
+                  <option value="mdc" ${(s.track === 'mdc') ? 'selected' : ''}>Multidisciplinary Course (MDC)</option>
+                  <option value="skill" ${(s.track === 'skill') ? 'selected' : ''}>Skill Paper (SEC)</option>
+                  <option value="generic" ${(s.track === 'generic') ? 'selected' : ''}>Generic Selection (GE)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 7. Subject Name & 8. Subject Code -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="contrib-subject-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  7. Subject Name <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="contrib-subject-name" value="${s.name || ''}" placeholder="e.g. Database Management Systems" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+              </div>
+
+              <div>
+                <label for="contrib-subject-code" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  8. Subject Code <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="contrib-subject-code" value="${s.code || ''}" placeholder="e.g. BCA301" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 uppercase font-mono text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+              </div>
+            </div>
+
+            <!-- Contribution Category (3 Options: 1. Study Notes, 2. Question Paper, 3. Reference Video Link) -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Contribution Category <span class="text-rose-500">*</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <label class="cursor-pointer">
+                  <input type="radio" name="contrib-type" value="note" checked onchange="toggleContribTypeFields('note')" class="peer sr-only">
+                  <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/80 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/70 peer-checked:text-indigo-950 text-slate-700 flex items-center gap-2.5 transition-all shadow-xs">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="file-text" class="w-4 h-4"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="text-xs sm:text-sm font-bold truncate">1. Study Notes</div>
+                      <div class="text-[10px] text-slate-500 truncate">Lecture units (PDF)</div>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="cursor-pointer">
+                  <input type="radio" name="contrib-type" value="pyq" onchange="toggleContribTypeFields('pyq')" class="peer sr-only">
+                  <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/80 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/70 peer-checked:text-indigo-950 text-slate-700 flex items-center gap-2.5 transition-all shadow-xs">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="archive" class="w-4 h-4"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="text-xs sm:text-sm font-bold truncate">2. Question Paper</div>
+                      <div class="text-[10px] text-slate-500 truncate">End-Sem PYQs (PDF)</div>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="cursor-pointer">
+                  <input type="radio" name="contrib-type" value="video" onchange="toggleContribTypeFields('video')" class="peer sr-only">
+                  <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100/80 peer-checked:border-amber-600 peer-checked:bg-amber-50/80 peer-checked:text-amber-950 text-slate-700 flex items-center gap-2.5 transition-all shadow-xs">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="video" class="w-4 h-4"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="text-xs sm:text-sm font-bold truncate">3. Reference Video Link</div>
+                      <div class="text-[10px] text-slate-500 truncate">YouTube / Lectures</div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Document / Video Title -->
+            <div>
+              <label for="contrib-title" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                <span id="contrib-title-label">Document Title / Topic</span> <span class="text-rose-500">*</span>
+              </label>
+              <input type="text" id="contrib-title" placeholder="e.g. Unit 3 Trees & Graphs Detailed Notes" 
+                class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-colors shadow-xs">
+            </div>
+
+            <!-- 3. Reference Video Link Specific Fields (Initially hidden) -->
+            <div id="contrib-video-fields" class="hidden grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="contrib-video-url" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Reference Video URL (YouTube) <span class="text-rose-500">*</span>
+                </label>
+                <input type="url" id="contrib-video-url" placeholder="https://www.youtube.com/watch?v=..."
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none font-mono shadow-xs">
+              </div>
+
+              <div>
+                <label for="contrib-channel" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Channel / Instructor Name <span class="text-slate-500 text-[10px] font-normal">(Optional)</span>
+                </label>
+                <input type="text" id="contrib-channel" placeholder="e.g. Gate Smashers / Faculty Name"
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none shadow-xs">
+              </div>
+            </div>
+
+            <!-- 4. PYQ Specific Fields (Initially hidden for Note) -->
+            <div id="contrib-pyq-fields" class="hidden grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="contrib-exam-year" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Exam Year
+                </label>
+                <input type="text" id="contrib-exam-year" placeholder="e.g. 2024" value="2024"
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-colors shadow-xs">
+              </div>
+
+              <div>
+                <label for="contrib-exam-session" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Exam Session
+                </label>
+                <input type="text" id="contrib-exam-session" placeholder="e.g. End-Semester Regular / Supplementary" value="End-Semester Regular Exam"
+                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 placeholder-slate-400 text-xs sm:text-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none transition-colors shadow-xs">
+              </div>
+            </div>
+
+            <!-- 5. PDF Upload Area (wrapped in container so it can be hidden for Video links) -->
+            <div id="contrib-pdf-wrapper">
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Upload PDF Document <span class="text-rose-500">*</span>
+              </label>
+
+              <!-- Drag & Drop Zone -->
+              <div id="contrib-dropzone" onclick="document.getElementById('contrib-file-input').click()"
+                class="border-2 border-dashed border-slate-300 hover:border-indigo-500 bg-slate-50 hover:bg-indigo-50/40 rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 group">
+                <input type="file" id="contrib-file-input" accept=".pdf,application/pdf" class="hidden" onchange="handleContribFileSelect(event)">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-200/60 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                  <i data-lucide="file-up" class="w-6 h-6"></i>
+                </div>
+                <p class="text-xs sm:text-sm font-bold text-slate-800">Click or Drag & Drop PDF here</p>
+                <p class="text-[11px] text-slate-500 mt-1">Accepts strictly <span class="font-bold text-indigo-600">PDF (.pdf) only</span> · No other formats accepted · Max <span class="font-bold text-indigo-600">10 MB</span></p>
+              </div>
+
+              <!-- File Selected Feedback Pill -->
+              <div id="contrib-file-selected-box" class="hidden mt-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <i data-lucide="file-check-2" class="w-5 h-5 text-emerald-600 shrink-0"></i>
+                  <div class="min-w-0">
+                    <p id="contrib-file-name" class="text-xs font-bold text-emerald-950 truncate"></p>
+                    <p id="contrib-file-size" class="text-[10px] text-emerald-700 font-mono"></p>
+                  </div>
+                </div>
+                <button type="button" onclick="clearContribFileSelection()" class="p-1.5 rounded-lg text-emerald-600 hover:text-emerald-950 hover:bg-emerald-100 transition-colors cursor-pointer" title="Remove file">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Error Box -->
+            <div id="contrib-error-box" class="hidden mt-3 p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center gap-2">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 shrink-0"></i>
+              <span id="contrib-error-msg"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
+              <button id="contrib-submit-btn" onclick="submitStudentContribution()"
+                class="w-full sm:w-auto px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-indigo-500/20 transition-all cursor-pointer">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>Submit Contribution for Approval</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleContribTypeFields(type) {
+      const pyqFields = document.getElementById('contrib-pyq-fields');
+      const videoFields = document.getElementById('contrib-video-fields');
+      const pdfWrapper = document.getElementById('contrib-pdf-wrapper');
+      const titleInput = document.getElementById('contrib-title');
+      const titleLabel = document.getElementById('contrib-title-label');
+
+      if (type === 'pyq') {
+        if (pyqFields) { pyqFields.classList.remove('hidden'); pyqFields.classList.add('grid'); }
+        if (videoFields) { videoFields.classList.add('hidden'); videoFields.classList.remove('grid'); }
+        if (pdfWrapper) pdfWrapper.classList.remove('hidden');
+        if (titleLabel) titleLabel.textContent = 'Question Paper Title / Exam';
+        if (titleInput && (!titleInput.value || titleInput.value.includes('Notes') || titleInput.value.includes('Video') || titleInput.value.includes('Lecture'))) {
+          titleInput.placeholder = 'e.g. 2024 End-Semester Regular Exam Paper';
+        }
+      } else if (type === 'video') {
+        if (pyqFields) { pyqFields.classList.add('hidden'); pyqFields.classList.remove('grid'); }
+        if (videoFields) { videoFields.classList.remove('hidden'); videoFields.classList.add('grid'); }
+        if (pdfWrapper) pdfWrapper.classList.add('hidden');
+        if (titleLabel) titleLabel.textContent = 'Video Title / Topic';
+        if (titleInput && (!titleInput.value || titleInput.value.includes('Notes') || titleInput.value.includes('Exam Paper'))) {
+          titleInput.placeholder = 'e.g. Complete Unit 1-4 Video Lecture Playlist';
+        }
+      } else {
+        // note
+        if (pyqFields) { pyqFields.classList.add('hidden'); pyqFields.classList.remove('grid'); }
+        if (videoFields) { videoFields.classList.add('hidden'); videoFields.classList.remove('grid'); }
+        if (pdfWrapper) pdfWrapper.classList.remove('hidden');
+        if (titleLabel) titleLabel.textContent = 'Document Title / Topic';
+        if (titleInput && (!titleInput.value || titleInput.value.includes('Exam Paper') || titleInput.value.includes('Video') || titleInput.value.includes('Lecture'))) {
+          titleInput.placeholder = 'e.g. Unit 3 Trees & Graphs Detailed Notes';
+        }
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handleContribFileSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      const errorBox = document.getElementById('contrib-error-box');
+      const errorMsg = document.getElementById('contrib-error-msg');
+      const selectedBox = document.getElementById('contrib-file-selected-box');
+      const fileNameEl = document.getElementById('contrib-file-name');
+      const fileSizeEl = document.getElementById('contrib-file-size');
+
+      if (!file) return;
+
+      if (errorBox) errorBox.classList.add('hidden');
+
+      // 1. Strict PDF format check - only .pdf is accepted, no other format allowed
+      const fileName = (file.name || '').toLowerCase();
+      const isPdfExt = fileName.endsWith('.pdf');
+      const isPdfMime = !file.type || file.type === 'application/pdf';
+      if (!isPdfExt || !isPdfMime) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = 'Only PDF format (.pdf) is accepted! No other file formats (Word, PPT, Images, TXT) are permitted.';
+          errorBox.classList.remove('hidden');
+        }
+        if (event.target) event.target.value = '';
+        selectedContribFile = null;
+        if (selectedBox) selectedBox.classList.add('hidden');
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      // 2. Strict 10MB file size check (10 * 1024 * 1024 bytes)
+      const maxSizeBytes = 10 * 1024 * 1024;
+      if (file.size > maxSizeBytes) {
+        const sizeMB = (file.size / (1024 * 1024)).toFixed(1);
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = `File size exceeds the 10MB limit! (Selected: ${sizeMB} MB). Please choose a file up to 10MB.`;
+          errorBox.classList.remove('hidden');
+        }
+        event.target.value = '';
+        selectedContribFile = null;
+        if (selectedBox) selectedBox.classList.add('hidden');
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      // Valid PDF within 10MB
+      selectedContribFile = file;
+      if (selectedBox && fileNameEl && fileSizeEl) {
+        fileNameEl.textContent = file.name;
+        fileSizeEl.textContent = `${(file.size / (1024 * 1024)).toFixed(2)} MB · Verified PDF Document`;
+        selectedBox.classList.remove('hidden');
+      }
+
+      // Auto-populate title if empty
+      const titleInput = document.getElementById('contrib-title');
+      if (titleInput && !titleInput.value.trim()) {
+        titleInput.value = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function clearContribFileSelection() {
+      selectedContribFile = null;
+      const fileInput = document.getElementById('contrib-file-input');
+      if (fileInput) fileInput.value = '';
+      const selectedBox = document.getElementById('contrib-file-selected-box');
+      if (selectedBox) selectedBox.classList.add('hidden');
+    }
+
+    async function submitStudentContribution() {
+      const s = pageState.subject;
+      if (!s) return;
+
+      const deptInput = document.getElementById('contrib-dept');
+      const levelSelect = document.getElementById('contrib-level');
+      const semSelect = document.getElementById('contrib-semester');
+      const trackSelect = document.getElementById('contrib-track');
+      const nameInput = document.getElementById('contrib-subject-name');
+      const codeInput = document.getElementById('contrib-subject-code');
+      const titleInput = document.getElementById('contrib-title');
+      const authorInput = document.getElementById('contrib-author');
+      const rollInput = document.getElementById('contrib-roll');
+      const yearInput = document.getElementById('contrib-exam-year');
+      const sessionInput = document.getElementById('contrib-exam-session');
+      const errorBox = document.getElementById('contrib-error-box');
+      const errorMsg = document.getElementById('contrib-error-msg');
+      const submitBtn = document.getElementById('contrib-submit-btn');
+
+      const dept = deptInput ? deptInput.value.trim() : (s.departmentId || '');
+      const programLevel = levelSelect ? levelSelect.value : 'UG';
+      const semester = semSelect ? semSelect.value : (s.semester || 1);
+      const paperType = trackSelect ? trackSelect.value : (s.track || 'major');
+      const subjectName = nameInput ? nameInput.value.trim() : s.name;
+      const subjectCode = codeInput ? codeInput.value.trim().toUpperCase() : s.code;
+      const author = authorInput ? authorInput.value.trim() : '';
+      const roll = rollInput ? rollInput.value.trim() : '';
+      const title = titleInput ? titleInput.value.trim() : '';
+      const typeRadio = document.querySelector('input[name="contrib-type"]:checked');
+      const category = typeRadio ? typeRadio.value : 'note';
+
+      if (!subjectName) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = 'Please enter the Subject Name.';
+          errorBox.classList.remove('hidden');
+        }
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      if (!subjectCode) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = 'Please enter the Subject Code.';
+          errorBox.classList.remove('hidden');
+        }
+        if (codeInput) codeInput.focus();
+        return;
+      }
+
+      if (!author) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = 'Please enter your name.';
+          errorBox.classList.remove('hidden');
+        }
+        if (authorInput) authorInput.focus();
+        return;
+      }
+
+      if (!roll) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = 'Please enter your Roll Number.';
+          errorBox.classList.remove('hidden');
+        }
+        if (rollInput) rollInput.focus();
+        return;
+      }
+
+      if (!title) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = 'Please enter a document title.';
+          errorBox.classList.remove('hidden');
+        }
+        if (titleInput) titleInput.focus();
+        return;
+      }
+
+      const videoUrlInput = document.getElementById('contrib-video-url');
+      const channelInput = document.getElementById('contrib-channel');
+      const videoUrl = videoUrlInput ? videoUrlInput.value.trim() : '';
+      const channelName = channelInput ? channelInput.value.trim() : '';
+
+      if (category === 'video') {
+        if (!videoUrl) {
+          if (errorBox && errorMsg) {
+            errorMsg.textContent = 'Please enter the reference video URL (e.g. YouTube link).';
+            errorBox.classList.remove('hidden');
+          }
+          if (videoUrlInput) videoUrlInput.focus();
+          return;
+        }
+      } else {
+        if (!selectedContribFile) {
+          if (errorBox && errorMsg) {
+            errorMsg.textContent = 'Please upload a PDF document (maximum 10MB).';
+            errorBox.classList.remove('hidden');
+          }
+          return;
+        }
+      }
+
+      if (errorBox) errorBox.classList.add('hidden');
+
+      // Disable button & show spinner
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          <span>${category === 'video' ? 'Submitting Video Link...' : 'Uploading PDF (' + (selectedContribFile ? (selectedContribFile.size / (1024*1024)).toFixed(1) : '0') + ' MB)...'}</span>
+        `;
+      }
+
+      try {
+        let base64Data = null;
+        let backendContributionAccepted = false;
+        let contributionId = `contribution-${Date.now()}`;
+        if (window.dbcmApi?.submitContribution) {
+          try {
+            const backendCategory = category === 'video' ? 'videos' : category === 'pyq' ? 'pyqs' : category === 'syllabus' ? 'syllabus' : 'notes';
+            const result = await window.dbcmApi.submitContribution({
+              subjectId: s.id,
+              subjectCode,
+              subjectName,
+              departmentId: s.departmentId || dept,
+              submittedByName: author,
+              submittedByEmail: '',
+              category: backendCategory,
+              title,
+              description: `${paperType || ''} ${semester || ''}`.trim(),
+              externalUrl: category === 'video' ? videoUrl : '',
+              file: selectedContribFile
+            });
+            contributionId = result.contribution?.id || contributionId;
+            backendContributionAccepted = true;
+          } catch (error) {
+            console.warn('Contribution could not reach the review server; saving a local copy.', error);
+          }
+        }
+        if (!backendContributionAccepted && selectedContribFile && window.dbcmContributionFiles?.save) {
+          try { await window.dbcmContributionFiles.save(contributionId, selectedContribFile); }
+          catch (error) { console.warn('Could not keep a local preview copy of the contribution.', error); }
+        }
+
+        const payload = {
+          department: dept,
+          departmentId: s.departmentId || dept,
+          programLevel: programLevel,
+          semester: semester,
+          paperType: paperType,
+          subjectCode: subjectCode,
+          subjectName: subjectName,
+          category: category,
+          title: title,
+          contributorName: author,
+          contributorRoll: roll,
+          videoUrl: videoUrl,
+          channelName: channelName,
+          examYear: yearInput ? yearInput.value.trim() : '',
+          session: sessionInput ? sessionInput.value.trim() : '',
+          fileName: selectedContribFile ? selectedContribFile.name : `${subjectCode}_video_reference.url`,
+          fileData: base64Data,
+          fileStorageId: selectedContribFile && !backendContributionAccepted ? contributionId : '',
+          fileSize: selectedContribFile ? `${(selectedContribFile.size / (1024*1024)).toFixed(2)} MB` : 'Video URL'
+        };
+
+        const contributions = JSON.parse(localStorage.getItem('dbcm_contributions') || '[]');
+        contributions.unshift({ ...payload, id: contributionId, status: 'pending', submittedAt: new Date().toISOString() });
+        localStorage.setItem('dbcm_contributions', JSON.stringify(contributions));
+        {
+          const wrapper = document.getElementById('contrib-form-wrapper');
+          if (wrapper) {
+            const itemDescription = category === 'video' 
+              ? `Reference video link <span class="font-bold text-white font-mono">"${videoUrl}"</span>`
+              : `PDF <span class="font-bold text-white font-mono">"${selectedContribFile.name}"</span>`;
+
+            wrapper.innerHTML = `
+              <div class="p-6 sm:p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-4 animate-fade-in shadow-xs">
+                <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto">
+                  <i data-lucide="check-circle" class="w-7 h-7"></i>
+                </div>
+                <h4 class="text-base sm:text-lg font-bold text-slate-900">Thank You for Contributing!</h4>
+                <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto">
+                  Your ${itemDescription} for <span class="font-bold text-indigo-600">${subjectCode} - ${subjectName}</span> ${backendContributionAccepted ? 'has been sent to the admin for review.' : 'is saved on this device only because the review server could not be reached.'}
+                </p>
+                <div class="pt-2">
+                  <button onclick="renderContributionTab()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs cursor-pointer shadow-md shadow-indigo-500/20">
+                    Contribute Another Material
+                  </button>
+                </div>
+              </div>
+            `;
+            if (window.lucide) lucide.createIcons();
+          }
+        }
+      } catch (err) {
+        console.error('Submission error:', err);
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = err.message || 'An error occurred during upload. Please try again.';
+          errorBox.classList.remove('hidden');
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Submit Contribution for Approval</span>
+          `;
+          if (window.lucide) lucide.createIcons();
+        }
+      }
+    }
+
+    function toggleRelatedSubjects() {
+      const grid = document.getElementById('related-subjects-grid');
+      const button = document.getElementById('related-subjects-toggle');
+      if (!grid || !button) return;
+
+      const expanded = grid.classList.contains('hidden');
+      grid.classList.toggle('hidden', !expanded);
+      button.setAttribute('aria-expanded', String(expanded));
+      button.setAttribute('aria-label', expanded ? 'Hide other subjects' : 'Show other subjects');
+      button.title = expanded ? 'Hide other subjects' : 'Show other subjects';
+      const icon = button.querySelector('svg, i');
+      if (icon) icon.classList.toggle('rotate-180', expanded);
+    }
+    window.toggleRelatedSubjects = toggleRelatedSubjects;
+
+    // Render Related / Sibling Subjects
+    function renderRelatedSubjects() {
+      const grid = document.getElementById('related-subjects-grid');
+      const deptNameEl = document.getElementById('related-dept-name');
+      const s = pageState.subject;
+      if (!grid || !s) return;
+
+      if (pageState.department && deptNameEl) {
+        deptNameEl.textContent = pageState.department.name;
+      }
+
+      const siblings = (pageState.relatedSubjects || []).filter(item => item.id !== s.id).slice(0, 6);
+      if (siblings.length === 0) {
+        grid.innerHTML = '<p class="text-xs text-gray-500 col-span-full py-4">No other subjects recorded for this semester.</p>';
+        return;
+      }
+
+      grid.innerHTML = siblings.map(sub => {
+        const isSkill = (sub.track || '').toLowerCase() === 'skill' || (sub.track || '').toLowerCase() === 'skill_paper';
+        const isMajor = (sub.track || 'major') === 'major';
+        const subBadgeStyle = isSkill 
+          ? 'bg-amber-500/20 text-amber-300' 
+          : (isMajor ? 'bg-indigo-500/20 text-indigo-300' : 'bg-cyan-500/20 text-cyan-300');
+        const subBadgeText = isSkill ? 'Skill' : (sub.track || 'major');
+        return `
+          <a href="pages/subject.html?id=${encodeURIComponent(sub.id)}"
+            class="glass-panel p-4 rounded-2xl border border-white/10 hover:border-indigo-500/40 transition-all group flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-300 border border-slate-200 dark:border-white/10">${sub.code}</span>
+                <span class="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ${subBadgeStyle}">${subBadgeText}</span>
+                <span class="text-[10px] text-gray-400">Sem ${sub.semester}</span>
+              </div>
+              <h4 class="text-xs sm:text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2">${sub.name}</h4>
+            </div>
+            <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+              <span class="flex items-center gap-1">
+                <i data-lucide="file-text" class="w-3 h-3 text-emerald-400"></i>
+                <span>${sub.syllabusPdfUrl ? 'Syllabus PDF' : 'Curriculum'}</span>
+              </span>
+              <span class="text-indigo-400 group-hover:translate-x-1 transition-transform flex items-center gap-1 font-semibold">
+                Open <i data-lucide="arrow-right" class="w-3 h-3"></i>
+              </span>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Populate Page with Loaded Subject
+    function populateSubjectPage(subject) {
+      pageState.subject = subject;
+
+      // Update Browser Title
+      document.title = `${subject.name} (${subject.code}) · Don Bosco College Maram`;
+
+      // Find department
+      const dept = pageState.departments.find(d => d.id === subject.departmentId || d.code.toLowerCase() === (subject.departmentId || '').toLowerCase());
+      pageState.department = dept;
+
+      // Breadcrumbs
+      const isMajor = (subject.track || 'major') === 'major';
+      const isPg = subject.programLevel === 'PG';
+
+      const crumbDept = document.getElementById('crumb-department');
+      const crumbDeptCode = document.getElementById('crumb-department-code');
+      const crumbSem = document.getElementById('crumb-semester');
+      if (crumbDept) crumbDept.textContent = dept ? dept.name : (subject.departmentId || 'Department');
+      if (crumbDeptCode) crumbDeptCode.textContent = dept ? (dept.code || dept.id.toUpperCase()) : (subject.departmentId || 'DEPT').toUpperCase();
+      if (crumbSem) crumbSem.innerHTML = isPg && subject.year ? `PG · Sem ${subject.semester}` : `Sem<span class="hidden sm:inline">ester</span> ${subject.semester}`;
+
+      // Track badge (Major/Minor/Skill for UG, Core Paper/Elective Paper/Skill for PG)
+      const trackBadgeEl = document.getElementById('subject-track-badge');
+      if (trackBadgeEl) {
+        const isSkill = (subject.track || '').toLowerCase() === 'skill' || (subject.track || '').toLowerCase() === 'skill_paper';
+        const isGeneric = (subject.track || '').toLowerCase() === 'generic' || (subject.track || '').toLowerCase() === 'generic_elective' || (subject.track || '').toLowerCase() === 'ge';
+        const isMdc = (subject.track || '').toLowerCase() === 'mdc';
+        let badgeText = '';
+        if (isSkill) {
+          badgeText = 'Skill Paper (SEC) Course';
+        } else if (isGeneric) {
+          badgeText = 'Generic Elective (GE) Course';
+        } else if (isMdc) {
+          badgeText = 'Multidisciplinary Course (MDC)';
+        } else if (isPg) {
+          badgeText = isMajor ? 'Core Paper Master Degree Subject' : 'Elective Paper Postgraduate Subject';
+        } else {
+          badgeText = isMajor ? 'Major Core Degree Subject' : 'Minor Interdisciplinary Elective';
+        }
+        const badgeStyle = 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-200 border border-slate-300 dark:border-white/15';
+
+        trackBadgeEl.innerHTML = `
+          <span class="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider ${badgeStyle}">
+            ${badgeText}
+          </span>
+          ${dept ? `<span class="text-xs text-gray-400">· Department of ${dept.name}</span>` : ''}
+        `;
+      }
+
+      // Title & Pills
+      const titleEl = document.getElementById('subject-title');
+      const codePill = document.getElementById('subject-code-pill');
+      const semPill = document.getElementById('subject-sem-pill');
+      const schemePill = document.getElementById('subject-scheme-pill');
+      if (titleEl) titleEl.textContent = subject.name;
+      if (codePill) codePill.textContent = subject.code;
+      if (semPill) semPill.textContent = isPg && subject.year ? `${subject.year} (Sem ${subject.semester})` : `Semester ${subject.semester}`;
+      if (schemePill) schemePill.textContent = subject.scheme || (isPg ? 'DBCM Autonomous PG NEP' : 'DBCM Autonomous NEP 2024');
+
+      // Description
+      const descEl = document.getElementById('subject-description');
+      if (descEl) {
+        if (subject.description) {
+          descEl.textContent = subject.description;
+          descEl.classList.remove('hidden');
+        } else {
+          descEl.classList.add('hidden');
+        }
+      }
+
+      // Bookmark Button UI
+      updateBookmarkButtonUI();
+
+      // Check initial tab from URL params or hash
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab') || window.location.hash.replace('#', '');
+      if (['overview', 'notes', 'pyqs', 'videos'].includes(tabParam)) {
+        pageState.activeTab = tabParam;
+      }
+
+      // Render Tabs & Content
+      renderTabs();
+      renderTabContent();
+
+      // Animate only the tab box if a non-default tab is initially active
+      if (pageState.activeTab && pageState.activeTab !== 'overview') {
+        scrollTabBoxToTab(pageState.activeTab);
+      }
+
+      // Switch views: hide skeleton, show content
+      document.getElementById('subject-loading-skeleton')?.classList.add('hidden');
+      document.getElementById('subject-content')?.classList.remove('hidden');
+
+      // Fetch related subjects in department
+      fetchRelatedSubjects(subject.departmentId, subject.semester);
+      // Fetch all department subjects to populate interactive breadcrumb switchers
+      fetchDepartmentSubjects(subject.departmentId);
+      // Fetch all minor subjects for this semester to power inter-department minor switchers
+      fetchSemesterMinors(subject.semester);
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Fetch related subjects
+    async function fetchRelatedSubjects(deptId, semester) {
+      pageState.relatedSubjects = pageState.allSubjects.filter(s => s.departmentId === deptId && Number(s.semester) === Number(semester));
+      renderRelatedSubjects();
+    }
+
+    // Fetch all subjects for this department to power breadcrumb switchers
+    async function fetchDepartmentSubjects(deptId) {
+      if (!deptId) return;
+      pageState.deptSubjects = pageState.allSubjects.filter(s => s.departmentId === deptId);
+      populateBreadcrumbMenus();
+    }
+
+    // Fetch all minor electives for this semester across all departments (NEP 2024 Electives)
+    async function fetchSemesterMinors(semester) {
+      pageState.semesterMinors = pageState.allSubjects.filter(s => (s.track || '').toLowerCase() === 'minor' && Number(s.semester) === Number(semester || 1));
+      pageState.semesterMdcs = pageState.allSubjects.filter(s => (s.track || '').toLowerCase() === 'mdc' && Number(s.semester) === Number(semester || 1));
+      populateMinorSubjectDropdowns();
+      populateBreadcrumbMenus();
+    }
+
+    // Populate Inter-department Minor Subject Dropdowns
+    function populateMinorSubjectDropdowns() {
+      const minors = pageState.semesterMinors || [];
+      const currentSubject = pageState.subject;
+      const semBadge = document.getElementById('minor-banner-sem-badge');
+      const banner = document.getElementById('minor-elective-banner');
+      const bodySelect = document.getElementById('body-minor-dept-select');
+      const crumbSelect = document.getElementById('crumb-minor-dept-select');
+
+      if (semBadge && currentSubject) {
+        semBadge.textContent = `Sem ${currentSubject.semester}`;
+      }
+
+      if (banner) {
+        const isMinor = currentSubject && (currentSubject.track || '').toLowerCase() === 'minor';
+        if (isMinor && minors.length > 0) {
+          banner.classList.remove('hidden');
+        } else {
+          banner.classList.add('hidden');
+        }
+      }
+
+      const sortedMinors = [...minors].sort((a, b) => {
+        const deptA = (pageState.departments.find(d => d.id === a.departmentId)?.name || a.departmentId).toLowerCase();
+        const deptB = (pageState.departments.find(d => d.id === b.departmentId)?.name || b.departmentId).toLowerCase();
+        return deptA.localeCompare(deptB);
+      });
+
+      let bodyOptions = `<option value="">-- Choose Minor Department (${sortedMinors.length}) --</option>`;
+      let crumbOptions = `<option value="">-- Choose Minor Department (${sortedMinors.length}) --</option>`;
+
+      sortedMinors.forEach(s => {
+        const dept = pageState.departments.find(d => d.id === s.departmentId || d.code.toLowerCase() === (s.departmentId || '').toLowerCase());
+        const deptLabel = dept ? dept.name : (s.departmentId || '').toUpperCase();
+        const isSelected = currentSubject && s.id === currentSubject.id ? 'selected' : '';
+        const opt = `<option value="${s.id}" ${isSelected}>${deptLabel}</option>`;
+        bodyOptions += opt;
+        crumbOptions += opt;
+      });
+
+      if (bodySelect) bodySelect.innerHTML = bodyOptions;
+      if (crumbSelect) crumbSelect.innerHTML = crumbOptions;
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Populate Breadcrumb Switcher Menus (Department, Semester, Subject)
+    function populateBreadcrumbMenus() {
+      const currentSubject = pageState.subject;
+      const currentDept = pageState.department;
+      const currentSem = currentSubject ? currentSubject.semester : 1;
+      const deptSubjects = pageState.deptSubjects || [];
+
+      // 1. Department Dropdown
+      const deptList = document.getElementById('crumb-dept-list');
+      const deptCatalogLink = document.getElementById('crumb-dept-catalog-link');
+      const isPgSubject = currentSubject?.programLevel === 'PG';
+      document.querySelectorAll('a[href="index.html"]').forEach(link => {
+        link.href = `index.html${isPgSubject ? '?program=PG' : ''}`;
+      });
+      if (deptCatalogLink && currentDept) {
+        deptCatalogLink.href = `index.html?dept=${encodeURIComponent(currentDept.id)}${isPgSubject ? '&program=PG' : ''}`;
+      }
+
+      if (deptList) {
+        const switchableDepartments = isPgSubject
+          ? pageState.departments.filter(d => ['english', 'history', 'polsci', 'sociology'].includes(d.id))
+          : pageState.departments;
+        deptList.innerHTML = switchableDepartments.map(d => {
+          const isSelected = currentDept && (d.id === currentDept.id || d.code.toLowerCase() === (currentDept.code || '').toLowerCase());
+          return `
+            <button type="button" onclick="switchBreadcrumbDepartment('${d.id}')"
+              class="w-full flex items-center justify-between p-2 rounded-xl text-left cursor-pointer transition-all ${
+                isSelected 
+                  ? 'bg-indigo-600 text-white font-bold shadow-sm' 
+                  : 'hover:bg-indigo-50 dark:hover:bg-white/10 text-gray-800 dark:text-gray-200'
+              }">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                  isSelected ? 'bg-white/20 text-white' : 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
+                }">${d.code}</span>
+                <span class="text-xs truncate ${isSelected ? 'text-white' : ''}">${d.name}</span>
+              </div>
+              ${isSelected ? '<i data-lucide="check" class="w-3.5 h-3.5 text-white shrink-0"></i>' : ''}
+            </button>
+          `;
+        }).join('');
+      }
+
+      // 2. Semester Dropdown
+      const semList = document.getElementById('crumb-sem-list');
+      const semDeptCode = document.getElementById('crumb-sem-dept-code');
+      if (semDeptCode && currentDept) semDeptCode.textContent = currentDept.code;
+
+      if (semList) {
+        const semCounts = {};
+        deptSubjects.forEach(s => {
+          const sem = s.semester;
+          semCounts[sem] = (semCounts[sem] || 0) + 1;
+        });
+
+        const isPg = currentSubject?.programLevel === 'PG';
+        const maxSem = isPg ? 4 : 8;
+        const sems = [];
+        for (let i = 1; i <= maxSem; i++) {
+          sems.push(i);
+        }
+
+        semList.innerHTML = sems.map(sem => {
+          const count = semCounts[sem] || 0;
+          const isSelected = currentSem === sem;
+          const label = isPg ? `PG · Sem ${sem}` : `Semester ${sem}`;
+          return `
+            <button type="button" onclick="switchBreadcrumbSemester(${sem})"
+              class="w-full flex items-center justify-between p-2 rounded-xl text-left cursor-pointer transition-all ${
+                isSelected 
+                  ? 'bg-indigo-600 text-white font-bold shadow-sm' 
+                  : (count > 0 ? 'hover:bg-indigo-50 dark:hover:bg-white/10 text-gray-800 dark:text-gray-200' : 'opacity-40 text-gray-400 cursor-not-allowed')
+              }">
+              <div class="flex items-center gap-2">
+                <span class="text-xs ${isSelected ? 'text-white font-bold' : 'font-medium'}">${label}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full ${
+                  isSelected ? 'bg-white/20 text-white' : (count > 0 ? 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 font-semibold' : 'text-gray-400')
+                }">${count > 0 ? `${count} ${count === 1 ? 'subject' : 'subjects'}` : 'No papers'}</span>
+              </div>
+              ${isSelected ? '<i data-lucide="check" class="w-3.5 h-3.5 text-white shrink-0"></i>' : ''}
+            </button>
+          `;
+        }).join('');
+      }
+
+      // 3. Track Dropdown Switcher (Major, Minor, Skill Paper, Generic)
+      const trackList = document.getElementById('crumb-track-list');
+      const trackLabel = document.getElementById('crumb-track-label');
+      const trackSemBadge = document.getElementById('crumb-track-sem-badge');
+      const trackBtn = document.getElementById('crumb-track-btn');
+
+      const semSubs = deptSubjects.filter(s => s.semester === currentSem);
+      const currentTrackRaw = (currentSubject?.track || 'major').toLowerCase();
+      let currentTrackNorm = 'major';
+      if (currentTrackRaw === 'minor') currentTrackNorm = 'minor';
+      else if (currentTrackRaw === 'mdc') currentTrackNorm = 'mdc';
+      else if (currentTrackRaw === 'skill' || currentTrackRaw === 'skill_paper') currentTrackNorm = 'skill';
+      else if (currentTrackRaw === 'generic' || currentTrackRaw === 'generic_elective' || currentTrackRaw === 'ge') currentTrackNorm = 'generic';
+
+      const trackNames = {
+        major: 'Major',
+        minor: 'Minor',
+        mdc: 'MDC',
+        skill: 'Skill Paper',
+        generic: 'Generic'
+      };
+
+      if (trackLabel) trackLabel.textContent = trackNames[currentTrackNorm] || 'Major';
+      if (trackSemBadge) trackSemBadge.textContent = `Sem ${currentSem}`;
+
+      // White track button styling (clean white breadcrumb style)
+      if (trackBtn) {
+        trackBtn.className = 'inline-flex items-center gap-0.5 sm:gap-1.5 px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-medium text-[10px] sm:text-xs text-slate-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-300 bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/15 border border-slate-200 dark:border-white/10 transition-all cursor-pointer shadow-xs group shrink-0';
+      }
+
+      if (trackList) {
+        const minorTrackCount = (pageState.semesterMinors && pageState.semesterMinors.length > 0)
+          ? pageState.semesterMinors.length
+          : semSubs.filter(s => (s.track || '').toLowerCase() === 'minor').length;
+
+        const mdcTrackCount = (pageState.semesterMdcs && pageState.semesterMdcs.length > 0)
+          ? pageState.semesterMdcs.length
+          : semSubs.filter(s => (s.track || '').toLowerCase() === 'mdc').length;
+
+        const trackCounts = {
+          major: semSubs.filter(s => (s.track || 'major').toLowerCase() === 'major').length,
+          minor: minorTrackCount,
+          mdc: mdcTrackCount,
+          skill: semSubs.filter(s => {
+            const t = (s.track || '').toLowerCase();
+            return t === 'skill' || t === 'skill_paper';
+          }).length,
+          generic: semSubs.filter(s => {
+            const t = (s.track || '').toLowerCase();
+            return t === 'generic' || t === 'generic_elective' || t === 'ge';
+          }).length
+        };
+
+        const tracks = [
+          { key: 'major', name: 'Major Track', icon: 'graduation-cap', color: 'indigo' },
+          { key: 'minor', name: 'Minor Track', icon: 'book-marked', color: 'cyan' },
+          { key: 'mdc', name: 'Multidisciplinary (MDC)', icon: 'compass', color: 'purple' },
+          { key: 'skill', name: 'Skill Paper (SEC)', icon: 'wrench', color: 'amber' },
+          { key: 'generic', name: 'Generic Elective (GE)', icon: 'layers', color: 'emerald' }
+        ];
+
+        trackList.innerHTML = tracks.map(tr => {
+          const count = trackCounts[tr.key] || 0;
+          const isSelected = currentTrackNorm === tr.key;
+          return `
+            <button type="button" onclick="switchBreadcrumbTrack('${tr.key}')"
+              class="w-full flex items-center justify-between p-2 rounded-xl text-left cursor-pointer transition-all ${
+                isSelected
+                  ? 'bg-indigo-600 text-white font-bold shadow-sm'
+                  : (count > 0 ? 'hover:bg-indigo-50 dark:hover:bg-white/10 text-gray-800 dark:text-gray-200' : 'opacity-40 text-gray-400 cursor-not-allowed')
+              }">
+              <div class="flex items-center gap-2">
+                <i data-lucide="${tr.icon}" class="w-3.5 h-3.5 ${isSelected ? 'text-white' : `text-${tr.color}-500`}"></i>
+                <span class="text-xs ${isSelected ? 'text-white font-bold' : 'font-medium'}">${tr.name}</span>
+              </div>
+              <span class="text-[10px] px-1.5 py-0.5 rounded-full ${
+                isSelected ? 'bg-white/20 text-white' : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 font-semibold'
+              }">${count} ${count === 1 ? 'course' : 'courses'}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Breadcrumb Actions: Switch Department
+    async function switchBreadcrumbDepartment(deptId) {
+      closeAllBreadcrumbDropdowns();
+      if (pageState.department && (pageState.department.id === deptId || pageState.department.code.toLowerCase() === deptId.toLowerCase())) {
+        return; // already on this department
+      }
+      const isPgSubject = pageState.subject?.programLevel === 'PG';
+      const subjects = pageState.allSubjects.filter(s => s.departmentId === deptId && (isPgSubject ? s.programLevel === 'PG' : s.programLevel !== 'PG'));
+      const currentSem = pageState.subject ? pageState.subject.semester : 1;
+      const target = subjects.find(s => Number(s.semester) === Number(currentSem)) || subjects[0];
+      if (target) window.location.href = `pages/subject.html?id=${encodeURIComponent(target.id)}`;
+      else showToast('No subjects recorded for this department.');
+    }
+
+    // Breadcrumb Actions: Switch Semester
+    function switchBreadcrumbSemester(sem) {
+      closeAllBreadcrumbDropdowns();
+      if (pageState.subject && pageState.subject.semester === sem) {
+        return; // already on this semester
+      }
+      const deptSubs = pageState.deptSubjects || [];
+      const semSubs = deptSubs.filter(s => s.semester === sem);
+      if (semSubs.length > 0) {
+        showToast(`Switching to Semester ${sem}...`);
+        window.location.href = `pages/subject.html?id=${encodeURIComponent(semSubs[0].id)}`;
+      } else {
+        showToast(`No subjects currently recorded for Semester ${sem} in this department.`);
+      }
+    }
+
+    // Breadcrumb Actions: Switch Track
+    function switchBreadcrumbTrack(trackKey) {
+      closeAllBreadcrumbDropdowns();
+      const currentSem = pageState.subject ? pageState.subject.semester : 1;
+      const deptSubs = pageState.deptSubjects || [];
+      const semSubs = deptSubs.filter(s => s.semester === currentSem);
+
+      if (trackKey === 'minor') {
+        if (pageState.subject && (pageState.subject.track || '').toLowerCase() === 'minor') {
+          const banner = document.getElementById('minor-elective-banner');
+          if (banner) banner.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        const deptMinor = semSubs.find(s => (s.track || '').toLowerCase() === 'minor');
+        const targetMinor = deptMinor || (pageState.semesterMinors && pageState.semesterMinors[0]);
+        if (targetMinor) {
+          showToast(`Switching to Minor Elective...`);
+          window.location.href = `pages/subject.html?id=${encodeURIComponent(targetMinor.id)}`;
+          return;
+        }
+      }
+
+      if (trackKey === 'mdc') {
+        if (pageState.subject && (pageState.subject.track || '').toLowerCase() === 'mdc') {
+          return;
+        }
+        const deptMdc = semSubs.find(s => (s.track || '').toLowerCase() === 'mdc');
+        const targetMdc = deptMdc || (pageState.semesterMdcs && pageState.semesterMdcs[0]);
+        if (targetMdc) {
+          showToast(`Switching to MDC Course...`);
+          window.location.href = `pages/subject.html?id=${encodeURIComponent(targetMdc.id)}`;
+          return;
+        } else {
+          const mdc = pageState.allSubjects.find(s => (s.track || '').toLowerCase() === 'mdc' && Number(s.semester) === Number(currentSem));
+          if (mdc) window.location.href = `pages/subject.html?id=${encodeURIComponent(mdc.id)}`;
+          else showToast(`No MDC course found in Semester ${currentSem}.`);
+          return;
+        }
+      }
+
+      const trackSub = semSubs.find(s => {
+        const t = (s.track || 'major').toLowerCase();
+        if (trackKey === 'skill') return t === 'skill' || t === 'skill_paper';
+        if (trackKey === 'generic') return t === 'generic' || t === 'generic_elective' || t === 'ge';
+        return t === trackKey;
+      });
+      if (trackSub) {
+        showToast(`Switching to ${trackKey.toUpperCase()} course...`);
+        window.location.href = `pages/subject.html?id=${encodeURIComponent(trackSub.id)}`;
+      } else {
+        showToast(`No ${trackKey.toUpperCase()} course found in Semester ${currentSem}.`);
+      }
+    }
+
+    // Breadcrumb Actions: Switch Subject
+    function switchBreadcrumbSubject(subjectId) {
+      closeAllBreadcrumbDropdowns();
+      if (pageState.subject && pageState.subject.id === subjectId) {
+        return; // already on this subject
+      }
+      window.location.href = `pages/subject.html?id=${encodeURIComponent(subjectId)}`;
+    }
+
+    // Dropdown open/close management
+    function positionBreadcrumbDropdown(menu, btn) {
+      if (!menu || !btn) return;
+      const parentDiv = btn.parentElement;
+      if (!parentDiv) return;
+      const parentRect = parentDiv.getBoundingClientRect();
+      const screenWidth = document.documentElement.clientWidth || window.innerWidth;
+      const isMobile = screenWidth < 640;
+
+      if (isMobile) {
+        // Mobile-first: Center dropdown horizontally on the screen with 12px safe margins
+        const menuWidth = Math.min(320, screenWidth - 24);
+        const targetScreenX = Math.round((screenWidth - menuWidth) / 2);
+        const localLeft = targetScreenX - Math.round(parentRect.left);
+
+        menu.style.position = 'absolute';
+        menu.style.top = 'calc(100% + 6px)';
+        menu.style.left = `${localLeft}px`;
+        menu.style.right = 'auto';
+        menu.style.width = `${menuWidth}px`;
+        menu.style.maxWidth = `${screenWidth - 24}px`;
+        menu.style.transform = 'none';
+      } else {
+        // Desktop: Center directly under the button and clamp to screen margins
+        const defaultWidth = menu.id === 'crumb-dept-menu' ? 320 : (menu.id === 'crumb-track-menu' ? 240 : 288);
+        const menuWidth = Math.min(defaultWidth, screenWidth - 32);
+        const idealScreenX = Math.round(parentRect.left + (parentRect.width / 2) - (menuWidth / 2));
+        const clampedScreenX = Math.max(16, Math.min(idealScreenX, screenWidth - menuWidth - 16));
+        const localLeft = clampedScreenX - Math.round(parentRect.left);
+
+        menu.style.position = 'absolute';
+        menu.style.top = 'calc(100% + 6px)';
+        menu.style.left = `${localLeft}px`;
+        menu.style.right = 'auto';
+        menu.style.width = `${menuWidth}px`;
+        menu.style.maxWidth = '';
+        menu.style.transform = 'none';
+      }
+    }
+
+    function toggleBreadcrumbDropdown(type) {
+      const deptMenu = document.getElementById('crumb-dept-menu');
+      const semMenu = document.getElementById('crumb-sem-menu');
+      const trackMenu = document.getElementById('crumb-track-menu');
+
+      const deptBtn = document.getElementById('crumb-dept-btn');
+      const semBtn = document.getElementById('crumb-sem-btn');
+      const trackBtn = document.getElementById('crumb-track-btn');
+
+      const deptChev = document.getElementById('crumb-dept-chevron');
+      const semChev = document.getElementById('crumb-sem-chevron');
+      const trackChev = document.getElementById('crumb-track-chevron');
+
+      const targetMenu = type === 'dept' ? deptMenu : (type === 'sem' ? semMenu : trackMenu);
+      const targetBtn = type === 'dept' ? deptBtn : (type === 'sem' ? semBtn : trackBtn);
+      const isCurrentlyOpen = targetMenu && !targetMenu.classList.contains('hidden');
+
+      closeAllBreadcrumbDropdowns();
+
+      if (!isCurrentlyOpen && targetMenu && targetBtn) {
+        targetMenu.classList.remove('hidden');
+        positionBreadcrumbDropdown(targetMenu, targetBtn);
+
+        if (type === 'dept' && deptChev) deptChev.style.transform = 'rotate(180deg)';
+        if (type === 'sem' && semChev) semChev.style.transform = 'rotate(180deg)';
+        if (type === 'track' && trackChev) trackChev.style.transform = 'rotate(180deg)';
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeAllBreadcrumbDropdowns() {
+      ['crumb-dept-menu', 'crumb-sem-menu', 'crumb-track-menu'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('hidden');
+          el.style.left = '';
+          el.style.width = '';
+          el.style.maxWidth = '';
+          el.style.transform = '';
+        }
+      });
+      ['crumb-dept-chevron', 'crumb-sem-chevron', 'crumb-track-chevron'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.transform = 'rotate(0deg)';
+      });
+    }
+
+    function filterBreadcrumbDepts(query) {
+      const q = (query || '').toLowerCase().trim();
+      const buttons = document.querySelectorAll('#crumb-dept-list button');
+      buttons.forEach(btn => {
+        const text = btn.textContent.toLowerCase();
+        btn.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    // Main Init Function
+    async function initSubjectPage() {
+      initTheme();
+      const data = await window.dbcmLocalData.load();
+      pageState.departments = data.departments || [];
+      pageState.allSubjects = data.subjects || [];
+      if (window.dbcmApi?.publicMaterials) {
+        try {
+          const { materials = [] } = await window.dbcmApi.publicMaterials();
+          for (const material of materials) {
+            const subject = pageState.allSubjects.find(item => item.id === material.subjectId);
+            if (!subject) continue;
+            const bucket = material.category === 'pyqs' ? 'pyqs' : material.category === 'videos' ? 'videos' : material.category === 'syllabus' ? 'syllabusList' : material.category === 'questions' ? 'impQuestions' : 'notes';
+            subject[bucket] ||= [];
+            if (subject[bucket].some(item => item.id === material.id)) continue;
+            const fileType = String(material.fileName || '').split('.').pop().toLowerCase();
+            const entry = { id: material.id, contributionId: material.metadata?.contributionId || '', title: material.title, topic: material.title, pdfUrl: material.pdfUrl, url: material.externalUrl || material.pdfUrl, fileName: material.fileName, fileSize: material.fileSize, fileType, author: material.metadata?.contributionId ? 'Student Contribution' : 'DBCM Faculty', uploadDate: material.createdAt, verified: true };
+            if (bucket === 'syllabusList') subject[bucket].push(entry);
+            else subject[bucket].push(entry);
+          }
+        } catch (error) {
+          console.warn('Live published materials are unavailable; showing the available curriculum copy.', error);
+        }
+      }
+      if (window.dbcmLocalData.applyApprovedContributions) {
+        await window.dbcmLocalData.applyApprovedContributions(pageState.allSubjects, pageState.departments);
+      }
+
+      // Determine subject ID from search params (?id=... or ?code=...) or pathname (/subject/xyz)
+      const urlParams = new URLSearchParams(window.location.search);
+      let subjectId = urlParams.get('id') || urlParams.get('code');
+
+      if (!subjectId) {
+        const path = window.location.pathname;
+        if (path.startsWith('/subject/') && path.length > 9) {
+          subjectId = path.substring(9).replace(/\/$/, '');
+        }
+      }
+
+      if (!subjectId && pageState.allSubjects.length) subjectId = pageState.allSubjects[0].id;
+
+      if (!subjectId) {
+        document.getElementById('subject-loading-skeleton')?.classList.add('hidden');
+        document.getElementById('subject-not-found')?.classList.remove('hidden');
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      const subject = pageState.allSubjects.find(s =>
+        String(s.id).toLowerCase() === String(subjectId).toLowerCase() ||
+        String(s.code || '').toLowerCase() === String(subjectId).toLowerCase() ||
+        String(s.name || '').toLowerCase().includes(String(subjectId).toLowerCase())
+      );
+      if (subject) populateSubjectPage(subject);
+      else {
+        document.getElementById('subject-loading-skeleton')?.classList.add('hidden');
+        document.getElementById('subject-not-found')?.classList.remove('hidden');
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    window.scrollToTop = scrollToTop;
+
+    // Run on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      initSubjectPage();
+      if (window.lucide) lucide.createIcons();
+
+      // Floating Back to Top Button
+      const backToTopBtn = document.getElementById('subject-back-to-top-btn');
+      if (backToTopBtn) {
+        const checkScroll = () => {
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          if (scrollY > 250) {
+            backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            backToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          } else {
+            backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+          }
+        };
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
+      }
+    });
+
+    window.addEventListener('storage', event => {
+      if (event.key === 'dbcm_contributions') initSubjectPage();
+    });
+
+    // Close modals and breadcrumb dropdowns on Esc key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeReaderModal();
+        closeBookmarksDrawer();
+        closeMobileMenu();
+        closeAllBreadcrumbDropdowns();
+      }
+    });
+
+    // Close breadcrumb dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#subject-breadcrumbs') && !e.target.closest('#crumb-dept-menu') && !e.target.closest('#crumb-sem-menu') && !e.target.closest('#crumb-track-menu')) {
+        closeAllBreadcrumbDropdowns();
+      }
+    });
+
+    window.addEventListener('resize', closeAllBreadcrumbDropdowns);
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth < 640) closeAllBreadcrumbDropdowns();
+    }, { passive: true });
+  </script>
+
+  <!-- Floating Back to Top Button on Right Side -->
+  <button id="subject-back-to-top-btn" onclick="scrollToTop()"
+    type="button"
+    aria-label="Back to top"
+    title="Back to top"
+    class="fixed bottom-5 right-4 sm:bottom-7 sm:right-7 z-40 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white shadow-xl shadow-indigo-600/40 border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 opacity-0 pointer-events-none translate-y-4 group">
+    <i data-lucide="arrow-up" class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:-translate-y-0.5"></i>
+  </button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
